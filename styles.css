@@ -178,17 +178,3 @@ footer {
   margin: 0 auto;
   max-width: 1280px;
 }
-footer p {
-  border-left: 3px solid #ffcdd2;
-  padding-left: 15px;
-  text-indent: 20px;
-  color: #ececec;
-}
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-.stick + content {
-  padding-top: 102px;
-}
