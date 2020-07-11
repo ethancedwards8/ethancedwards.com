@@ -174,7 +174,7 @@ footer {
 /* img.links {
   image-resolution: 16px;
 } */
-img {
+a img {
   max-width: 15%;
   height: auto;
 }
