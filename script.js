@@ -2,7 +2,7 @@ let quoteID = document.getElementById("quote")
 let authorID = document.getElementById("quoteAuthor")
 
 let quotes = [
-    "Once you start thinking more about where you want to be than about making the best product, you\’re screwed.",
+    "Once you start thinking more about where you want to be than about making the best product, you're screwed.",
     "Arguing that you don\'t care about privacy because you have nothing to hide is no different than saying you don\'t care about free speech because you have nothing to say." ,
     "An idiot admires complexity, a genius admires simplicity.",
     "The best way to predict the future is to create it.",
