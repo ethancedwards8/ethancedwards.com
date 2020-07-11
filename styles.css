@@ -178,6 +178,30 @@ img {
   max-width: 15%;
   height: auto;
 }
-a:hover {
+a.storage:hover {
+  filter: brightness(0.7);
+}
+a.storage {
+  text-decoration: none;
+}
+p.storage a:hover {
+  color: rgb(31, 83, 204);
+}
+a.storage:visited {
+  text-decoration: none;
+  color: rgb(31, 83, 204);
+}
+h1 a {
+  text-decoration: none;
+  color: rgb(31, 83, 204);
+}
+h1 a:hover {
+  filter: brightness(0.7);
+}
+p a {
+  text-decoration: none;
+  color: rgb(31, 83, 204);
+}
+p a:hover {
   filter: brightness(0.7);
 }
