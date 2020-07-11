@@ -1,39 +1,29 @@
 let quoteID = document.getElementById("quote")
 let authorID = document.getElementById("quoteAuthor")
 
-// let quote1 = "Once you start thinking more about where you want to be than about making the best product, you’re screwed."
-// let author1 = "- Linus Torvalds" 
-// let quote2 = "When exposing a crime is treated as commiting a crime, you are being ruled by criminals."
-// let author2 = "- Edward Snowden" 
-// let quote3 = "An idiot admires complexity, a genius admires simplicity."
-// let author3 = "- Terry A. Davis"
-
 let quotes = [
     "Once you start thinking more about where you want to be than about making the best product, you’re screwed.",
-    "When exposing a crime is treated as commiting a crime, you are being ruled by criminals.",
-    "An idiot admires complexity, a genius admires simplicity."
+    "Arguing that you don\'t care about privacy because you have nothing to hide is no different than saying you don\'t care about free speech because you have nothing to say." ,
+    "An idiot admires complexity, a genius admires simplicity.",
+    "The best way to predict the future is to create it.",
+    "Privacy matters; privacy is what allows us to determine who we are and who we want to be.",
+    "Those that can, do. Those that can't, complain.",
+    "Creativity can be a social contribution, but only in so so far as society is free to use the results."
 ]
 let authors = [
     "- Linus Torvalds",
     "- Edward Snowden",
-    "- Terry A. Davis"
+    "- Terry A. Davis",
+    "- Peter Drucker",
+    "- Edward Snowden",
+    "- Linus Torvalds",
+    "- Richard Stallman"
 ]
 
 function getRandNum(max) {
     return Math.floor(Math.random() * Math.floor(max))
 }
-number = getRandNum(3)
+number = getRandNum(quotes.length)
 
-quoteID.innerText = quotes[number]
+quoteID.innerText = `"${quotes[number]}"`
 authorID.innerText = authors[number]
-// if (number == 0 ) {
-//     quoteID.innerText = quotes[0]
-//     authorID.innerHTML = authors[0]
-// } else if (number == 1) {
-//     quoteID.innerHTML = quotes[1]
-//     authorID.innerHTML = authors[1]
-// } else if (number == 2) {
-//     quoteID.innerHTML = quotes[2]
-//     authorID.innerHTML = authors[2]
-// }
-
