@@ -8,7 +8,7 @@ let quotes = [
     "The best way to predict the future is to create it.",
     "Privacy matters; privacy is what allows us to determine who we are and who we want to be.",
     "Those that can, do. Those that can\'t, complain.",
-    "Creativity can be a social contribution, but only in so so far as society is free to use the results."
+    "Creativity can be a social contribution, but only in so so far as society is free to use the results.",
     "To give anything less than your best is to sacrifice the gift."
 ]
 let authors = [
