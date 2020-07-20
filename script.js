@@ -9,7 +9,8 @@ let quotes = [
     "Privacy matters; privacy is what allows us to determine who we are and who we want to be.",
     "Those that can, do. Those that can\'t, complain.",
     "Creativity can be a social contribution, but only in so so far as society is free to use the results.",
-    "To give anything less than your best is to sacrifice the gift."
+    "To give anything less than your best is to sacrifice the gift.",
+    "Fear is an indicator of moving in the right direction."
 ]
 let authors = [
     "- Linus Torvalds",
@@ -19,7 +20,8 @@ let authors = [
     "- Edward Snowden",
     "- Linus Torvalds",
     "- Richard Stallman",
-    "- Steve Prefontaine"
+    "- Steve Prefontaine",
+    "- Grant Cardone"
 ]
 
 function getRandNum(max) {
