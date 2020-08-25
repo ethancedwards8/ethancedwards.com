@@ -1,29 +1,4 @@
-/**
-* You can find the full License at https://ethancedwars.com/LICENSE
-* @source: https://ethancedwards.com/script.js
-*
-* @licstart	The following is the entire license notice for the
-*  JavaScript code in this page.
-*
-* Copyright (C) 2020  Ethan Carter Edwards
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 2
-* of the License, ONLY.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*
-* @licend The above is the entire license notice
-* for the JavaScript code in this page.
-*/
+/* @license magnet:magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&dn=gpl-2.0.txt GPL-v2-or-Later */
 let quoteID = document.getElementById("quote")
 let authorID = document.getElementById("quoteAuthor")
 
@@ -57,3 +32,4 @@ number = getRandNum(quotes.length)
 
 quoteID.innerText = `"${quotes[number]}"`
 authorID.innerText = authors[number]
+/* @license-end */
