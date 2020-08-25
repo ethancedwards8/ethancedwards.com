@@ -8,5 +8,4 @@ RUN apk update \
 	&& rm -f index.html \
 	&& git clone https://github.com/ethancedwards8/ethancedwards.com .
 
-VOLUME ["/usr/local/apache2/htdocs"]
 EXPOSE 80 443
