@@ -8,6 +8,11 @@ services:
       - ethancedwards-internal
     restart: always
     deploy:
+      placement:
+        constraints:
+          - node.labels.placement!=fedora
+      restart_policy:
+        condition: any
       labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
