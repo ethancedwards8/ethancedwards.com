@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-10-11 Sun 14:19 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Ethan Carter Edwards" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+
+<div id="outline-container-org82ff57a" class="outline-2">
+<h2 id="org82ff57a"><span class="section-number-2">1</span> Periodic Table</h2>
+<div class="outline-text-2" id="text-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-left">1</th>
+<th scope="col" class="org-left">2</th>
+<th scope="col" class="org-left">3</th>
+<th scope="col" class="org-left">4</th>
+<th scope="col" class="org-left">5</th>
+<th scope="col" class="org-left">6</th>
+<th scope="col" class="org-left">7</th>
+<th scope="col" class="org-left">8</th>
+<th scope="col" class="org-left">9</th>
+<th scope="col" class="org-left">10</th>
+<th scope="col" class="org-left">11</th>
+<th scope="col" class="org-left">12</th>
+<th scope="col" class="org-left">13</th>
+<th scope="col" class="org-left">14</th>
+<th scope="col" class="org-left">15</th>
+<th scope="col" class="org-left">16</th>
+<th scope="col" class="org-left">17</th>
+<th scope="col" class="org-left">18</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Hydrogen">1H</a></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Helium">2He</a></td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Lithium">3Li</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Beryllium">4Be</a></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Boron">5B</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Carbon">6C</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Nitrogen">7N</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Oxygen">8O</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Flourine">9F</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Neon">10Ne</a></td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Sodium">11Na</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Magnesium">12Mg</a></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Aluminium">13Al</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Silicon">14Si</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Phosphorus">15P</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Sulfur">16S</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Chlorine">17Cl</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Argon">18Ar</a></td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Potassium">19K</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Calcium">20Ca</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Scandium">21Sc</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Titanium">22Ti</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Vanadium">23V</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Chromium">24Cr</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Magnesium">25Mn</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Iron">26Fe</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Cobalt">27Co</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Nickel">28Ni</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Copper">29Cu</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Zinc">30zn</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Gallium">31Ga</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Germanium">32Ge</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Arsenic">33As</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Selenium">34Se</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Bromine">35Br</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Krypton">36Kr</a></td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Rubidium">37Rb</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Strontium">38Sr</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Yttrium">39Y</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Zirconium">40Zr</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Niobium">41Nb</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Molybdenum">42Mo</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Technetium">43Tc</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Ruthenium">44Ru</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Rhodium">45Rh</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Palladium">46Pd</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Palladium">47Ag</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Cadmium">48Cd</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Indium">49In</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Tin">50Sn</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Antimony">51Sb</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Tellurium">52Te</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Iodine">53I</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Xenon">54Xe</a></td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Caesium">55Cs</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Barium">56Ba</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Lanthanide">57-71La</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Hafnium">72Hf</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Tantalum">73Ta</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Tungsten">74W</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Rhenium">75Re</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Osmium">76Os</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Indium">77Ir</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Platinum">78Pt</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Gold">79Au</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Mercury_(element)">80Hg</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Thallium">81Tl</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Lead">82Pb</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Bismuth">83Bi</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Polonium">84Po</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Astatine">85At</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Radeon">86Rn</a></td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Francium">7Fr</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Radium">88Ra</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Actinide">89-103Ac</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Rutherfordium">104Rf</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Dubnium">105Db</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Seaborgium">106Sg</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Bohrium">107Bh</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Hassium">108Hs</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Meitnerium">109Mt</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Darmstadtium">110Ds</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Roentgenium">111Rg</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Copernicium">112Cn</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Nihonium">113Nh</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Flerovium">114Fl</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Moscovium">115Mc</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Livermorium">116Lv</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Tennessine">117Ts</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Oganesson">118Og</a></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Lanthanide">Lanthanoids</a></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Lanthanum">57La</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Cerium">58Ce</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Praseodymium">59Pr</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Neodymium">60Nd</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Promethium">61Pm</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Samarium">62Sm</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Europium">63Eu</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Gadolinium">64Gd</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Terbium">65Tb</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Dysprosium">66Dy</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Holmium">67Ho</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Erbium">68Er</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Thulium">69Tm</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Ytterbium">70Yb</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Lutetium">71Lu</a></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Actinoids">Actinoids</a></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Actinium">89Ac</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Thorium">90Th</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Protactinium">91Pa</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Uranium">92U</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Neptunium">93Np</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Plutonium">94Pu</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Americium">95Am</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Curium">96Cm</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Berkelium">97Bk</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Californium">96Cf</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Einsteinium">99Es</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Fermium">100Fm</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Mendelevium">101Md</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Nobelium">102No</a></td>
+<td class="org-left"><a href="https://en.wikipedia.org/wiki/Lawrencium">103Lr</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org4986bcf" class="outline-2">
+<h2 id="org4986bcf"><span class="section-number-2">2</span> Max number of electrons in each ring</h2>
+<div class="outline-text-2" id="text-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">Ring I</td>
+<td class="org-right">Ring II</td>
+<td class="org-right">Ring III</td>
+<td class="org-right">Ring IV</td>
+<td class="org-right">Ring V</td>
+<td class="org-right">Ring VI</td>
+<td class="org-right">Ring VII</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">8</td>
+<td class="org-right">18</td>
+<td class="org-right">32</td>
+<td class="org-right">32</td>
+<td class="org-right">18</td>
+<td class="org-right">8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ethan Carter Edwards</p>
+<p class="date">Created: 2020-10-11 Sun 14:19</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

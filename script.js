@@ -30,6 +30,7 @@ function getRandNum(max) {
 }
 number = getRandNum(quotes.length)
 
+d = new Date().getFullYear();
 quoteID.innerText = `"${quotes[number]}"`
 authorID.innerText = authors[number]
 /* @license-end */
