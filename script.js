@@ -11,7 +11,8 @@ let quotes = [
     "Those that can, do. Those that can\'t, complain.",
     "Creativity can be a social contribution, but only in so so far as society is free to use the results.",
     "To give anything less than your best is to sacrifice the gift.",
-    "Fear is an indicator of moving in the right direction."
+    "Fear is an indicator of moving in the right direction.",
+    "The Grind is not Glamorous."
 ]
 let authors = [
     "- Linus Torvalds",
@@ -22,7 +23,8 @@ let authors = [
     "- Linus Torvalds",
     "- Richard Stallman",
     "- Steve Prefontaine",
-    "- Grant Cardone"
+    "- Grant Cardone",
+    "- Casey Neistat"
 ]
 
 function getRandNum(max) {
