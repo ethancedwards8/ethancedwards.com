@@ -12,7 +12,8 @@ let quotes = [
     "Creativity can be a social contribution, but only in so so far as society is free to use the results.",
     "To give anything less than your best is to sacrifice the gift.",
     "Fear is an indicator of moving in the right direction.",
-    "The Grind is not Glamorous."
+    "The Grind is not Glamorous.",
+    "Failing to plan is planning to fail."
 ]
 let authors = [
     "- Linus Torvalds",
@@ -24,7 +25,8 @@ let authors = [
     "- Richard Stallman",
     "- Steve Prefontaine",
     "- Grant Cardone",
-    "- Casey Neistat"
+    "- Casey Neistat",
+    "- Alan Lakein"
 ]
 
 function getRandNum(max) {
