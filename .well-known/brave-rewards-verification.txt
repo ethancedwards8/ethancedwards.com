@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: ethancedwards.com
+Token: b4645ce18254907e50c6a7ee76cdac7a65192ac58e6111f12060f117b98113ee
