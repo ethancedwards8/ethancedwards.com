@@ -1,6 +1,6 @@
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&dn=gpl-2.0.txt GPL-v2-or-Later */
-let quoteID = document.getElementById("quote")
-let authorID = document.getElementById("quoteAuthor")
+let quoteID = document.getElementById("quote");
+let authorID = document.getElementById("quoteAuthor");
 
 let quotes = [
     "Once you start thinking more about where you want to be than about making the best product, you're screwed.",
@@ -14,7 +14,7 @@ let quotes = [
     "Fear is an indicator of moving in the right direction.",
     "The Grind is not Glamorous.",
     "Failing to plan is planning to fail."
-]
+];
 let authors = [
     "- Linus Torvalds",
     "- Edward Snowden",
@@ -27,14 +27,14 @@ let authors = [
     "- Grant Cardone",
     "- Casey Neistat",
     "- Alan Lakein"
-]
+];
 
 function getRandNum(max) {
-    return Math.floor(Math.random() * Math.floor(max))
+    return Math.floor(Math.random() * Math.floor(max));
 }
-number = getRandNum(quotes.length)
+number = getRandNum(quotes.length);
 
 d = new Date().getFullYear();
-quoteID.innerText = `"${quotes[number]}"`
-authorID.innerText = authors[number]
+quoteID.innerText = `"${quotes[number]}"`;
+authorID.innerText = authors[number];
 /* @license-end */
