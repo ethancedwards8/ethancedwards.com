@@ -13,7 +13,8 @@ let quotes = [
     "To give anything less than your best is to sacrifice the gift.",
     "Fear is an indicator of moving in the right direction.",
     "The Grind is not Glamorous.",
-    "Failing to plan is planning to fail."
+    "Failing to plan is planning to fail.",
+    "The Curse of Knowledge: when we are given knowledge, it is impossible to imagine what it's like to LACK that knowledge."
 ];
 let authors = [
     "- Linus Torvalds",
@@ -26,7 +27,8 @@ let authors = [
     "- Steve Prefontaine",
     "- Grant Cardone",
     "- Casey Neistat",
-    "- Alan Lakein"
+    "- Alan Lakein",
+    "- Chip Heath"
 ];
 
 function getRandNum(max) {
