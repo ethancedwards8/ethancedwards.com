@@ -20,6 +20,7 @@ services:
         - traefik.http.routers.ece-https.entrypoints=https
         - traefik.http.routers.ece-https.tls=true
         - traefik.http.routers.ece-https.tls.certresolver=le
+
 networks:
   traefik-public:
     external: true
