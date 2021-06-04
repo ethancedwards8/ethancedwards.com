@@ -1,0 +1,6 @@
+<Location /.well-known/matrix/client>
+    ErrorDocument 200 '{"m.homeserver":{"base_url":"https://matrix.ethancedwards.com"},"m.identity_server":{"base_url":"https://matrix.ethancedwards.com"}}'
+    Redirect 200 /
+    Header always set Content-Type application/json
+    Header always set Access-Control-Allow-Origin *
+</Location>
