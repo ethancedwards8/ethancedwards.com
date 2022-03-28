@@ -1,0 +1,86 @@
+body {
+    /* background-color: rgb(242, 242, 242); */
+    /* background-color: #1f68e0; */
+    /* background-color: #328ecd; */
+}
+
+.photo {
+    height: 500px;
+    border-radius: 25px;
+}
+
+.logo {
+
+}
+
+p a {
+    text-decoration: none;
+    color: blue;
+}
+
+p a:hover {
+    color: purple;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    text-align: center;
+    gap: 10px;
+}
+
+.info-text {
+    text-align: left;
+}
+
+.makecenter {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.zero {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.one {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.two {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.three {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.four {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.five {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.six {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+.seven {
+    flex: inline-flex;
+    flex-direction: column;
+}
+
+.seven a img {
+    max-width: 15%;
+    height: auto;
+}
