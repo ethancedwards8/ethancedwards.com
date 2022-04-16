@@ -36,8 +36,8 @@ const About = () => {
             <p className="info-text">
               Additionally, I participate in many extracurricular activities through school and my community;
               I'm a year round athlete, running in the fall and spring and swimming during the summer and
-              winter. I'm also a member of my school's FBLA chapter, successfully qualifying for the state
-              competition in Cybersecurity.
+              winter. I'm also a member of my school's FBLA chapter, successfully qualifying for the 2022 state
+              and national competition in Cybersecurity.
             </p>
           </div>
           <h1 className="four makecenter">Beliefs and Philosophies</h1>
