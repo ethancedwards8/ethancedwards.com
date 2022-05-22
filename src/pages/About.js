@@ -56,7 +56,7 @@ const About = () => {
               It is also important to keep in mind that <a href="https://www.gnu.org/philosophy/open-source-misses-the-point.en.html">Open Source, is not equal to Free Software</a>. A piece of
               Open Source software can be Free, but it is not always the case. The reverse is also true, something
               being Free Software does not mean it is Open Source. Both movements are revolutionary and beneficial
-              to the average computer user or hacker, but it is important not to confuse them.
+              to the average computer user or <a href="https://en.wikipedia.org/wiki/Hacker_culture">hacker</a>, but it is important not to confuse them.
             </p>
           </div>
           <h1 className="six">Contact Me</h1>
