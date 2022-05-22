@@ -1,14 +1,19 @@
 import Head from 'next/head';
+
 import Header from '../components/header.js';
 
-function MyApp({ Component, pageProps }) {
-    <Head>
-      <meta charset="utf-8" />
-      <title>Ethan Carter Edwards</title>
-    </Head>
+import '../styles/main.css';
+import '../styles/about.css';
+import '../styles/index.css';
+import '../styles/header.css';
 
-    // <Header />
-    return (<p>Hi</p>);
+
+export default function MyApp({ Component, pageProps }) {
+    return (
+        <div className="App">
+          <Header />
+
+          <Component {...pageProps} />
+        </div>
+    );
 }
-
-export default MyApp;

@@ -2,11 +2,11 @@
     margin: 0 20px;
 }
 
-.navlink {
+.navlink a {
     transition: color .15s ease-out 75ms;
 }
 
-.navlink:hover {
+.navlink a:hover {
     color: #1C86FF;
 }
 
@@ -34,4 +34,5 @@ nav a {
 }
 
 a:hover {
+
 }
