@@ -2,24 +2,20 @@
 
 # Step 1
 
-FROM node:17-alpine as build-step
+FROM alpine
+
+RUN apk update && apk install node
 
 RUN mkdir /app
 
 WORKDIR /app
 
-COPY package.json /app
+COPY package* /app/
 
-RUN npm install
+RUN npm ci --install
 
-COPY . /app
+COPY . /app/
 
 RUN npm run build
 
-# Stage 2
-
-FROM nginx:alpine
-
-COPY --from=build-step /app/build /usr/share/nginx/html
-
-
+CMD ["npm", "run", "start"]
