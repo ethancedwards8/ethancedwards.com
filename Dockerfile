@@ -4,7 +4,7 @@
 
 FROM alpine
 
-RUN apk update && apk install node
+RUN apk update && apk add --no-cache npm
 
 RUN mkdir /app
 
