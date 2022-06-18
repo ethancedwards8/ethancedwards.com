@@ -40,8 +40,8 @@ function getRandNum(max) {
 let number = getRandNum(quotes.length);
 
 export default function Home() {
-  return (
-      <div className="App">
+    return (
+        <div className="App">
 
           <h1>Welcome to my website! Visit the about page for more information about me.</h1>
           <p>This site is a work in progress, visit again to see it updated!</p>
@@ -51,6 +51,6 @@ export default function Home() {
             <h2 id="author">{authors[number]}</h2>
           </hgroup>
 
-      </div>
-  );
+        </div>
+    );
 }
