@@ -23,8 +23,7 @@ export default function Home({ quotes }) {
     );
 }
 
-// export async function getServerSideProps() {
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const res = await fetch(`https://api.ethancedwards.com/quotes/v1`);
     const quotes = await res.json();
 

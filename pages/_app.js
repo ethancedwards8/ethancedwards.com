@@ -6,6 +6,7 @@ import '../styles/main.css';
 import '../styles/about.css';
 import '../styles/index.css';
 import '../styles/header.css';
+import '../styles/blog.css';
 
 
 export default function MyApp({ Component, pageProps }) {

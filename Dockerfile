@@ -4,18 +4,12 @@
 
 FROM alpine
 
-RUN apk update && apk add --no-cache npm
-
 RUN mkdir /app
 
 WORKDIR /app
 
-COPY package* /app/
-
-RUN npm ci --install
-
 COPY . /app/
 
-RUN npm run build
+RUN apk update && apk add --no-cache npm && npm ci --install && npm run build
 
 CMD ["npm", "run", "start"]
