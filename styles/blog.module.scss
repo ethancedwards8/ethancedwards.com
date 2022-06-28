@@ -1,0 +1,34 @@
+.post {
+    background: grey;
+    margin: 20px;
+    padding: 10px;
+
+    a {
+	text-decoration: none;
+	color: #363EEB;
+	transition: color .15s ease-out 75ms;
+    }
+
+    a:hover {
+	color: black;
+
+    }
+
+}
+
+.blog {
+    margin: 20px;
+    padding: 10px;
+}
+
+.header {
+    // background: #363EEB;
+    // background: #363EEB;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.codeblock {
+    background-color: #363EEB;
+}

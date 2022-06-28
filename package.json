@@ -6,17 +6,19 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "dayjs": "^1.11.3",
     "express": "^4.18.1",
     "gray-matter": "^4.0.3",
     "next": "^12.1.6",
     "next-mdx-remote": "^4.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": "^15.5.0",
+    "rss": "^1.2.2"
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node ./scripts/gen-rss.js && next build",
     "start": "NODE_ENV=production node server.js"
   },
   "eslintConfig": {
@@ -36,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.53.0"
   }
 }

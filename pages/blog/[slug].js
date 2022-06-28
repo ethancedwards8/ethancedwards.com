@@ -1,23 +1,32 @@
 import fs from 'fs';
 import path from 'path';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import { useRouter } from 'next/router';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import dayjs from 'dayjs';
 
 import { getAllPosts } from '../../lib/posts';
 
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import CodeBlock from '../../components/codeblock.js';
+
 const components = { SyntaxHighlighter };
+
+import styles from '../../styles/post.module.scss';
 
 export default function slug({ frontMatter, source, slug }) {
 
     return (
         <>
           <h1>{frontMatter.title}</h1>
-          <main>
+          <h3>{dayjs(frontMatter.date).format('MMMM D, YYYY')}</h3>
+          <h4>{frontMatter.author}</h4>
+          <hr/>
+          <main className={styles.content}>
             <MDXRemote {...source} components={components}/>
           </main>
+          <hr/>
         </>
     );
 }
@@ -25,7 +34,13 @@ export default function slug({ frontMatter, source, slug }) {
 export async function getStaticProps({ params: { slug } }) {
     const post = getAllPosts().find(x => x.slug === slug);
     const frontMatter = post.frontMatter;
-    const source = await serialize(post.content);
+    const source = await serialize(post.content, {
+        mdxOptions: {
+            // remark/rehype plugins
+            // remarkPlugins: [remarkMath],
+            // rehypePlugins: [rehypeKatex]
+        }
+    });
 
     return {
         props: {

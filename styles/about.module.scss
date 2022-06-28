@@ -8,15 +8,16 @@ body {
 }
 
 .logo {
-
+    // height: 100%;
+    // object-fit: cover;
 }
 
-p a {
+.link {
     text-decoration: none;
     color: blue;
 }
 
-p a:hover {
+.link:hover {
     color: purple;
 }
 
@@ -28,7 +29,7 @@ p a:hover {
     gap: 10px;
 }
 
-.info-text {
+.info_text {
     text-align: left;
 }
 

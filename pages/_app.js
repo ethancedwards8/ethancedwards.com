@@ -2,12 +2,7 @@ import Head from 'next/head';
 
 import Header from '../components/header.js';
 
-import '../styles/main.css';
-import '../styles/about.css';
-import '../styles/index.css';
-import '../styles/header.css';
-import '../styles/blog.css';
-
+import '../styles/all.scss';
 
 export default function MyApp({ Component, pageProps }) {
     return (

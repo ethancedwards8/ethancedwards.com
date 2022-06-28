@@ -1,4 +1,4 @@
-.brand-logo {
+.logo {
     margin: 0 20px;
 }
 
@@ -10,29 +10,25 @@
     color: #1C86FF;
 }
 
-nav {
+.nav {
     background: #1a1515;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-nav ul {
+.nav ul {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
 }
 
-nav li {
+.nav li {
     display: inline-block;
     margin: 0 20px;
 }
 
-nav a {
+.nav a {
     text-decoration: none;
     color: white;
-}
-
-a:hover {
-
 }
