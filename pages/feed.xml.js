@@ -1,24 +1,32 @@
 const { promises: fs } = require('fs');
-const path = require('path');
-const RSS = require('rss');
-const matter = require('gray-matter');
+import path from 'path';
+import RSS from 'rss';
+import matter from 'gray-matter';
 
-async function generate() {
+export default function RSSFeed({ feed }) {
+    return (
+        <>
+          <p>Hello</p>
+          <p>{feed}</p>
+        </>
+    );
+}
+
+export async function getStaticProps() {
     const feed = new RSS({
         title: 'Ethan Carter Edwards',
         site_url: 'https://ethancedwards.com',
         feed_url: 'https://ethancedwards.com/feed.xml'
     });
 
-    const posts = await fs.readdir(path.join(__dirname, '..', 'posts'));
+    const posts = await fs.readdir(path.join(__dirname, 'posts'));
 
     await Promise.all(
         posts.map(async (name) => {
             if (name.startsWith('index.')) return;
 
             const post = await fs.readFile(
-                path.join(__dirname, '..', 'posts', name)
-            );
+                path.join(__dirname, '../', '../', 'posts'));
             const { data: frontMatter, content } = matter(post);
 
             // const mdxSource = await serialize(content);
@@ -33,8 +41,13 @@ async function generate() {
         })
     );
 
-    // await fs.writeFile('./public/feed.xml', feed.xml({ indent: true }));
-    console.log(feed.xml({ indent: true }));
-}
+    console.log(feed);
 
-generate();
+    return {
+        props: {
+            params: {
+                feed: feed.xml({indent: true})
+            }
+        }
+    };
+}
