@@ -7,3 +7,46 @@
     text-align: center;
     font-family: 'Roboto';
 }
+
+.post {
+    // background: gray;
+    border-radius: 25px;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+
+    a {
+	transition: color .15s ease-out 75ms;
+	color: #363EEB;
+	text-decoration: none;
+    }
+
+    a:hover {
+	color: #1C86FF;
+    }
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    // background: grey;
+}
+
+.welcome {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.recentposts {
+    grid-area: 1 / 2 / 3 / 3;
+
+    // background: #1244ed;
+    border-radius: 50px;
+    .recent {
+
+    }
+}
+
+.quote {
+    grid-area: 1 / 1 / 2 / 2;
+}

@@ -4,6 +4,7 @@ import path from 'path';
 import { useRouter } from 'next/router';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import Head from 'next/head';
 import dayjs from 'dayjs';
 
 import { getAllPosts } from '../../lib/posts';
@@ -19,6 +20,10 @@ export default function slug({ frontMatter, source, slug }) {
 
     return (
         <>
+          <Head>
+            <title>{frontMatter.title}</title>
+          </Head>
+
           <h1>{frontMatter.title}</h1>
           <h3>{dayjs(frontMatter.date).format('MMMM D, YYYY')}</h3>
           <h4>{frontMatter.author}</h4>

@@ -11,6 +11,7 @@ export default function Blog({ posts }) {
           <div className={styles.blog}>
             {posts.map((post, index) => (
                 <div className={styles.post}>
+                  <hr/>
                   <Link href={'/blog/' + post.slug} passHref>
                     <a><h1>{post.frontMatter.title}</h1></a>
                   </Link>
