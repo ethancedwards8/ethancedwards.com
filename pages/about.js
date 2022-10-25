@@ -53,10 +53,10 @@ export default function About() {
             </div>
             <h1 className={styles.six}>Contact Me</h1>
             <div className={styles.seven}>
-              <a href="https:twitter.com/ethancedwards"><img src="/twitter.png" alt="Twitter"/></a>
-              <a href="https:www.youtube.com/channel/UCeqv2z-lyq5M0u6_RnNALBQ"><img src="/youtube.png" alt="YouTube"/></a>
-              <a href="https:github.com/ethancedwards8"><img src="/github.png" alt="GitHub"/></a>
-              <a href="https:gitlab.com/ethancedwards"><img src="/gitlab2.png" alt="GitLab"/></a>
+              <a href="https://twitter.com/ethancedwards"><img src="/twitter.png" alt="Twitter"/></a>
+              <a href="https://www.youtube.com/channel/UCeqv2z-lyq5M0u6_RnNALBQ"><img src="/youtube.png" alt="YouTube"/></a>
+              <a href="https://github.com/ethancedwards8"><img src="/github.png" alt="GitHub"/></a>
+              <a href="https://gitlab.com/ethancedwards"><img src="/gitlab2.png" alt="GitLab"/></a>
               <a href="mailto:ethan@ethancedwards.com"><img src="/email.png" alt="Email"/></a>
             </div>
           </div>

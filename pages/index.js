@@ -31,8 +31,8 @@ export default function Home({ quotes, posts }) {
                         <Link href={'/blog/' + post.slug} passHref>
                           <a><h3>{post.frontMatter.title}</h3></a>
                         </Link>
-                        <p>{post.frontMatter.author}</p>
-                        <p>{dayjs(post.frontMatter.date).format('MMMM D, YYYY')}</p>
+                        <p className={styles.info}>{post.frontMatter.author}</p>
+                        <p className={styles.info}>{dayjs(post.frontMatter.date).format('MMMM D, YYYY')}</p>
                       </div>
                   ))}
                 </posts>
