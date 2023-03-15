@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import Header from '../components/header.js';
+import Footer from '../components/footer.js';
 
 import '../styles/all.scss';
 
@@ -20,6 +21,8 @@ export default function MyApp({ Component, pageProps }) {
           </Head>
 
           <Component {...pageProps} />
+
+          <Footer />
         </div>
     );
 }

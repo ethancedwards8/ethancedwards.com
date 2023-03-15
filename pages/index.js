@@ -17,8 +17,10 @@ export default function Home({ quotes, posts }) {
           <div className={styles.wrapper}>
 
             <hgroup className={styles.quote}>
-              <h1 id="quote">"{quotes.quote}"</h1>
-              <h2 id="author">- {quotes.author}</h2>
+              <div>
+                <h1 id="quote">"{quotes.quote}"</h1>
+                <h2 id="author">- {quotes.author}</h2>
+              </div>
             </hgroup>
 
             <div className={styles.recentposts}>
@@ -40,12 +42,6 @@ export default function Home({ quotes, posts }) {
               </div>
             </div>
 
-            <div className={styles.welcome}>
-              <h1>Welcome to my website! Visit the about or blog pages for more content!</h1>
-              <p>This site is a work in progress, visit again to see it updated!</p>
-              <p>(hint: refresh!)</p>
-            </div>
-
           </div>
 
         </div>
@@ -53,7 +49,12 @@ export default function Home({ quotes, posts }) {
 }
 
 export async function getServerSideProps() {
-    const res = await fetch(`https://api.ethancedwards.com/quotes/v1`);
+    // local development
+    // const res = { quote: "Quote", author: "Author" };
+    // const quotes = res;
+
+    // production
+    const res = await fetch(`https:api.ethancedwards.com/quotes/v1`);
     const quotes = await res.json();
 
     const posts = getAllPosts();

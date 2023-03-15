@@ -22,14 +22,18 @@ export default function About() {
                 Engineering side of things.
               </p>
               <p className={styles.info_text}>
-                Outside of the tech space, I enjoy exploring Mathematics, reading, and learning
+                Outside of the tech space, I enjoy exploring Mathematics, Chess, reading, and learning
                 languages. I'm currently learning Spanish.
               </p>
               <p className={styles.info_text}>
                 Additionally, I participate in many extracurricular activities through school and my community;
                 I'm a year round athlete, running in the fall and spring and swimming during the summer and
-                winter. I'm also a member of my school's FBLA chapter, successfully qualifying for the 2022 state
-                and national competition in Cybersecurity.
+                winter, competing in the VHSL State Swimming Championships for the 2022-23 year. I placed 15th, 16th, and 16th in the finals.
+              </p>
+              <p className={styles.info_text}>
+                I'm also a member of my school's FBLA chapter, successfully qualifying for the 2022 state
+                and national competition in Cybersecurity. In 2023, I won the region competition in Cybersecurity and Network Design,
+                qualifying for the upcoming State competition.
               </p>
             </div>
             <h1 className={styles.four + styles.makecenter}>Beliefs and Philosophies</h1>
@@ -52,12 +56,23 @@ export default function About() {
               </p>
             </div>
             <h1 className={styles.six}>Contact Me</h1>
-            <div className={styles.seven}>
-              <a href="https://twitter.com/ethancedwards"><img src="/twitter.png" alt="Twitter"/></a>
-              <a href="https://www.youtube.com/channel/UCeqv2z-lyq5M0u6_RnNALBQ"><img src="/youtube.png" alt="YouTube"/></a>
-              <a href="https://github.com/ethancedwards8"><img src="/github.png" alt="GitHub"/></a>
-              <a href="https://gitlab.com/ethancedwards"><img src="/gitlab2.png" alt="GitLab"/></a>
-              <a href="mailto:ethan@ethancedwards.com"><img src="/email.png" alt="Email"/></a>
+            <div className={`${styles.seven} ${styles.certgrid}`}>
+              <div className={styles.contacts}>
+                <a href="https://twitter.com/ethancedwards"><img src="/twitter.png" alt="Twitter"/></a>
+                <a href="https://www.youtube.com/channel/UCeqv2z-lyq5M0u6_RnNALBQ"><img src="/youtube.png" alt="YouTube"/></a>
+                <a href="https://github.com/ethancedwards8"><img src="/github.png" alt="GitHub"/></a>
+                <a href="https://gitlab.com/ethancedwards"><img src="/gitlab2.png" alt="GitLab"/></a>
+                <a href="mailto:ethan@ethancedwards.com"><img src="/email.png" alt="Email"/></a>
+              </div>
+              <div className={styles.certifications}>
+                <h1>Certifications</h1>
+                <p>
+                  <a className={styles.link} href="https://www.credly.com/badges/523dcce4-4cf1-4b8e-ad96-84a31f1ccb14/public_url">GitLab Certified Git Associate</a>
+                </p>
+                <p>
+                  CompTIA A+
+                </p>
+              </div>
             </div>
           </div>
         </>

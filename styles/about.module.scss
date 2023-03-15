@@ -77,11 +77,26 @@ body {
 }
 
 .seven {
-    flex: inline-flex;
-    flex-direction: column;
 }
 
-.seven a img {
+
+.certgrid {
+    display: grid;
+    grid-auto-rows: repeat(2, 1fr);
+}
+
+.contacts {
+    flex: inline-flex;
+    flex-direction: column;
+    grid-row: 1;
+}
+
+.contacts a img {
     max-width: 15%;
     height: auto;
+}
+
+.certifications {
+    grid-row: 2;
+    text-align: center;
 }
