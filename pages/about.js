@@ -22,8 +22,8 @@ export default function About() {
                 Engineering side of things.
               </p>
               <p className={styles.info_text}>
-                Outside of the tech space, I enjoy exploring Mathematics, Chess, reading, and learning
-                languages. I'm currently learning Spanish.
+                Outside of the tech space, I enjoy exploring Mathematics, Chess, reading, and linguistics.
+                I am fluent in Spanish.
               </p>
               <p className={styles.info_text}>
                 Additionally, I participate in many extracurricular activities through school and my community;
@@ -70,7 +70,7 @@ export default function About() {
                   <a className={styles.link} href="https://www.credly.com/badges/523dcce4-4cf1-4b8e-ad96-84a31f1ccb14/public_url">GitLab Certified Git Associate</a>
                 </p>
                 <p>
-                  CompTIA A+
+                  <a className={styles.link} href="https://www.credly.com/badges/d9c44e5d-ef50-48aa-8a2b-46f793609745/public_url">CompTIA A+</a>
                 </p>
               </div>
             </div>
