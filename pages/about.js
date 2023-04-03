@@ -32,8 +32,8 @@ export default function About() {
               </p>
               <p className={styles.info_text}>
                 I'm also a member of my school's FBLA chapter, successfully qualifying for the 2022 state
-                and national competition in Cybersecurity. In 2023, I won the region competition in Cybersecurity and Network Design,
-                qualifying for the upcoming State competition.
+                and national competition in Cybersecurity. In 2023, I competed at the state level in Network Design and Cybersecurity.
+                I became state champion in Network Design qualifying for nationals, and placed 5th in Cybersecurity.
               </p>
             </div>
             <h1 className={styles.four + styles.makecenter}>Beliefs and Philosophies</h1>
@@ -60,6 +60,7 @@ export default function About() {
               <div className={styles.contacts}>
                 <a href="https://twitter.com/ethancedwards"><img src="/twitter.png" alt="Twitter"/></a>
                 <a href="https://www.youtube.com/channel/UCeqv2z-lyq5M0u6_RnNALBQ"><img src="/youtube.png" alt="YouTube"/></a>
+                <a href="https://www.linkedin.com/in/ethancedwards8/"><img src="/linkedin.png" alt="LinkedIn"/></a>
                 <a href="https://github.com/ethancedwards8"><img src="/github.png" alt="GitHub"/></a>
                 <a href="https://gitlab.com/ethancedwards"><img src="/gitlab2.png" alt="GitLab"/></a>
                 <a href="mailto:ethan@ethancedwards.com"><img src="/email.png" alt="Email"/></a>
