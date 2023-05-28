@@ -54,7 +54,7 @@ export async function getServerSideProps() {
     // const quotes = res;
 
     // production
-    const res = await fetch(`https:api.ethancedwards.com/quotes/v1`);
+    const res = await fetch(`https://api.ethancedwards.com/quotes/v1`);
     const quotes = await res.json();
 
     const posts = getAllPosts();
