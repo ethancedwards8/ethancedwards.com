@@ -18,8 +18,7 @@ export default function About() {
                 working during the summers, and sporadically during the school year.
                 I've been using Linux since 7th grade and I've loved every second of it.
                 I consider myself a Networking and Systems Administrator at heart, with modern DevOps and
-                Architecture Design skills and knowledge, although I do occasionally dabble with the Software
-                Engineering side of things.
+                Software and knowledge.
               </p>
               <p className={styles.info_text}>
                 Outside of the tech space, I enjoy exploring Mathematics, Chess, reading, and linguistics.
@@ -33,7 +32,8 @@ export default function About() {
               <p className={styles.info_text}>
                 I'm also a member of my school's FBLA chapter, successfully qualifying for the 2022 state
                 and national competition in Cybersecurity. In 2023, I competed at the state level in Network Design and Cybersecurity.
-                I became state champion in Network Design qualifying for nationals, and placed 5th in Cybersecurity.
+                I became state champion in Network Design qualifying for nationals, and placed 5th in Cybersecurity. I placed 8th at Nationals
+                in Network Design.
               </p>
             </div>
             <h1 className={styles.four + styles.makecenter}>Beliefs and Philosophies</h1>
@@ -68,11 +68,19 @@ export default function About() {
               <div className={styles.certifications}>
                 <h1>Certifications</h1>
                 <p>
-                  <a className={styles.link} href="https://www.credly.com/badges/523dcce4-4cf1-4b8e-ad96-84a31f1ccb14/public_url">GitLab Certified Git Associate</a>
+                  <a className={styles.link} href="https://www.credly.com/badges/d9c44e5d-ef50-48aa-8a2b-46f793609745">CompTIA A+</a>
                 </p>
                 <p>
-                  <a className={styles.link} href="https://www.credly.com/badges/d9c44e5d-ef50-48aa-8a2b-46f793609745/public_url">CompTIA A+</a>
+                  <a className={styles.link} href="https://www.credly.com/badges/98fa5101-a798-47da-9d26-477f38dbcb9d">(ISC)2 Certified in Cybersecurity (CC)</a>
                 </p>
+                <p>
+                  <a className={styles.link} href="https://www.credly.com/badges/523dcce4-4cf1-4b8e-ad96-84a31f1ccb14">GitLab Certified Git Associate</a>
+                </p>
+              </div>
+              <div className={styles.podcast}>
+                <h1>The Ridge Podcast</h1>
+                <p>I am the Founder/Owner and Co-host of <a className={styles.link} href="https://theridgepodcast.com">The Ridge Podcast</a>. On the podcast,
+                  we interview local elected officials, candidates, business owners, teachers, veterans, and other prominent members of the community.</p>
               </div>
             </div>
           </div>

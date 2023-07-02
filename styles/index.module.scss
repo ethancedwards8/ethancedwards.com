@@ -73,3 +73,21 @@
 	margin: 0;
     }
 }
+
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+	display: grid;
+	grid-auto-rows: repeat(3, 1fr);
+    }
+
+    .quote {
+	grid-column: 1;
+	grid-row: 1;
+    }
+
+    .recentposts {
+	grid-column: 1;
+	grid-row: 2;
+    }
+}
