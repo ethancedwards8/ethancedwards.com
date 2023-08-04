@@ -68,6 +68,9 @@ export default function About() {
               <div className={styles.certifications}>
                 <h1>Certifications</h1>
                 <p>
+                  <a className={styles.link} href="https://www.credly.com/badges/ba212fd6-4840-4395-a672-7df371342fe6">CompTIA Security+</a>
+                </p>
+                <p>
                   <a className={styles.link} href="https://www.credly.com/badges/d9c44e5d-ef50-48aa-8a2b-46f793609745">CompTIA A+</a>
                 </p>
                 <p>
