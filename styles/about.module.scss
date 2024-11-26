@@ -102,3 +102,49 @@ body {
     text-align: center;
 }
 
+
+@media (width <= 800px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 10px;
+  }
+
+  .one {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0;
+  }
+
+  .two {
+    display: none;
+  }
+
+  .three {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  // .four {
+  //   grid-column: 1;
+  //   grid-row: 4;
+  // }
+
+  .five {
+
+  }
+
+  .six {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .seven {
+    grid-column: 1;
+    grid-row: 5;
+  }
+
+  .certifications {
+    display: none;
+  }
+}
