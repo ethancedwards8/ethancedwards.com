@@ -33,3 +33,14 @@
     text-decoration: none;
     color: white;
 }
+
+@media (width <= 800px) {
+
+  .logo {
+    display: none;
+  }
+
+  .nav ul {
+    display: flex;
+  }
+}
