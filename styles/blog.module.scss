@@ -23,12 +23,19 @@
   }
 }
 
+.repInfo {
+  border-style: solid;
+  border-color: black;
+  padding: 10px;
+  margin: 5px
+}
+
 .blog {
     margin: 20px;
     padding: 10px;
 
     .info {
-	margin: 0;
+	  margin: 0;
     }
 }
 
