@@ -4,9 +4,9 @@ import { useState } from 'react';
 
 import styles from '../../styles/blog.module.scss';
 
+import Representatives from '../../components/representatives.js';
+
 export default function Congress({ rep }) {
-    // <!-- only display senators if they exist for the address -->
-    let hasSenators = rep.hasOwnProperty("senate1")
 
     // const [address, setAddress] = useState("");
 
@@ -18,14 +18,15 @@ export default function Congress({ rep }) {
 
     const [address, setAddress] = useState("");
 
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        let res = fetch(`https://api.ethancedwards.com/congress/v1/${address}`)
-            .then((response) => response.json())
-            .then((json) => {
-                console.log(json)
-                event.target.submit()
-        })
+        let res = await fetch(`https://api.ethancedwards.com/congress/v1/${address}`)
+        let info = await res.json();
+
+        console.log(info);
+
+        document.getElementById('test').innerHTML = info.name;
 
     }
 
@@ -36,27 +37,22 @@ export default function Congress({ rep }) {
                     <input type="text" name="address" value={address} onChange={(e) => setAddress(e.target.value)}/>
                 </label>
             </form>
+
+            <Representatives rep={rep} />
+
         </>
     );
-            // <h1 className={styles.header}>{rep.house.state} {rep.name} Representatives:</h1>
-            // <div className={styles.blog}>
-            //     <div className={styles.repInfo} style={{borderColor: (rep.house.bio.party == "Republican") ? "red" : "blue"}}>
-            //         <h2>{rep.house.type} {rep.house.bio.full_name} - {rep.house.bio.party}</h2>
-            //     </div>
-            //     { hasSenators ? 
-            //         <div>
-            //             <div className={styles.repInfo} style={{borderColor: (rep.senate1.bio.party == "Republican") ? "red" : "blue"}}>
-            //                 <h2>{rep.senate1.type} {rep.senate1.bio.full_name} - {rep.senate1.bio.party}</h2>
-            //             </div>
-            //             <div className={styles.repInfo} style={{borderColor: (rep.senate2.bio.party == "Republican") ? "red" : "blue"}}>
-            //                 <h2>{rep.senate2.type} {rep.senate2.bio.full_name} - {rep.senate2.bio.party}</h2>
-            //             </div>
-            //         </div>
-            //         :
-            //         <></>
-            //     }
-            // </div>
-        // </>
-    // );
 }
 
+export async function getServerSideProps() {
+    // local development
+    // const res = { quote: "Quote", author: "Author" };
+    // const quotes = res;
+
+    // production
+    const res = await fetch(`https://api.ethancedwards.com/congress/v1/1600+Pennsylvania+Avenue+NW+Washington+DC+20500`);
+    const rep = await res.json();
+
+    return { props: { rep } };
+
+}
