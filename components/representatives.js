@@ -9,15 +9,18 @@ export default function Representatives({ rep }) {
                 <h1 className={styles.header}>{rep.house.state} {rep.name} Representatives:</h1>
                 <div className={styles.blog}>
                     <div className={styles.repInfo} style={{borderColor: (rep.house.bio.party == "Republican") ? "red" : "blue"}}>
-                        <h2>{rep.house.type} {rep.house.bio.full_name} - {rep.house.bio.party}</h2>
+                        <img src={rep.house.picture} alt="" className={styles.photo} />
+                        <h2 className={styles.text}>{rep.house.type} {rep.house.bio.full_name} - {rep.house.bio.party}</h2>
                     </div>
                     { hasSenators ? 
                         <div>
                             <div className={styles.repInfo} style={{borderColor: (rep.senate1.bio.party == "Republican") ? "red" : "blue"}}>
-                                <h2>Senior {rep.senate1.type} {rep.senate1.bio.full_name} - {rep.senate1.bio.party}</h2>
+                                <img src={rep.senate1.picture} alt="" className={styles.photo} />
+                                <h2 className={styles.text}>{rep.senate1.type} {rep.senate1.bio.full_name} - {rep.senate1.bio.party}</h2>
                             </div>
                             <div className={styles.repInfo} style={{borderColor: (rep.senate2.bio.party == "Republican") ? "red" : "blue"}}>
-                                <h2>Junior {rep.senate2.type} {rep.senate2.bio.full_name} - {rep.senate2.bio.party}</h2>
+                                <img src={rep.senate2.picture} alt="" className={styles.photo} />
+                                <h2 className={styles.text}>{rep.senate2.type} {rep.senate2.bio.full_name} - {rep.senate2.bio.party}</h2>
                             </div>
                         </div>
                         :
