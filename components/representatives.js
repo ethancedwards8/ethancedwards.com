@@ -1,4 +1,18 @@
-import styles from '../styles/blog.module.scss';
+import styles from '../styles/congress.module.scss';
+
+function Card({ individual }) {
+    return (
+        <>
+            <div className={styles.repInfo} style={{borderColor: (individual.bio.party == "Republican") ? "red" : "blue"}}>
+                <img src={individual.picture} alt="" className={styles.photo} />
+                <div className={styles.text}>
+                    <p>{individual.type} {individual.bio.full_name} - {individual.bio.party}</p>
+                    <p>{individual.typeSince} - Current</p>
+                </div>
+            </div>
+        </>
+    );
+}
 
 export default function Representatives({ rep }) {
     try {
@@ -7,21 +21,12 @@ export default function Representatives({ rep }) {
         return (
             <>
                 <h1 className={styles.header}>{rep.house.state} {rep.name} Representatives:</h1>
-                <div className={styles.blog}>
-                    <div className={styles.repInfo} style={{borderColor: (rep.house.bio.party == "Republican") ? "red" : "blue"}}>
-                        <img src={rep.house.picture} alt="" className={styles.photo} />
-                        <h2 className={styles.text}>{rep.house.type} {rep.house.bio.full_name} - {rep.house.bio.party}</h2>
-                    </div>
+                <div>
+                    <Card individual={rep.house} />
                     { hasSenators ? 
                         <div>
-                            <div className={styles.repInfo} style={{borderColor: (rep.senate1.bio.party == "Republican") ? "red" : "blue"}}>
-                                <img src={rep.senate1.picture} alt="" className={styles.photo} />
-                                <h2 className={styles.text}>{rep.senate1.type} {rep.senate1.bio.full_name} - {rep.senate1.bio.party}</h2>
-                            </div>
-                            <div className={styles.repInfo} style={{borderColor: (rep.senate2.bio.party == "Republican") ? "red" : "blue"}}>
-                                <img src={rep.senate2.picture} alt="" className={styles.photo} />
-                                <h2 className={styles.text}>{rep.senate2.type} {rep.senate2.bio.full_name} - {rep.senate2.bio.party}</h2>
-                            </div>
+                            <Card individual={rep.senate1} />
+                            <Card individual={rep.senate2} />
                         </div>
                         :
                         <></>
@@ -32,7 +37,7 @@ export default function Representatives({ rep }) {
     // return emptiness if no rep is passed through
     } catch(err) {
         return (
-            <> </>
+            <> Sorry, try another address </>
         );
     }
 }

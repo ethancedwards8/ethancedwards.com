@@ -1,15 +1,18 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
-import styles from '../../styles/blog.module.scss';
+import styles from '../../styles/congress.module.scss';
 
 import Representatives from '../../components/representatives.js';
 
 export default function Congress() {
     const [address, setAddress] = useState("");
     const [rep, setRep] = useState("");
+    const router = useRouter();
+    const { query } = router;
 
     // let rep;
 
@@ -18,16 +21,23 @@ export default function Congress() {
         let res = await fetch(`https://api.ethancedwards.com/congress/v1/${address}`)
         let info = await res.json();
 
-        setRep(info);
-        console.log('we are here');
+        // puts the address parameter into the URL
+        const queryParams = new URLSearchParams(`address=${address}`).toString();
+        router.push(`/congress?${queryParams}`);
 
-        // event.target.submit()
+        setRep(info);
     }
+
+    useEffect(() => {
+        if (query.address) {
+            setAddress(query.address);
+        }
+    }, [query]);
 
     return (
         <>
             <Head>
-                <title>Congress Search</title>
+                <title>Congress</title>
             </Head>
 
 
@@ -40,6 +50,7 @@ export default function Congress() {
                 <input type="submit" value="Submit" />
             </form>
             <hr />
+
             <div> 
                 { rep ? <Representatives rep={rep} /> : <div className={styles.text}> Please input an address... </div> }
             </div>
