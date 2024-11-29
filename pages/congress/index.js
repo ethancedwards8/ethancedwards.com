@@ -6,53 +6,51 @@ import styles from '../../styles/blog.module.scss';
 
 import Representatives from '../../components/representatives.js';
 
-export default function Congress({ rep }) {
-
-    // const [address, setAddress] = useState("");
-
-    // const search = (formData) => {
-    //     formData.prevent
-    //     const query = formData.get("query");
-    //     alert(`You searched for '${query}'`);
-    // }
-
+export default function Congress() {
     const [address, setAddress] = useState("");
+    const [rep, setRep] = useState("");
 
+    // let rep;
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         let res = await fetch(`https://api.ethancedwards.com/congress/v1/${address}`)
         let info = await res.json();
 
-        console.log(info);
+        setRep(info);
+        console.log('we are here');
 
-        document.getElementById('test').innerHTML = info.name;
-
+        // event.target.submit()
     }
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label>Enter your address:
-                    <input type="text" name="address" value={address} onChange={(e) => setAddress(e.target.value)}/>
-                </label>
+            <h1 className={styles.header}>Welcome to Find Your Rep.</h1>
+            <p className={styles.text}>To learn more about who represents you in congress, input your address below.
+                Please note that inputting your full address increases accuracy.</p>
+            <form onSubmit={handleSubmit} method="GET">
+                <label for="address" className={styles.text}>Enter your address: </label>
+                <input type="text" name="address" value={address} onChange={(e) => setAddress(e.target.value)} required/>
+                <input type="submit" value="Submit" />
             </form>
-
-            <Representatives rep={rep} />
+            <hr />
+            <div> 
+                { rep ? <Representatives rep={rep} /> : <div className={styles.text}> Please input an address... </div> }
+            </div>
 
         </>
     );
 }
 
-export async function getServerSideProps() {
-    // local development
-    // const res = { quote: "Quote", author: "Author" };
-    // const quotes = res;
+// export async function getServerSideProps() {
+//     // local development
+//     // const res = { quote: "Quote", author: "Author" };
+//     // const quotes = res;
 
-    // production
-    const res = await fetch(`https://api.ethancedwards.com/congress/v1/1600+Pennsylvania+Avenue+NW+Washington+DC+20500`);
-    const rep = await res.json();
+//     // production
+//     const res = await fetch(`https://api.ethancedwards.com/congress/v1/1600+Pennsylvania+Avenue+NW+Washington+DC+20500`);
+//     const rep = await res.json();
 
-    return { props: { rep } };
+//     return { props: { rep } };
 
-}
+// }
