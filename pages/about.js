@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from '../styles/about.module.scss';
+import Head from 'next/head';
 
 export default function About() {
     return (
         <>
+            <Head>
+                <title>About Me</title>
+            </Head>
+
           <div className={styles.wrapper}>
             <div className={`${styles.zero} ${styles.makecenter}`}>
               <img src="/logo.jpg" alt="my logo" className={styles.logo}/>

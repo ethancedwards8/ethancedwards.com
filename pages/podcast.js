@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import Head from 'next/head';
 
 import styles from '../styles/blog.module.scss';
 
@@ -7,6 +8,10 @@ export default function Blog({ episodes }) {
 
     return (
         <>
+            <Head>
+                <title>The Ridge Podcast</title>
+            </Head>
+
             <div className={styles.podcast}>
                 <h1 className={styles.header}>Welcome to The Ridge Podcast</h1>
                 <p>Here you can find conversations on Appalachia history and culture.</p>

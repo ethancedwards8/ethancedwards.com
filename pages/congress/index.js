@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import { useState } from 'react';
+import Head from 'next/head';
 
 import styles from '../../styles/blog.module.scss';
 
@@ -25,6 +26,11 @@ export default function Congress() {
 
     return (
         <>
+            <Head>
+                <title>Congress Search</title>
+            </Head>
+
+
             <h1 className={styles.header}>Welcome to Find Your Rep.</h1>
             <p className={styles.text}>To learn more about who represents you in congress, input your address below.
                 Please note that inputting your full address increases accuracy.</p>

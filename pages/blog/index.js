@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import Head from 'next/head';
 
 import { getAllPosts } from '../../lib/posts';
 import styles from '../../styles/blog.module.scss';
@@ -7,6 +8,10 @@ import styles from '../../styles/blog.module.scss';
 export default function Blog({ posts }) {
     return (
         <>
+            <Head>
+                <title>Blog</title>
+            </Head>
+
           <h1 className={styles.header}>List of posts:</h1>
           <div className={styles.blog}>
             {posts.map((post, index) => (
