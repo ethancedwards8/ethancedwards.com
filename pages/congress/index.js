@@ -41,7 +41,7 @@ export default function Congress() {
             </Head>
 
 
-            <h1 className={styles.header}>Welcome to Find Your Rep.</h1>
+            <h1 className={styles.header}>Welcome to Find Your Reps.</h1>
             <p className={styles.text}>To learn more about who represents you in congress, input your address below.
                 Please note that inputting your full address increases accuracy.</p>
             <form onSubmit={handleSubmit} method="GET">

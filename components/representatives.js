@@ -6,8 +6,11 @@ function Card({ individual }) {
             <div className={styles.repInfo} style={{borderColor: (individual.bio.party == "Republican") ? "red" : "blue"}}>
                 <img src={individual.picture} alt="" className={styles.photo} />
                 <div className={styles.text}>
-                    <p>{individual.type} {individual.bio.full_name} - {individual.bio.party}</p>
-                    <p>{individual.typeSince} - Current</p>
+                    <h2>{individual.type} {individual.bio.full_name}</h2>
+                    <p>Party: {individual.bio.party}</p>
+                    <p>Serving since: {individual.typeSince}</p>
+                    <p>Bills Sponsored: {individual.sponsoredLegislationCount}</p>
+                    <p>Bills Cosponsored: {individual.cosponsoredLegislationCount}</p>
                 </div>
             </div>
         </>
@@ -21,16 +24,10 @@ export default function Representatives({ rep }) {
         return (
             <>
                 <h1 className={styles.header}>{rep.house.state} {rep.name} Representatives:</h1>
-                <div>
+                <div className={styles.allReps}>
                     <Card individual={rep.house} />
-                    { hasSenators ? 
-                        <div>
-                            <Card individual={rep.senate1} />
-                            <Card individual={rep.senate2} />
-                        </div>
-                        :
-                        <></>
-                    }
+                    { hasSenators ? <Card individual={rep.senate1} /> : <></> }
+                    { hasSenators ? <Card individual={rep.senate2} /> : <></> }
                 </div>
             </>
         )

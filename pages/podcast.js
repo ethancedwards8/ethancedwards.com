@@ -33,7 +33,7 @@ export default function Blog({ episodes }) {
     );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     // local development
     // const res = { quote: "Quote", author: "Author" };
     // const quotes = res;

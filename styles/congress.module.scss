@@ -4,6 +4,7 @@
     margin: 20px;
     padding: 10px;
     border-radius: 50px;
+    text-align: center;
 }
 
 .text {
@@ -11,32 +12,40 @@
   padding: 10px;
 }
 
+.allReps {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
 .repInfo {
   border-style: solid;
   border-color: black;
   padding: 5px;
   margin: 5px;
-  display: grid;
-  // grid-template-columns: repeat(3, 1fr);
-  grid-template-columns: 1fr 4fr;
-  grid-auto-rows: 1;
 
   .photo {
-    grid-column: 1;
-    // width: 10%;
-    // height: auto;
     border-style: solid;
     border-color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .text {
     // padding: 0;
     margin: 0;
     grid-column: 2 / 3;
+    text-align: center;
   }
 }
 
 @media (width <= 800px) {
+  .allReps {
+    flex-direction: column;
+  }
+
   .repInfo {
     padding: 5px;
     // margin: 0;
