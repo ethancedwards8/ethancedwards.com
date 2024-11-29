@@ -23,30 +23,6 @@
   }
 }
 
-.repInfo {
-  border-style: solid;
-  border-color: black;
-  padding: 10px;
-  margin: 5px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1;
-
-  .photo {
-    grid-column: 1;
-    // width: 10%;
-    // height: auto;
-    border-style: solid;
-    border-color: black;
-  }
-
-  .text {
-    // padding: 0;
-    // margin: 0;
-    grid-column: 2 / span 2;
-  }
-}
-
 .text {
   margin: 20px;
   padding: 10px;

@@ -42,6 +42,7 @@ export async function getStaticProps() {
     const res = await fetch(`https://api.ethancedwards.com/podcast/v1/dump`);
     const episodes = await res.json();
 
-    return { props: { episodes } };
+    return { props: { episodes },
+            revalidate: 86400 };
 
 }

@@ -14,3 +14,11 @@ export default function LearnMore({ bioguide_id }) {
         </>
     );
 }
+
+export async function getServerSideProps({ params: { bioguide_id } }) {
+    return {
+        props: {
+            bioguide_id
+        }
+    }
+}
