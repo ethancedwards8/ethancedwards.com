@@ -45,6 +45,7 @@ export default function Congress() {
             <h1 className={styles.header}>Welcome to Find Your Reps.</h1>
             <p className={styles.text}>To learn more about who represents you in congress, input your address below.
                 Please note that inputting your full address increases accuracy.</p>
+            <p className={styles.text}>After the search returns, click on any one of your reps to see more information on them</p>
             <form onSubmit={handleSubmit} method="GET">
                 <label for="address" className={styles.text}>Enter your address: </label>
                 <input type="text" name="address" value={address} onChange={(e) => setAddress(e.target.value)} required/>
