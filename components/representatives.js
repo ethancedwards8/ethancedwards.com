@@ -4,17 +4,18 @@ import Link from 'next/link';
 function Card({ individual }) {
     return (
         <>
-            
+            <Link href={{ pathname: `/congress/${individual.references.bioguide_id}`}}><a className={styles.link}>
             <div className={styles.repInfo} style={{borderColor: (individual.bio.party == "Republican") ? "red" : "blue"}}>
-                <Link href={{ pathname: `/congress/${individual.references.bioguide_id}`}}><img src={individual.picture} alt="" className={styles.photo} /></Link>
+                <img src={individual.picture} alt="" className={styles.photo} />
                 <div className={styles.text}>
-                    <Link href={{ pathname: `/congress/${individual.references.bioguide_id}`}}><a className={styles.link}><h2>{individual.type} {individual.bio.full_name}</h2></a></Link>
+                    <h2>{individual.type} {individual.bio.full_name}</h2>
                     <p>Party: {individual.bio.party}</p>
                     <p>Serving since: {individual.typeSince}</p>
                     <p>Bills Sponsored: {individual.sponsoredLegislationCount}</p>
                     <p>Bills Cosponsored: {individual.cosponsoredLegislationCount}</p>
                 </div>
             </div>
+            </a></Link>
         </>
     );
 }

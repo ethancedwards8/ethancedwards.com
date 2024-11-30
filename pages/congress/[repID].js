@@ -3,10 +3,27 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../../styles/congress.module.scss';
 
+function BillLink({ billObject }) {
+    let linkDict = new Object();
+    linkDict['HR'] = 'house-bill';
+    linkDict['HRES'] = 'house-resolution';
+    linkDict['HJRES'] = 'house-joint-resolution';
+    linkDict['S'] = 'senate-bill';
+    linkDict['SRES'] = 'senate-resolution';
+    linkDict['SJRES'] = 'senate-joint-resolution';
+
+    return (
+        <a className={styles.link} href={`https://congress.gov/bill/${billObject.congress}th-congress/${linkDict[billObject.type]}/${billObject.number}`}>
+            <div><b>{billObject.type} {billObject.number}</b> {billObject.title}</div></a>
+    );
+}
+
 export default function LearnMore({ repInfo }) {
     let billArray = repInfo.sponsoredLegislation.recent.concat(repInfo.cosponsoredLegislation.recent);
     billArray = billArray.sort((a, b) => b.introducedDate - a.introducedDate)
     billArray.length = 6;
+
+    let isHouse = repInfo.terms[repInfo.terms.length - 1].hasOwnProperty("district");
 
     return (
         <>
@@ -27,14 +44,14 @@ export default function LearnMore({ repInfo }) {
                 <div className={styles.servingSince}>
                     <div className={styles.box}>
                         <h2>Office Term:</h2>
-                        <p>{repInfo.state} {repInfo.type} since {repInfo.typeSince}</p>
+                        <p>{repInfo.state} {isHouse ? <>HD-{repInfo.terms[repInfo.terms.length - 1].district}</> : <></>} {repInfo.type} since {repInfo.typeSince}</p>
                     </div>
                 </div>
 
                 <h3>Recent Bills:</h3>
                 <div className={styles.recentLegislation}>
                     {billArray.map((bill) => (
-                        <div><b>{bill.type} {bill.number}</b> {bill.title}</div>
+                        <BillLink billObject={bill} />
                     ))}
                 </div>
             </div>
