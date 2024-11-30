@@ -63,9 +63,7 @@
   grid-template-columns: 1.5fr 6fr 1.5fr;
   grid-auto-rows: minxmax(100px, auto);
 
-  img {
-    border-style: solid;
-    border-color: black;
+  .photo {
     padding: 0px;
     margin: 7px;
     grid-column: 1;
@@ -120,6 +118,39 @@
     }
 
     .text {
+    }
+  }
+
+  .infoPage {
+    grid-template-columns: 1fr;
+
+    .photo {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .infoCentral {
+      grid-column: 1;
+      grid-row: 2;
+
+      h1 {
+        text-align: center;
+      }
+    }
+
+    .servingSince {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    h3 {
+      grid-row: 4;
+    }
+
+    .recentLegislation {
+      grid-column: 1;
+      grid-row: 5;
     }
   }
 }
