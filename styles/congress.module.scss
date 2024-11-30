@@ -7,6 +7,15 @@
     text-align: center;
 }
 
+.link {
+    text-decoration: underline;
+    color: #363EEB;
+}
+
+.link:hover {
+    color: #1C86FF;
+}
+
 .text {
   margin: 20px;
   padding: 10px;
@@ -38,6 +47,52 @@
     margin: 0;
     grid-column: 2 / 3;
     text-align: center;
+  }
+}
+
+.infoPage {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: 1.5fr 6fr 1.5fr;
+  grid-auto-rows: minxmax(100px, auto);
+
+  img {
+    border-style: solid;
+    border-color: black;
+    padding: 0px;
+    margin: 7px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .infoCentral {
+    grid-column: 2;
+    grid-row: 1;
+
+  }
+
+  .servingSince {
+    text-align: center;
+    grid-column: 3;
+    grid-row: 1;
+
+    .box {
+      // background-color: pink;
+      p {
+        padding: 0px;
+        margin: 0px;
+      }
+    }
+  }
+
+  h3 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .recentLegislation {
+    grid-column: 2;
+    grid-row: 2;
   }
 }
 

@@ -18,12 +18,13 @@ export default function Congress() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        let res = await fetch(`https://api.ethancedwards.com/congress/v1/${address}`)
+        let res = await fetch(`https://api.ethancedwards.com/congress/v1/address/${address}`)
         let info = await res.json();
 
         // puts the address parameter into the URL
         const queryParams = new URLSearchParams(`address=${address}`).toString();
         router.push(`/congress?${queryParams}`);
+
 
         setRep(info);
     }
@@ -58,16 +59,3 @@ export default function Congress() {
         </>
     );
 }
-
-// export async function getServerSideProps() {
-//     // local development
-//     // const res = { quote: "Quote", author: "Author" };
-//     // const quotes = res;
-
-//     // production
-//     const res = await fetch(`https://api.ethancedwards.com/congress/v1/1600+Pennsylvania+Avenue+NW+Washington+DC+20500`);
-//     const rep = await res.json();
-
-//     return { props: { rep } };
-
-// }

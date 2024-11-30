@@ -14,7 +14,7 @@ export default function Blog({ episodes }) {
 
             <div className={styles.podcast}>
                 <h1 className={styles.header}>Welcome to The Ridge Podcast</h1>
-                <p>Here you can find conversations on Appalachia history and culture.</p>
+                <p>Here you can find conversations on Appalachian history and culture.</p>
             </div>
             <h1 className={styles.header}>List of episodes:</h1>
             <div className={styles.blog}>
