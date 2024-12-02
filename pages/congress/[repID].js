@@ -35,8 +35,6 @@ export default function LearnMore({ repInfo }) {
                 <div className={styles.infoCentral}>
                     <h1>{repInfo.type} {repInfo.directOrderName}</h1>
                     <p>{repInfo.partyHistory[0].partyName} Party - {repInfo.state}</p>
-                    <p>Campaign Contributions: {(repInfo.finance.contributions - repInfo.finance.contribution_refunds).toLocaleString('en-US', {
-                        style: 'currency', currency: 'USD' })}</p>
                     <h2>Lawmaking Information:</h2>
                     <div>
                         <p>Bills Sponsored: {repInfo.sponsoredLegislation.count}</p>
