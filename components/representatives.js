@@ -8,7 +8,7 @@ function Card({ individual }) {
             <div className={styles.repInfo} style={{borderColor: (individual.bio.party == "Republican") ? "red" : "blue"}}>
                 <img src={individual.picture} alt="" className={styles.photo} />
                 <div className={styles.text}>
-                    <h2>{individual.type} {individual.bio.full_name}</h2>
+                    <Link href={{ pathname: `/congress/${individual.references.bioguide_id}` }}><a className={styles.link}><h2>{individual.type} {individual.bio.full_name}</h2></a></Link>
                     <p>Party: {individual.bio.party}</p>
                     <p>Serving since: {individual.typeSince}</p>
                     <p>Bills Sponsored: {individual.sponsoredLegislationCount}</p>
