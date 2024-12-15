@@ -42,6 +42,7 @@ export default function About() {
                 <a href="https://github.com/ethancedwards8"><img src="/github.png" alt="GitHub"/></a>
                 <a href="https://gitlab.com/ethancedwards"><img src="/gitlab2.png" alt="GitLab"/></a>
                 <a href="mailto:ethan@ethancedwards.com"><img src="/email.png" alt="Email"/></a>
+                <p>GPG: 2E51 F618 39D1 FA94 7A73 00C2 34C0 4305 D581 DBFE</p>
               </div>
               <div className={styles.certifications}>
                 <h1>Certifications</h1>
