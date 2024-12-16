@@ -1,0 +1,65 @@
+---
+title: GPG Key Fun
+author: Ethan Carter Edwards
+date: '2024-12-15'
+description: Exploring GPG keys
+image: '/logo.jpg'
+tags: ['gpg', 'security']
+---
+## Background
+
+A few years ago, I started learning about the Pretty Good Privacy (PGP) security model. Essentially, it is a
+collection of tools that allow you to encrypt, sign, and authenticate using cryptographic technologies.
+Common uses include signing Git commits and tags, sending encrypted emails, publishing signed messages, and more.
+I was really into online privacy at the time, so I thought this was something I should learn more about.
+The whole idea is that an individual has two types of keys: public and private. The public key can
+and should be shared with the rest of the world. It is your identifier. Private keys are, like the name suggests, private.
+Messages are encrypted with your public key and decrypted with your private key. Everyone has a master key. Some individuals
+choose to allow their master key to also serve as Authentication, Signing, and Encryption keys, but this is generally
+considered insecure. The most important job of the master key, however, is creating subkeys and revocation certificates.
+Subkeys can be assigned any combination of Authentication, Signing, or Encryption roles. Revocation certificates allow you
+to permanently proclaim that your key is no longer in use and disable it. This can be done for a number of reasons like
+having your private key compromised, but also for more benign reasons like you wanted to upgrade to the newest
+cryptographic algorithm. The most common practice is to create the master key so that it only has the ability to
+create new subkeys, and disallow it from Encrypting, Signing, or Authenticating, leaving that up to three individual subkeys.
+There are also identities. Multiple identities (a name and email address, with an optional comment) can be stored in a single key.
+
+A graphic may help us understand this. As you can see below, this is my current master key with a C. Below it are three subkeys
+each with a capability (S, E, or A). My identity is also there. Don't be intimidated by those strings of hexadecimal characters.
+Those are just the key IDs.
+
+![My subkeys](/blogimages/keyoutput.png)
+
+I immediately wanted to make my own keys. So I did. I followed [Dr. Duh's guide](https://github.com/drduh/YubiKey-Guide/tree/84c9d9654d73ad679aa8554b0819f93f397c61a8), which I highly recommend.
+Unfortunately, I was a little bit overzealous when I did this. Like I mentioned earlier, it is generally considered a good practice
+to create subkeys for each of the capabilities (S, E, or A). I decided I wanted a separate set of subkeys for each of my devices.
+This led to me creating **nine** subkeys. I did not realize it at the time, but they would not play nice with each other.
+Also, it was just ugly. Each time I listed my keys to use them or share them, all nine subkeys would appear. I also created three
+identities, one for each of my email addresses. Finally, I put comments in my identities, a practice that is [generally frowned upon.](https://web.archive.org/web/20160306174622/https://debian-administration.org/users/dkg/weblog/97)
+Afterwards, a few of my close friends and I signed each other's keys, verifying that their identities matched their keys. This
+creates the "Web-of-Trust" that PGP is famous for.
+
+One feature of PGP that I have not mentioned yet is its permanence. Once a key is uploaded to the internet, like most things, it is
+there **forever**. While you can request that keyservers delete your key, they are not obligated to honor that request and it is
+likely that thousands of other people around the world already have downloaded a copy. However, it is possible to revoke a key,
+declaring to everyone that it should no longer be used. Because of this, I was hesitant to stop using this key.
+For the past four years, I have used my original key, 0xF93DDAFA26EF2458, despite the multiple identities and excessive number of keys.
+But today, I revoked my old one and created a new one.
+
+## The New Key, 0x34C04305D581DBF
+
+Armed with experience and a bit more knowledge, I created a new key with ID 0x34C04305D581DBF. A few paragraphs ago I briefly
+mentioned signatures. In order to verify that this new key belongs to me and it is not someone masquerading as me, I signed
+my new key with my old one. As you can see below, my new key is signed by itself (standard practice) as well as signed by
+my old key. Immediately after, I sent the revocation of my old key to the keyservers. Therefore, if you trusted my old key
+then you should trust my new one.
+
+![Signatures on new key](/blogimages/keysignatures.png)
+
+Another change I made was which algorithm I used. When I made my original key in 2020, it utilized RSA4096. It takes advantage
+of some properties of prime numbers which make it very secure. However, for my new key, I chose to use ed25519, an algorithm
+that uses elliptic curve cryptography. While my understanding on this topic is limited, ed25519 is just as secure as RSA4096,
+but much faster and has shorter keys.
+
+That being said, if you used my old key and have it in your keyring, please remove it and updated it with my current one
+with fingerprint 2E51 F618 39D1 FA94 7A73  00C2 34C0 4305 D581 DBFE.
