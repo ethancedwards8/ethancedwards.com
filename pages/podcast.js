@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import styles from '../styles/blog.module.scss';
 
-export default function Blog({ episodes }) {
+export default function Podcast({ episodes }) {
 
     return (
         <>
