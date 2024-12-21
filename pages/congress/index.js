@@ -49,7 +49,7 @@ export default function Congress() {
             <form onSubmit={handleSubmit} method="GET">
                 <label for="address" className={styles.text}>Enter your address: </label>
                 <input type="text" name="address" value={address} onChange={(e) => setAddress(e.target.value)} required/>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Search Address" className={styles.submit} />
             </form>
             <hr />
 
