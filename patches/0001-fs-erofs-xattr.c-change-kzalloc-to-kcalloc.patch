@@ -1,0 +1,30 @@
+From 272d7ef4611e64269fada0ea3021eece590118b9 Mon Sep 17 00:00:00 2001
+From: Ethan Carter Edwards <ethan@ethancedwards.com>
+Date: Sun, 22 Dec 2024 21:23:56 -0500
+Subject: [PATCH] fs: erofs: xattr.c change kzalloc to kcalloc
+
+Refactor xattr.c to use kcalloc instead of kzalloc when multiplying
+allocation size by count. This refactor prevents unintentional
+memory overflows. Discovered by checkpatch.pl.
+
+Signed-off-by: Ethan Carter Edwards <ethan@ethancedwards.com>
+---
+ fs/erofs/xattr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/fs/erofs/xattr.c b/fs/erofs/xattr.c
+index a90d7d649739..7940241d9355 100644
+--- a/fs/erofs/xattr.c
++++ b/fs/erofs/xattr.c
+@@ -478,7 +478,7 @@ int erofs_xattr_prefixes_init(struct super_block *sb)
+ 	if (!sbi->xattr_prefix_count)
+ 		return 0;
+ 
+-	pfs = kzalloc(sbi->xattr_prefix_count * sizeof(*pfs), GFP_KERNEL);
++	pfs = kcalloc(sbi->xattr_prefix_count, sizeof(*pfs), GFP_KERNEL);
+ 	if (!pfs)
+ 		return -ENOMEM;
+ 
+-- 
+2.47.1
+
