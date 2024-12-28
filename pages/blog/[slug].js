@@ -22,6 +22,7 @@ export default function slug({ frontMatter, source, slug }) {
         <>
           <Head>
             <title>{frontMatter.title}</title>
+            <meta name="fediverse:creator" content="@ethancedwards@fosstodon.org" />
           </Head>
 
           <h1>{frontMatter.title}</h1>
