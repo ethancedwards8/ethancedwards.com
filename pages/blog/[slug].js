@@ -25,14 +25,15 @@ export default function slug({ frontMatter, source, slug }) {
             <meta name="fediverse:creator" content="@ethancedwards@fosstodon.org" />
           </Head>
 
-          <h1>{frontMatter.title}</h1>
-          <h3>{dayjs(frontMatter.date).format('MMMM D, YYYY')}</h3>
-          <h4>{frontMatter.author}</h4>
-          <hr/>
-          <main className={styles.content}>
-            <MDXRemote {...source} components={components}/>
-          </main>
-          <hr/>
+          <div className={styles.content}>
+                <h1>{frontMatter.title}</h1>
+                <h3>{dayjs(frontMatter.date).format('MMMM D, YYYY')}</h3>
+                <h4>{frontMatter.author}</h4>
+                <hr/>
+                <main>
+                  <MDXRemote {...source} components={components}/>
+                </main>
+          </div>
         </>
     );
 }
