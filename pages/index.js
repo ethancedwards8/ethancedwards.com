@@ -59,11 +59,14 @@ export async function getServerSideProps() {
     const posts = getAllPosts();
 
     await fetch(`https://api.ethancedwards.com/quotes/v1`).then((res) => {
-            final = res;
-        }).catch((error) => {
-            quotes = { quote: "Value your freedom or you will lose it, teaches history", author: "Richard Stallman" };
+    // await fetch(`http://localhost/quotes/v1`).then((res) => {
+            if (!res.ok) {
+                final = { quote: "Value your freedom or you will lose it, teaches history", author: "Richard Stallman" };
+            } else {
+                final = res.json();
+            }
         });
-    quotes = await final.json();
+    quotes = await final;
 
     return { props: { quotes, posts } };
 }
