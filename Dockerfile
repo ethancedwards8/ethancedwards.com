@@ -1,15 +1,12 @@
 # https://dzone.com/articles/how-to-dockerize-reactjs-app
-
-# Step 1
-
 FROM alpine
 
-RUN apk update && apk add --no-cache npm 
+RUN apk update && apk add --no-cache pnpm 
 
 WORKDIR /app
 
 COPY . /app/
 
-RUN npm ci --install && npm run build
+RUN pnpm install && pnpm run build
 
-CMD ["npm", "run", "start"]
+CMD ["pnpm", "run", "start"]

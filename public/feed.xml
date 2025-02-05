@@ -4,16 +4,8 @@
         <description><![CDATA[Ethan Carter Edwards]]></description>
         <link>https://ethancedwards.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 16 Dec 2024 14:45:25 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 05 Feb 2025 14:27:11 GMT</lastBuildDate>
         <atom:link href="https://ethancedwards.com/feed.xml" rel="self" type="application/rss+xml"/>
-        <item>
-            <title><![CDATA[First Post]]></title>
-            <description><![CDATA[First post on the site]]></description>
-            <link>https://ethancedwards.com/blog/firstpost</link>
-            <guid isPermaLink="true">https://ethancedwards.com/blog/firstpost</guid>
-            <dc:creator><![CDATA[Ethan Carter Edwards]]></dc:creator>
-            <pubDate>Mon, 27 Jun 2022 00:00:00 GMT</pubDate>
-        </item>
         <item>
             <title><![CDATA[GPG Key Fun]]></title>
             <description><![CDATA[Exploring GPG keys]]></description>
@@ -21,6 +13,14 @@
             <guid isPermaLink="true">https://ethancedwards.com/blog/gpgkeyfun</guid>
             <dc:creator><![CDATA[Ethan Carter Edwards]]></dc:creator>
             <pubDate>Sun, 15 Dec 2024 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[First Post]]></title>
+            <description><![CDATA[First post on the site]]></description>
+            <link>https://ethancedwards.com/blog/firstpost</link>
+            <guid isPermaLink="true">https://ethancedwards.com/blog/firstpost</guid>
+            <dc:creator><![CDATA[Ethan Carter Edwards]]></dc:creator>
+            <pubDate>Mon, 27 Jun 2022 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
