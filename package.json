@@ -41,5 +41,10 @@
   },
   "devDependencies": {
     "sass": "^1.53.0"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@parcel/watcher"
+    ]
   }
 }
