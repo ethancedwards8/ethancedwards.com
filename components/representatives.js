@@ -34,7 +34,7 @@ export default function Representatives({ rep }) {
                     { hasSenators ? <Card individual={rep.senate2} /> : <></> }
                 </div>
             </>
-        )
+        );
     // return emptiness if no rep is passed through
     } catch(err) {
         return (

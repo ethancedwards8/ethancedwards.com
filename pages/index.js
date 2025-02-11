@@ -19,7 +19,7 @@ export default function Home({ quotes, posts }) {
             <hgroup className={styles.quote}>
               <div>
                 <h1 id="quote">"{quotes.quote}"</h1>
-                <h2 id="author">- {quotes.author}</h2>
+                <h2 id="author"> - {quotes.author}</h2>
               </div>
             </hgroup>
 
