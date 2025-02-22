@@ -1,15 +1,22 @@
 import Head from 'next/head';
 
+import { usePathname } from 'next/navigation'
+
 import Header from '../components/header.js';
 
 import '../styles/all.scss';
 
 export default function MyApp({ Component, pageProps }) {
+
+    const pathname = usePathname()
+
+    let inJobs = pathname.includes("jobs");
+
     return (
         <>
             <a rel="me" href="https://fosstodon.org/@ethancedwards"></a>
             <div className="App">
-              <Header />
+              {!inJobs ? <Header /> : <></> }
     
               <Head>
     

@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { usePathname } from 'next/navigation'
-
 import styles from '../../styles/congress.module.scss';
 
 import Representatives from '../../components/representatives.js';
@@ -36,8 +34,6 @@ export default function Congress() {
             setAddress(query.address);
         }
     }, [query]);
-
-    const pathname = usePathname()
 
     return (
         <>
