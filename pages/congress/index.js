@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
+import { usePathname } from 'next/navigation'
+
 import styles from '../../styles/congress.module.scss';
 
 import Representatives from '../../components/representatives.js';
@@ -35,12 +37,13 @@ export default function Congress() {
         }
     }, [query]);
 
+    const pathname = usePathname()
+
     return (
         <>
             <Head>
                 <title>Congress</title>
             </Head>
-
 
             <h1 className={styles.header}>Welcome to Find Your Reps.</h1>
             <p className={styles.text}>To learn more about who represents you in congress, input your address below.

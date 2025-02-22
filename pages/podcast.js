@@ -22,7 +22,7 @@ export default function Podcast({ episodes }) {
                     <div className={styles.post}>
                         <hr/>
                         <Link href={episodes.link} passHref>
-                            <a><h1 className={styles.info}>{episodes.title}</h1></a>
+                            <h1 className={styles.info}>{episodes.title}</h1>
                         </Link>
                         <h4 className={styles.info}>The Ridge Podcast</h4>
                         <h4 className={styles.info}>{dayjs(episodes.date).format('MMMM D, YYYY')}</h4>

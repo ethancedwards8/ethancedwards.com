@@ -18,7 +18,7 @@ export default function Blog({ posts }) {
                 <div className={styles.post}>
                   <hr/>
                   <Link href={'/blog/' + post.slug} passHref>
-                    <a><h1>{post.frontMatter.title}</h1></a>
+                    <h1>{post.frontMatter.title}</h1>
                   </Link>
                   <h4 className={styles.info}>{post.frontMatter.author}</h4>
                   <h4 className={styles.info}>{dayjs(post.frontMatter.date).format('MMMM D, YYYY')}</h4>
