@@ -21,7 +21,7 @@ function BillLink({ billObject }) {
 export default function LearnMore({ repInfo }) {
     let billArray = repInfo.sponsoredLegislation.recent.concat(repInfo.cosponsoredLegislation.recent);
     billArray = billArray.sort((a, b) => b.introducedDate - a.introducedDate)
-    billArray.length = 9;
+    billArray.length = 20;
 
     let isHouse = repInfo.terms[repInfo.terms.length - 1].hasOwnProperty("district");
 

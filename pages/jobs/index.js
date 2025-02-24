@@ -12,6 +12,8 @@ export default function Jobs({ jobs }) {
                 <title>Job Board</title>
             </Head>
 
+            <h1> Jobs </h1>
+
             <div className={styles.allJobs}>
                 {jobs.map((job, index) => (
                     job.approved ?
