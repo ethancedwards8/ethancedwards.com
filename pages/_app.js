@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { usePathname } from 'next/navigation'
 
 import Header from '../components/header.js';
+import JobHeader from '../components/jobheader.js';
 
 import '../styles/all.scss';
 
@@ -16,7 +17,7 @@ export default function MyApp({ Component, pageProps }) {
         <>
             <a rel="me" href="https://fosstodon.org/@ethancedwards"></a>
             <div className="App">
-              {!inJobs ? <Header /> : <></> }
+              {!inJobs ? <Header /> : <JobHeader /> }
     
               <Head>
     

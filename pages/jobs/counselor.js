@@ -2,22 +2,34 @@ import Head from 'next/head';
 
 import JobCard from '../../components/jobcard.js';
 
+import styles from '../../styles/jobs.module.scss';
+
 // shows only the non-approved jobs
 export default function CounselorPage({ jobs }) {
+    let toApprove = jobs.length > 0;
+
+    jobs.sort((a, b) => a.approved - b.approved);
+
     return (
         <>
             <Head>
                 <title>Counselor Page</title>
             </Head>
 
-            <div>
+            <h1 className={styles.title}>Counselor Approval Page</h1>
+
+            { toApprove ?
+            <div className={styles.allJobs}>
                 {jobs.map((job, index) => (
-                    !job.approved ?
+                    true ?
                     <JobCard job={job} />
                     : <></>
 
                 ))}
             </div>
+            :
+            <p>There are no jobs to approve at this time</p>
+            }
         </>
     );
 

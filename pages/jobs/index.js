@@ -12,10 +12,10 @@ export default function Jobs({ jobs }) {
                 <title>Job Board</title>
             </Head>
 
-            <h1> Jobs </h1>
+            <h1 className={styles.title}>Local Jobs</h1>
 
             <div className={styles.allJobs}>
-                {jobs.map((job, index) => (
+                {jobs.toReversed().map((job, index) => (
                     job.approved ?
                     <JobCard job={job} />
                     : <></>

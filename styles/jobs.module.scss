@@ -9,10 +9,43 @@
   flex-basis: calc(100% / 5);
 }
 
+@media (width <= 800px) {
+  .jobInfo {
+    flex-basis: calc(100% / 2);
+  }
+}
+
 .allJobs {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   // justify-content: space-evenly;
   align-content: space-between;
+  text-align: center;
+
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.form {
+  background-color: lightblue;
+  border-radius: 15px;
+  margin: 0 20%;
+  padding: 10px;
+
+  text-align: center;
+
+  input, label {
+    padding: 5px;
+    border-radius: 5px;
+    // vertical-align: middle;
+    // display: block;
+  }
+
+  Link[type=submit] {
+    padding: 5px;
+  }
 }
