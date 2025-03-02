@@ -1,0 +1,158 @@
+---
+title: Building Nix Systems with GitHub Actions and Cachix
+author: Ethan Carter Edwards
+date: '2025-03-02'
+description: Learning to take advantage of GitHub action's powerful CI system with Nix!
+image: '/logo.jpg'
+tags: ['nix', 'nixos', 'github', 'programming']
+---
+## Background
+
+I started using Nix and NixOS around four years ago because I appreciated the declarative
+nature and features it brought. I needed a tool that simplified the management of servers
+but solutions like Ansible were too involved and finicky for my use-case. At the time,
+I had an internship with a local web-hosting company and one of the problems we faced was
+our bring-up process for provisioning new servers. One of the company's goals at the time
+was simplifying the process so that an admin could run one command and we would have a
+functional system that could integrate securely with our Docker swarm.
+
+We explored various tools like simple bash scripts, more complex python scripts, and even
+Ansible (which is really just a glorified python script), but each of them presented the
+same issue: state. We did not have an easy way to keep track of when things changed.
+Further, when we did push a change with ansible or modified one of our scripts, we could
+not guarantee that the change was made on each system without manually checking them
+ourselves.
+
+After some research, I discovered NixOS. We gave it a try and in a few weeks had switched
+over most of the systems. While the company eventually switched back over to Debian, it
+proved to be an invaluable experience using Nix in enterprise systems. Its (mostly)
+stateless configuration options were exactly what I needed. The configuration files became
+the single sources of truth for our systems, and we did not have to worry about forgotten
+packages and services becoming security vulnerabilities. If it was not in the file, it
+was not on the system.
+
+At the same company, we had a variety of custom Docker images for products developed
+in-house and others with some slight modifications for popular pieces of software like
+Wordpress. One of the tasks I was assigned was to create a CI (Continuous Integration) system that built and
+pushed the Docker images to a container registry. In about a day, I figured out how to
+integrate with GitLab CI and push to our instance's GitLab Container Registry. This was
+my first taste of using CI to automate the DevOps process.
+
+Nowadays, I use GitHub Actions for a variety of jobs. For example, this website and the
+APIs that support it are supported by GitHub Actions. Each code repository has a Dockerfile
+and GitHub workflow file that builds and an OCI image and pushes it to a registry.
+
+While I was at this internship, I also started migrating my personal devices over to
+NixOS. I went pretty deep down the rabbit hole. However, I started high school a few
+months later, and with sports, extracurriculars, and homework, I mostly stopped
+tinkering with NixOS, and largely stepped away from Linux and the Open Source community.
+A lot has changed since then!
+
+As my high school graduation approaches and I start to have more free time, I have picked up some of
+my old hobbies. The past three months I have dived back into the world of NixOS and
+resumed my contributions to [nixpkgs](https://github.com/nixos/nixpkgs). Additionally,
+I declared "nix bankruptcy" and rebuilt my [configuration](https://github.com/ethancedwards8/dotfiles/tree/master/.nix)
+from scratch.
+
+## Integrating GitHub Actions with my NixOS and nix-darwin configurations
+
+This whole time, I had been thinking about how I could integrate my NixOS system and
+nix-darwin (which offers NixOS like reproducibility on MacOS) system configurations with
+GitHub Actions like nixpkgs does. I thought I could benefit from automatic builds
+that are cached by [Cachix](https://cachix.org), especially for building my Raspberry
+Pi's configuration. It turns out, I'm not the only person who has thought of this. Domen Kožar,
+founder of Cachix, utilizes GitHub's free CI system to [build and apply](https://github.com/domenkozar/homelab/blob/main/.github/workflows/deploy.yml)
+his system configurations to his computer automatically. While I do not need the CD (Continuous Deployment)
+service offered by Cachix, I am a customer of Cachix's caching service. I decided to model my CI after his.
+
+GitHub Action Workflows and Jobs are defined by Yaml files in the `.github/workflows` directory.
+Below is the code that creates the jobs that run on the GitHub Actions runners. I use the
+`x86_64-linux`, `aarch64-darwin` (MacOS), and `aarch64-linux` runners that are defined below. They
+build my NixOS, nix-darwin, and NixOS-arm systems respectively. Apparently, the arm runners are
+[a recent addition](https://github.com/orgs/community/discussions/148648#) to GitHub Actions and are experimentally supported.
+
+<SyntaxHighlighter language="yaml">
+{`
+name: Build & Push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build and Push Config
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, ubuntu-24.04-arm]
+        include:
+          - os: ubuntu-latest
+          - os: macos-latest
+          - os: ubuntu-24.04-arm
+    runs-on: \${{ matrix.os }}
+`}
+</SyntaxHighlighter>
+
+After the runners are defined, we have to declare what they are actually going to do.
+Below is the code that installs Nix into the GHAs runner environment. Cachix has an
+action that nicely integrates with GHA to quickly install Nix and configure
+pushing/pulling from Cachix.
+
+<SyntaxHighlighter language="yaml">
+{`
+    steps:
+      - run: sudo rm -rf /opt&
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@08dcb3a5e62fa31e2da3d490afc4176ef55ecd72 # v30
+      - uses: cachix/cachix-action@v15
+        with:
+          name: ethancedwards8
+          authToken: "\${{ secrets.CACHIX_AUTH_TOKEN }}"
+`}
+</SyntaxHighlighter>
+
+Next is the actual building of each system. Obviously, MacOS cannot build Linux systems
+and vice-versa (at least without the use of emulation/virtual machines, but that is
+too much overhead when I can just use multiple runners). Consequently, I use conditional
+statements to only build x86 targets on the x86 runner, darwin targets on the MacOS runner,
+and aarch64 targets on the ARM runner. The targets are the different Nix flake outputs
+defined in my [configuration's `flake.nix`](https://github.com/ethancedwards8/dotfiles/blob/master/.nix/flake.nix).
+At the very end of the file, cachix will push the result of any of the builds to the
+caching service, allowing my downstream computers to pull the results from them, saving
+time and energy. Essentially, I am offloading the building of configuration files, USB
+ISOs, development environments, and custom packages to GitHub.
+
+<SyntaxHighlighter language="yaml">
+{`
+      - name: x86_64-linux Build
+        if: matrix.os == 'ubuntu-latest'
+        run: nix build -L .nix#{nixvm,usb,archpc,devShell.x86_64-linux}
+
+      - name: aarch64 Build
+        if: matrix.os == 'ubuntu-24.04-arm'
+        run: nix build -L .nix#{nixrpi,devShell.aarch64-linux}
+
+      - name: MacOS Build
+        if: matrix.os == 'macos-latest'
+        run: nix build -L .nix#{mbair,devShell.aarch64-darwin}
+
+      - name: Deploy
+        run: |
+          cachix push ethancedwards8 .nix/result*
+`}
+</SyntaxHighlighter>
+
+The biggest benefit I get from this setup is the building of a USB ISO that has my configurations
+on it. It builds each time I make a change to my setup or update my inputs, meaning I always have
+the freshest software and newest configurations that I can flash to a flash drive to use as a
+portable Linux machine. Instead of having to build it manually each time I need it, GHA automatically
+builds it and Cachix stores it. When I need it, I run `nix build` locally and it is retrieved from
+Cachix and downloaded into my local nix store.
+
+While my use case is somewhat academic and not super practical, there are instances
+where I, and others, have used GitHub Actions to automate and accelerate the development process
+in software development. Popular new terminal emulator[Ghostty](https://github.com/ghostty-org/ghostty)
+written in Zig is an excellent example. Their developers use Nix to build and create development
+environments that are built by GitHub Actions and cached. This allows users and programmers to
+do work faster instead of waiting on things to compile or nix to finish evaluating.
