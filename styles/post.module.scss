@@ -1,4 +1,10 @@
 .content {
     margin: 0 50px;
     padding: 10px;
+
+  code {
+    overflow-x: auto;
+    background: rgb(240, 240, 240);
+    color: rgb(68, 68, 68);
+  }
 }
