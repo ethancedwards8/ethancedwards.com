@@ -18,35 +18,43 @@ on simple drivers for pieces of hardware that they have that are not yet support
 while others are trying to bring [Linux to Apple hardware](https://asahilinux.org/ "Asahi Linux").
 
 Naturally, I wanted to join the community of kernel hackers (or contributors). I
-found Greg Kroah-Hartman's [video at FOSDEM](https://www.youtube.com/watch?v=LLBrBBImJt4) on how to write and submit a kernel patch (a fancy word for a piece of code).
+found Greg Kroah-Hartman's [video at FOSDEM](https://www.youtube.com/watch?v=LLBrBBImJt4) showing how to write and submit a kernel patch (a fancy word for a piece of code).
 For those who do not know, Greg KH is Linus's right-hand man. Greg does it all, and
 is one of the most respected members of the kernel community. Also, funnily enough,
 while this video was made more than 15 years ago, it is still 100% accurate and relevant.
-For better or worse, not many projects can say their development process has remained untouched for 15 years.
+For better or worse, not many projects can say their development process has remained unchanged for 15 years.
 
 After watching the video, I searched through the directories of projects I was interested
 in. At the time, I was familiarizing myself with SELinux, so I looked through the source
 tree to try to grok how everything worked and learn the development process. Thankfully,
 I was fortunate enough that [Paul Moore](https://paul-moore.com/about), the maintainer of the SELinux subsystem, was
-kind and patient enough to take [my code](https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f6a1a425cbb74f4836f2e21e0110330c65e33ad2 "My SELinux Contribution").
+kind and patient enough to take [my code](https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=65d96351b135c2a694814520a6031f3721020ba9 "My SELinux Contribution").
 While it did nothing but appease the static code analyzers, it was exciting for 14 year
 old me! I had contributed to the most prolific operating system in the world. Due to
 SELinux's use in Android, my code runs on billions of devices around the world. ;)
 
+A few weeks after that, I started poking around in the `staging/` directory. This location
+folder holds all the drivers that have been submitted and accepted upstream but are not yet
+parts of the core kernel. They remain in `staging/` until the code meets style guides and
+features are more fully flushed out. This is where most beginner contributors start. I
+fixed a few documentation errors in the [comedi driver](https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f6a1a425cbb74f4836f2e21e0110330c65e33ad2).
+Greg KH, who I mentioned above, maintains the `staging/` directory. This means that he
+was the one who responded to my emails and accepted my code. Pretty neat!
+
 ## The Kernel Self Protection Project (KSPP)
 
 Most of my earlier contributions were pretty insignificant. However, I have found a way
-to meaningfully contribute needed and valuable security fixes to the Linux Kernel.
-Google employee [Kees Cook](https://github.com/kees "Kees Cook's GitHub") has dedicated large amounts of time to making the kernel
+to meaningfully contribute needed and valuable security fixes to the Linux Kernel via the Kernel Self Protection Project.
+Founded by Google employee [Kees Cook](https://github.com/kees "Kees Cook's GitHub"), the project is dedicated to making the kernel
 more secure and more resilient to attacks. Specifically, his work focuses on making
 C safer by default and fixing bugs long before they are ever discovered. [Gustavo Silva](https://embeddedor.com/ "Gustavo's website")
 is another very active contributor. In fact, he has reviewed some of my code, which
-is neat considering he is responsible for my involvement in the KSPP. Thanks, Gustavo!
+is neat considering his presentations are responsible for my involvement in the KSPP. Thanks, Gustavo!
 
 While I may not have the knowledge to rewrite a driver from scratch to be more
 performant or have the skills to reverse engineer Apple hardware, I am capable
 of critical thinking and analyzing small sections of code in detail. This is what
-the Kernel Self Protection Project is about. Most of the changes within the project
+the KSPP is about. Most of the changes within the project
 are small changes: a few lines of code here or there. Some are as simple as changing a single
 character from the `strncpy` function to `strscpy`! But there is a purpose behind
 each patch.
@@ -56,7 +64,7 @@ Each one focuses on a different part of the Kernel. While some issues focus on
 working towards the enabling of a compiler flag that hardens the kernel, some are
 design changes and code changes. One of the easier ones to learn about and understand
 is the migration from [open coded arithmetic to helper functions](https://github.com/KSPP/linux/issues/162).
-Essentially, instead of using `kzalloc(nr * sizeof(*int), ...)` we would use
+Essentially, instead of using `kzalloc(nr * sizeof(*int), ...)` we should use
 `kcalloc(nr, sizeof(*int), ...)`. This change not only increases code readability,
 but there are built in protections within `kcalloc` against overflows due to casting or memory weirdness.
 This is a really easy way to contribute and make the code verifiably safer and better.
@@ -64,7 +72,7 @@ This is a really easy way to contribute and make the code verifiably safer and b
 The past few weeks I have sent a litany of patches on to the mailing lists changing
 code in the [erofs](https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=a78c5c2269e39544fab4140105f55fca4502e915), gpu/drm, scheduler, thermal, and sound subsystems. This has been an excellent way
 to practice using tools like `b4`, `git rebase`, writing good commit messages, and
-learning the netiquette of email based workflows. I even found a set of code to
+learning the netiquette of email-based workflows. I even found a set of code to
 practice sending multiple patches, or a series, at once. I sent [4 patches](https://lore.kernel.org/lkml/20250227-amd-display-v1-0-52a060a78d08@ethancedwards.com/) for
 various AMD drivers in `gpu/drm/amd`.
 
