@@ -1,0 +1,165 @@
+---
+title: Learning Git Rebase
+author: Ethan Carter Edwards
+date: '2025-03-16'
+description: Learning Git Rebase for Nixpkgs Development
+image: '/logo.jpg'
+tags: ['nix', 'nixos', 'github', 'programming', 'git', 'foss']
+---
+## Why do we care about Git Rebase?
+
+While `git rebase` is probably an intermediate to advanced git topic, every developer
+should learn how to use it. This is even more so true for contributors to Nixpkgs and
+the Linux Kernel. As I prepare to be an Outreachy mentor, I was thinking about ways I
+can help my mentees with the developer soft skills that are not necessarily taught in
+any Computer Science course or video but are essential and good software development
+practices. Learning to use `git rebase` is one of those skills!
+
+## What is Git Rebase?
+
+Essentially, `git rebase` is a way to manipulate and edit git histories. A common use
+for it is reordering a series of commits. In Nixpkgs this is commonly used for new
+contributors who try to submit a package. They successfully create a derivation and
+build the package but do not add themselves as the maintainer. Then, a reviewer comes
+along and asks them to add themselves as a maintainer, and they do so, but as a
+separate commit. However, according to the style guidelines (and to not break
+git-bisect, but that is for another post), the maintainer commit needs to be first in
+the series. I recently reviewed a [PR with this exact problem](https://github.com/NixOS/nixpkgs/pull/389852 "Use of Git Rebase in the wild!"), and it inspired me to
+write this post!
+
+Another use case in Nixpkgs is when someone submits a PR adding a package or updating
+something, and a reviewer asks them to make a change. According to the style guidelines,
+creating a package should happen in one commit with a commit message of `anakron: init at 0.3.1`
+However, most new contributors will make subsequent commits, which in theory is a good idea!
+It just is not what the style guide calls for. The preferred course of action is to make
+the suggested changes locally and then use `git rebase` to squash them and then force push
+the branch for the reviewer to respond to.
+
+This scenario applies to Linux Kernel development as well. I recently posted an 8 patch series
+[introducing APFS support](https://lore.kernel.org/lkml/20250314-apfs-v1-0-ddfaa6836b5c@ethancedwards.com/ "APFS Patch Series") to the Linux Kernel. There are over 26K lines of code within
+the patch set. Inevitably, the code reviewers will want me to make changes to the code for
+the next series. Instead of making a commit for each change and taking the series from 8 patches
+to potentially 20 or more, I can use `git rebase` and squash all the changes into the initial
+commit where the files are introduced. It can get complicated and hard to track, but the
+alternative, starting from scratch with a new series of commits, is worse!
+
+## How do I use Git Rebase?
+
+Since this post is written with my Outreachy mentees in mind, I will provide an example
+for using `git rebase` within Nixpkgs. I recently packaged a [TUI tetris clone called `yetris`](https://github.com/NixOS/nixpkgs/pull/388319 "Yetris PR")
+as part of my efforts to package [TUI/retro games in Nixpkgs](https://github.com/NixOS/nixpkgs/issues/380688 "Issue Tracker").
+I had the program building and it could be run, but instead of changing the directory where
+the package is installed I copied the package to `$out/bin/`. While this solution works,
+it is hacky in that two copies of the binary would be included in the final build, wasting
+space, and that I could instead use `makeFlags` to redirect the install directory. I had
+already committed the package:
+
+<SyntaxHighlighter language="javascript">
+{`
+commit 18b222d5cba16d200a61f876a7d05db112bb1a3b (HEAD -> master)
+Author: Ethan Carter Edwards <ethan@ethancedwards.com>
+
+    yetris: init at 2.1.0
+
+    Signed-off-by: Ethan Carter Edwards <ethan@ethancedwards.com>
+`}
+</SyntaxHighlighter>
+
+A reviewer came by and suggested that I use `makeFlags` to redirect it instead. I made
+the changes and committed them, but then I had separate commits!
+
+<SyntaxHighlighter language="javascript">
+{`
+commit 21025f648cb730caa783954d063d3990f7d1ca1e (HEAD -> master)
+Author: Ethan Carter Edwards <ethan@ethancedwards.com>
+
+    yetris: use makeFlags to redirect install location
+
+    Signed-off-by: Ethan Carter Edwards <ethan@ethancedwards.com>
+
+commit 18b222d5cba16d200a61f876a7d05db112bb1a3b
+Author: Ethan Carter Edwards <ethan@ethancedwards.com>
+
+    yetris: init at 2.1.0
+
+    Signed-off-by: Ethan Carter Edwards <ethan@ethancedwards.com>
+`}
+</SyntaxHighlighter>
+
+Once I was confident that my package was building and my changes were correct, I ran
+`git rebase -i HEAD~2`. While this command may seem scary, it is pretty simple once
+it is broken down and explained. `git rebase` tells git we want to start rebasing.
+`-i` means we want to do it interactively. `HEAD~2` means we want to start at the HEAD
+of the repository (which means the most up-to-date commit, in this case), and go back `2`
+commits. Once running the command, we are presented the `todo` screen.
+
+<SyntaxHighlighter language="javascript">
+{`
+pick 18b222d yetris: init at 2.1.0
+pick 21025f6 yetris: use makeFlags to redirect install location
+`}
+</SyntaxHighlighter>
+
+Here we see a few important pieces of information. Command `pick` means we will keep the
+commit after rebasing. It is followed by the commit ID. You will noticed that it
+matches the longer commit IDs shown above. Then we have the commit messages, which
+also match. Depending on your `git` version, a series of comments about the available
+commands should be below commits.
+
+While there are tons of different ways to use `rebase`, here we are going to focus
+on `pick` and `squash`. Some of the different commands are simple and others are quite
+complicated. A simple one is `drop`. It just deletes the commit altogether.
+In our case, we want to squash the two commits together.
+This just means that we want to combine their changes into one commit. We can do this
+by changing `pick` on the second commit to `squash`. We could technically squash additional
+commits into this first commit as well. The most commits I have squashed together is
+10, but Git supports much larger numbers than that.
+
+<SyntaxHighlighter language="javascript">
+{`
+pick 18b222d yetris: init at 2.1.0
+squash 21025f6 yetris: use makeFlags to redirect install location
+`}
+</SyntaxHighlighter>
+
+After saving and exiting (`:wq` in vim), we are given the opportunity to edit our
+squashed commits message and log. I recommend removing the commit logs from the squashed
+commits, but it is not a hard requirement by any means. After editing the log to reflect
+your wishes, save and exit again. Git will squash the commits:
+
+<SyntaxHighlighter language="javascript">
+{`
+commit 1398b15ecb5aa80d25ae202b44b09532a1ddfb49 (HEAD -> master)
+Author: Ethan Carter Edwards <ethan@ethancedwards.com>
+
+    yetris: init at 2.1.0
+
+    Signed-off-by: Ethan Carter Edwards <ethan@ethancedwards.com>
+`}
+</SyntaxHighlighter>
+
+Notice that our commit ID has changed! That is because this is a totally new commit
+with a new set of changes, despite the commit message and log being the same. Git
+generates IDs based off the hash of the changes, timestamp, author and committer info,
+tree info, and more. Because we created a new commit, the timestamp is different and we
+have different changes, resulting in a new commit ID.
+
+If you are interested in learning more about `git rebase` and its internals, I recommend
+checking out [https://git-rebase.io/](https://git-rebase.io/. "git-rebase.io tutorial").
+As you grow as a developer, maintaining clean git histories is an important skill to have.
+`git rebase` is one of many ways to do that.
+
+## Extra bits
+
+While `git rebase` worked here, it was not completely necessary. We could have used
+`git commit --amend` to add any staged changes to the previous commit. However, this
+only works to edit the previous commit and is not as powerful as rebasing (it allows squashing
+`n` many commits). I chose to focus on rebase here because my Outreachy mentees will
+need it as a skill.
+
+As a side tangent, you may have noticed the weird `Signed-off-by:` tag on my commit
+messages. While Nixpkgs does not formally require them, they are encouraged in the
+Free and Open Source community and even required in some projects like the Linux Kernel.
+This pattern of "signing off" on code is called the [Developer Certificate of Origin](https://developercertificate.org/). It
+basically means that you are guaranteeing that you wrote the code and that you did not
+steal it from anyone else. I recommend getting in the habit of adding it to your commits.
