@@ -9,6 +9,7 @@ export default function EmployerPosting() {
     const [location, setLocation] = useState("");
     const [date, setDate] = useState("");
     const [desc, setDesc] = useState("");
+    const [url, setUrl] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -19,6 +20,7 @@ export default function EmployerPosting() {
             ["location", location],
             ["date_posted", date],
             ["custom_description", desc],
+            ["job_url", url],
             ]).toString();
 
         let res = await fetch(`https://api.ethancedwards.com/jobs/v1?${queryParams}`, {
@@ -32,6 +34,7 @@ export default function EmployerPosting() {
         setLocation('');
         setDate('');
         setDesc('');
+        setUrl('');
 
         alert('Job Submitted! Awaiting school counselor approval.');
 
@@ -75,6 +78,13 @@ export default function EmployerPosting() {
                     <br/>
                     <input type="text" name="custom_description" value={desc} onChange={(e) => setDesc(e.target.value)} />
 
+                    <br/>
+
+                    <label for="job_url">Optional Job Link:</label>
+                    <br/>
+                    <input type="text" name="job_url" value={url} onChange={(e) => setUrl(e.target.value)} />
+
+                    <br/>
                     <br/>
 
                     <input type="submit" value="Submit Posting" />
