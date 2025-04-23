@@ -12,6 +12,10 @@ export default function Jobs({ jobs }) {
                 <title>Job Board</title>
             </Head>
 
+            <h2>This site was a project for my FBLA Website Coding & Development Event.
+                It is a job posting board for students and employers. Please do not expect
+                it to have relevant postings or information as it is only a showcase page.</h2>
+
             <h1 className={styles.title}>Local Jobs</h1>
 
             <div className={styles.allJobs}>
