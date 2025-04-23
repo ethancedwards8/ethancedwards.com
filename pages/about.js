@@ -15,11 +15,11 @@ export default function About() {
             </div>
             <h1 className={styles.one}>About Me</h1>
             <div className={styles.two}>
-              <img src="/ethanphoto.jpg" alt="me" className={styles.photo}/>
+              <img src="/EthanHarvard.JPG" alt="me" className={styles.photo}/>
             </div>
             <div className={styles.three}>
               <p className={styles.info_text}>
-                Hi, I'm Ethan. I'm a full time high school student in rural Appalachia.
+                Hi, I'm Ethan. I'm a full time high school student in rural Appalachia and incoming student at Harvard University.
                 I work for my school's IT department and do some freelancing on the side.
                 My latest interest is Amateur Radio. I enjoy CW, POTA, and DX.
                 Additionally, I am an avid Linux user and have been since early 2020. My experiences
