@@ -18,14 +18,14 @@ export default function Podcast({ episodes }) {
             </div>
             <h1 className={styles.header}>List of episodes:</h1>
             <div className={styles.blog}>
-                {episodes.map((episodes, index) => (
+                {episodes.map((episode, index) => (
                     <div className={styles.post}>
                         <hr/>
-                        <Link href={episodes.link} passHref>
-                            <h1 className={styles.info}>{episodes.title}</h1>
+                        <Link href={episode.link} passHref>
+                            <h1 className={styles.info}>{episode.title}</h1>
                         </Link>
                         <h4 className={styles.info}>The Ridge Podcast</h4>
-                        <h4 className={styles.info}>{dayjs(episodes.date).format('MMMM D, YYYY')}</h4>
+                        <h4 className={styles.info}>{dayjs(episode.date).format('MMMM D, YYYY')}</h4>
                     </div>
                 ))}
             </div>
