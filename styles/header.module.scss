@@ -34,7 +34,7 @@
     color: white;
 }
 
-@media (width <= 800px) {
+@media (width <= 600px) {
 
   .logo {
     display: none;
@@ -42,13 +42,7 @@
     padding: 0;
   }
 
-  .nav ul {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 0 10px;
-  }
-
   .nav li {
-    margin: 0 5px;
+    margin: 0 10px;
   }
 }
