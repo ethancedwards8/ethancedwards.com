@@ -4,17 +4,35 @@
     padding: 10px;
 
     a {
-	text-decoration: none;
-	color: #363EEB;
-	transition: color .15s ease-out 75ms;
+	  text-decoration: none;
+	  color: #363EEB;
+	  transition: color .15s ease-out 75ms;
     }
 
     a:hover {
-	// color: #1a1515;
-	color: #1C86FF;
+	  // color: #1a1515;
+	  color: #1C86FF;
 
     }
 
+    .projectgrid {
+      display: flex;
+      flex-direction: row;
+
+      .griditem {
+        width: calc(100%/2);
+
+        img {
+          width: 60%;
+          height: auto;
+          display: block;
+          object-fit: cover;
+          margin: 0 auto;
+        }
+
+      }
+
+    }
 }
 
 .podcast {
@@ -39,9 +57,19 @@
 
 .header {
     // background: #363EEB;
-    // background: #363EEB;
     margin: 20px;
     padding: 10px;
     border-radius: 50px;
 }
 
+@media screen and (width <= 800px) {
+  .projectgrid {
+    flex-direction: column !important;
+
+    img {
+      width: 80% !important;
+    }
+  }
+
+
+}
