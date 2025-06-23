@@ -54,7 +54,7 @@ it is hacky in that two copies of the binary would be included in the final buil
 space, and that I could instead use `makeFlags` to redirect the install directory. I had
 already committed the package:
 
-<SyntaxHighlighter language="javascript">
+<SyntaxHighlighter>
 {`
 commit 18b222d5cba16d200a61f876a7d05db112bb1a3b (HEAD -> master)
 Author: Ethan Carter Edwards <ethan@ethancedwards.com>
@@ -68,7 +68,7 @@ Author: Ethan Carter Edwards <ethan@ethancedwards.com>
 A reviewer came by and suggested that I use `makeFlags` to redirect it instead. I made
 the changes and committed them, but then I had separate commits!
 
-<SyntaxHighlighter language="javascript">
+<SyntaxHighlighter>
 {`
 commit 21025f648cb730caa783954d063d3990f7d1ca1e (HEAD -> master)
 Author: Ethan Carter Edwards <ethan@ethancedwards.com>
@@ -93,7 +93,7 @@ it is broken down and explained. `git rebase` tells git we want to start rebasin
 of the repository (which means the most up-to-date commit, in this case), and go back `2`
 commits. Once running the command, we are presented the `todo` screen.
 
-<SyntaxHighlighter language="javascript">
+<SyntaxHighlighter>
 {`
 pick 18b222d yetris: init at 2.1.0
 pick 21025f6 yetris: use makeFlags to redirect install location
@@ -115,7 +115,7 @@ by changing `pick` on the second commit to `squash`. We could technically squash
 commits into this first commit as well. The most commits I have squashed together is
 10, but Git supports much larger numbers than that.
 
-<SyntaxHighlighter language="javascript">
+<SyntaxHighlighter>
 {`
 pick 18b222d yetris: init at 2.1.0
 squash 21025f6 yetris: use makeFlags to redirect install location
@@ -127,7 +127,7 @@ squashed commits message and log. I recommend removing the commit logs from the 
 commits, but it is not a hard requirement by any means. After editing the log to reflect
 your wishes, save and exit again. Git will squash the commits:
 
-<SyntaxHighlighter language="javascript">
+<SyntaxHighlighter>
 {`
 commit 1398b15ecb5aa80d25ae202b44b09532a1ddfb49 (HEAD -> master)
 Author: Ethan Carter Edwards <ethan@ethancedwards.com>
