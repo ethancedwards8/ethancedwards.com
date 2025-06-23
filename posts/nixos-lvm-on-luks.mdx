@@ -1,0 +1,158 @@
+---
+title: Installing NixOS on LVM on LUKS
+author: Ethan Carter Edwards
+date: '2025-06-22'
+description: Installing LVM on LUKS on NixOS
+image: '/logo.jpg'
+tags: ['linux', 'nixos', 'foss', 'security']
+---
+## Background
+
+I have been a long time Linux user (since March of 2020, guess why? ;) ). Part
+of the reason I began to use Linux and continue to use it is the increased security
+and privacy that it offers. Not only am I confident that Microsoft, Google, or Apple
+is not spying on me, but I am afforded the ability to take my security into my own hands.
+
+While there are a number of strategies to enhance a computer's software security like utilizing
+SELinux, AppArmor, or hardening the SSH configuration, few measures protect a computer
+from physical tampering like disk encryption does. It does not matter how secure a device's
+software stack is if it is physically compromised. Full disk encryption is the easiest way 
+to protect against low effort but high-yield physical attacks. Using LUKS encryption is the
+easiest way to do that. LVM on top of it allows me even more flexibility with how I organize my data.
+
+As I prepare to start my studies at Harvard University, I anticipate the unfortunate
+reality that I may somehow lose my laptop or that my laptop is taken, intentionally or not.
+By securing my device with encryption, I am protecting myself against unauthorized data access.
+Additionally, using NixOS allows me to verify that my configuration is as it seems. Any change
+to my system would be overwritten by my declarative NixOS configuration switching. Also, using
+NixOS allows me to easily replicate my system configuration across multiple devices and quickly
+reinstall my system in the event of a theft or drive failure. I'll stop evangelizing and start
+explaining now.
+
+As a general warning, this article will be fairly technical. I will assume that the readers
+know the basics of filesystems and disk partitioning, but will explain the disk encryption-
+and NixOS-specific content. Also, these steps are specific to my 11th Gen 13" Framework with an
+NVMe drive. Other computer's specifics may vary.
+
+A more advanced and NixOS-like solution may be an encrypted ZFS root with [impermanence](https://grahamc.com/blog/erase-your-darlings/), however
+LVM on LUKS is the more traditional way to accomplish the same goal. Additionally, I am much more
+comfortable with LVM, LUKS, and ext4 than I am with ZFS. Neither is better or worse, just different.
+
+## The Disk
+
+The process for preparing the disk is pretty uniform across distributions. I learned much of this
+from the Arch Wiki when I used Arch Linux full time. Skilled Linux users can probably skim this section
+and start at the NixOS section.
+
+We'll start by partioning my disk into two parts with `fdisk /dev/nvme0n1`:
+1. 1G partition with Type 1: `UEFI boot`
+2. Remaining free space with Type 23: `Linux x86_64 root`
+
+The first partition will be the unencrypted `FAT32` UEFI boot partition. The second will be the
+the LUKS encrypted partition that will be organized with LVM. However, before we start using
+LVM or formatting filesystems, we must actually encrypt and unlock our disk. I suggest adding
+labels to make configuring the NixOS hardware settings easier later.
+
+<SyntaxHighlighter language="bash">
+{`
+cryptsetup luksFormat --label=NIXOS_LUKS /dev/nvme0n1p2
+cryptsetup luksOpen /dev/nvme0n1p2 cryptlvm
+`}
+</SyntaxHighlighter>
+
+After unlocking the encrypted partition and mapping it to the `cryptlvm` name, we can create
+our LVM Physical Volumes (pv), Volume Groups (vg), and Logical Volumes (lv). While understanding how each works
+is not vital for setting up the system, I encourage the reader to research each topic in more detail
+at the [Arch Wiki](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#Preparing_the_logical_volumes) 
+and [Digital Ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations).
+
+Now is a good time to mention why we are using LVM when LUKS handles all of our encryption needs.
+LVM is the Logical Volume Manager (LVM) for Linux. LVM allows us to create multiple logical
+partition-like volumes under the encrypted LUKS partition. This means that we could have lv's for
+home partitions, root partitions, var partitions, etc. Here, I am choosing to create lv's for a
+swap partition and a root partition.
+
+Please note that I am leaving `256M` at the end of the lv to allow for using `e2scrub` with `ext4`.
+
+<SyntaxHighlighter language="bash">
+{`
+pvcreate /dev/mapper/cryptlvm
+vgcreate NIXOS_LVM /dev/mapper/cryptlvm
+lvcreate -L 16G -n SWAP NIXOS_LVM
+lvcreate -l 100%FREE -n ROOT NIXOS_LVM
+lvreduce -L -256M NIXOS_LVM/ROOT
+`}
+</SyntaxHighlighter>
+
+After setting up LVM, we can start formatting the volumes. I am electing to use `ext4`
+because I am confident in it and am very familiar with it. I believe using other file systems
+like `xfs` would be possible too. `FAT32` is required for UEFI boot partitions, so that makes
+our decision easy! After formatting the drives, we can mount them. This is all pretty standard stuff. 
+
+Please note that again I am using labels to make things easier on myself later.
+
+<SyntaxHighlighter language="bash">
+{`
+# formatting
+mkfs.fat -F32 -n BOOTFS /dev/nvme0n1p1
+mkswap -L SWAPFS /dev/NIXOS_LVM/SWAP
+mkfs.ext4 -L ROOTFS /dev/NIXOS_LVM/ROOT
+# mounting
+swapon /dev/NIXOS_LVM/SWAP
+mount /dev/NIXOS_LVM/ROOT /mnt
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
+`}
+</SyntaxHighlighter>
+
+Now our disk is fully setup. Let's start the NixOS installation!
+
+## NixOS
+
+Thankfully, this part is pretty simple thanks to NixOS's tooling. We generate the
+config (and I prefer a flakified version), make edits where necessary, and then install. 
+After installing, we enter the system and can start editing our config in more detail if
+necessary.
+
+<SyntaxHighlighter language="bash">
+{`
+nixos-generate-config --root /mnt --flake
+$EDITOR /mnt/etc/nixos/configuration.nix
+nixos-install --root /mnt --flake /mnt/etc/nixos#nixos
+nixos-enter --root /mnt
+`}
+</SyntaxHighlighter>
+
+Below, I would like to point out some required additions to the config to ensure
+that the bootloader is configured to correctly handle LVM on LUKS on reboot.
+
+<SyntaxHighlighter language="nix">
+{`
+{
+    # ensures the systemd boot loader is installed
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+
+    # IMPORTANT: without these additions the LUKS device will not be found
+    # and therefore decrypted, making boot fail
+    boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" ];
+    boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-label/NIXOS_LUKS";
+
+    # the system will automatically generate these but will use uuid's instead of
+    # labels. Labels provide more flexibility and allow for an easier reinstall.
+    fileSystems."/" =
+        { device = "/dev/disk/by-label/ROOTFS";
+          fsType = "ext4";
+        };
+
+    fileSystems."/boot" =
+        { device = "/dev/disk/by-label/BOOTFS";
+          fsType = "vfat";
+          options = [ "fmask=0022" "dmask=0022" ];
+        };
+
+    swapDevices =
+        [ { device = "/dev/disk/by-label/SWAPFS"; }
+        ];
+}
+`}
+</SyntaxHighlighter>
