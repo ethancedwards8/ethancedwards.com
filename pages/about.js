@@ -15,7 +15,7 @@ export default function About() {
             </div>
             <h1 className={styles.one}>About Me</h1>
             <div className={styles.two}>
-              <img src="/EthanHarvard.JPG" alt="me" className={styles.photo}/>
+              <img src="/EthanSuitSteps.JPG" alt="me" className={styles.photo}/>
             </div>
             <div className={styles.three}>
               <p className={styles.info_text}>
