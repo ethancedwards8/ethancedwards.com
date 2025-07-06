@@ -19,20 +19,26 @@ export default function About() {
             </div>
             <div className={styles.three}>
               <p className={styles.info_text}>
-                Hi, I'm Ethan. I'm a full time high school student in rural Appalachia and incoming student at Harvard University.
+                Hi, I'm Ethan. I'm a recent high school and community college graduate in rural Appalachia 
+                and an incoming student at Harvard University.
                 I work for my school's IT department and do some freelancing on the side.
+                I recently started work at the Summer of Nix 2025 program.
                 My latest interest is Amateur Radio. I enjoy CW, POTA, and DX.
                 Additionally, I am an avid Linux user and have been since early 2020. My experiences
-                with Linux and other FLOSS software has influenced my belief in <a className={styles.link} href="https://www.gnu.org/philosophy/free-sw.html">Free/Libre Software.</a>
+                with Linux and other FLOSS software has influenced my belief in <a className={styles.link} href="https://www.gnu.org/philosophy/free-sw.html">Free/Libre Software. </a>
+                I encourage you to checkout my <a className={styles.link} href="https://github.com/ethancedwards8">GitHub page</a> for an overview of the projects I work on.
               </p>
               <p className={styles.info_text}>
-                Outside of the tech space, I enjoy exploring mathematics, physics, chess, reading, and linguistics.
-                I am fluent in Spanish.
+                Outside of the tech space,  I hope to use my experience and skills as a communicator to bridge
+                the gap between science and society. I have a keen interest in political philosophy, economics,
+                history, literature, language, and religion. I believe books help us ask the important questions
+                and teach us to critically analyze the world around us. Being fluent in both English and Spanish
+                helps me connect with those from other cultures and understand them better.
               </p>
                 <h1 className={styles.four + styles.makecenter}>The Ridge Podcast</h1>
                 <p className={styles.info_text}>
                   I host <a className={styles.link} href="https://theridgepodcast.com">The Ridge Podcast</a> where I interview local Appalachians. At the time of writing this,
-                  there are more than 80 published interviews with teachers, historians, politicians, musicians, writers, and more. Check it out!
+                  there are more than 95 published interviews with teachers, historians, politicians, musicians, writers, and more. Check it out!
                 </p>
             </div>
             <h1 className={styles.six}>Contact Me</h1>
