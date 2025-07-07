@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import React from 'react';
 import Link from 'next/link';
 
+import { NextSeo } from 'next-seo';
+
 import styles from '../styles/index.module.scss';
 
 import { getAllPosts } from '../lib/posts';
@@ -13,6 +15,12 @@ export default function Home({ quotes, posts }) {
 
     return (
         <div className={styles.App}>
+          <NextSeo
+            openGraph={{
+              title: "Ethan Carter Edwards",
+              url: 'https://ethancedwards.com/',
+            }}
+          />
 
           <div className={styles.wrapper}>
 
