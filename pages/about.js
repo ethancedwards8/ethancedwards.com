@@ -2,12 +2,17 @@ import React from 'react';
 import styles from '../styles/about.module.scss';
 import Head from 'next/head';
 
+import { NextSeo } from 'next-seo';
+
 export default function About() {
     return (
         <>
-            <Head>
-                <title>About Me</title>
-            </Head>
+          <NextSeo
+            title="About"
+            openGraph={{
+              url: 'https://ethancedwards.com/about',
+            }}
+          />
 
           <div className={styles.wrapper}>
             <div className={`${styles.zero} ${styles.makecenter}`}>

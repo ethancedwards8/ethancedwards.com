@@ -7,6 +7,8 @@ import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import dayjs from 'dayjs';
 
+import { NextSeo } from 'next-seo';
+
 import { getAllPosts } from '../../lib/posts';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -20,8 +22,15 @@ export default function slug({ frontMatter, source, slug }) {
 
     return (
         <>
+          <NextSeo
+            title={frontMatter.title}
+            description={frontMatter.description}
+            openGraph={{
+              url: `https://ethancedwards.com/blog/${slug}`,
+            }}
+          />
+
           <Head>
-            <title>{frontMatter.title}</title>
             <meta name="fediverse:creator" content="@ethancedwards@fosstodon.org" />
           </Head>
 

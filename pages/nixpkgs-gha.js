@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import Head from 'next/head';
 import { useState } from 'react';
 
+import { NextSeo } from 'next-seo';
+
 import styles from '../styles/blog.module.scss';
 
 export default function AudioFeed() {
@@ -22,9 +24,14 @@ export default function AudioFeed() {
 
     return (
         <>
-            <Head>
-                <title>Ethan's Nixpkgs GHA Automation</title>
-            </Head>
+          <NextSeo
+            title="Ethan's GHA Automation"
+            noindex={true}
+            nofollow={true}
+            openGraph={{
+              url: 'https://ethancedwards.com/nixpkgs-gha',
+            }}
+          />
 
             <form onSubmit={handleSubmit} method="POST">
                 <label for="pr" className={styles.text}>Enter your PR: </label>

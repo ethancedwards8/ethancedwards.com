@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
+import { NextSeo } from 'next-seo';
+
 import styles from '../../styles/congress.module.scss';
 
 import Representatives from '../../components/representatives.js';
@@ -37,9 +39,12 @@ export default function Congress() {
 
     return (
         <>
-            <Head>
-                <title>Congress</title>
-            </Head>
+            <NextSeo
+              title="Congress"
+              openGraph={{
+                url: 'https://ethancedwards.com/congress',
+              }}
+            />
 
             <h1 className={styles.header}>Welcome to Find Your Reps.</h1>
             <p className={styles.text}>To learn more about who represents you in congress, input your address below.

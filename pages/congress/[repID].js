@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../../styles/congress.module.scss';
 
+import { NextSeo } from 'next-seo';
+
 function BillLink({ billObject }) {
     let linkDict = new Object();
     linkDict['HR'] = 'house-bill';

@@ -2,19 +2,27 @@ import Link from 'next/link';
 import dayjs from 'dayjs';
 import Head from 'next/head';
 
+import { NextSeo } from 'next-seo';
+
 import styles from '../styles/blog.module.scss';
 
 export default function Podcast({ projects }) {
 
+    const description = "Here are various projects that I have worked on throughout the years. I currently maintain many of them.";
+
     return (
         <>
-            <Head>
-                <title>Projects</title>
-            </Head>
+            <NextSeo
+              title="Projects"
+              description={description}
+              openGraph={{
+                url: 'https://ethancedwards.com/projects',
+              }}
+            />
 
             <div className={styles.podcast}>
                 <h1 className={styles.header}>Welcome to my projects page</h1>
-                <p>Here are various projects that I have worked on throughout the years. I currently maintain many of them.</p>
+                <p>{description}</p>
             </div>
             <h1 className={styles.header}>Projects:</h1>
             <div className={styles.blog}>
