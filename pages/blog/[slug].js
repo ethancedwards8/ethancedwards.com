@@ -7,7 +7,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import dayjs from 'dayjs';
 
-import { NextSeo } from 'next-seo';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 
 import { getAllPosts } from '../../lib/posts';
 
@@ -28,6 +28,17 @@ export default function slug({ frontMatter, source, slug }) {
             openGraph={{
               url: `https://ethancedwards.com/blog/${slug}`,
             }}
+          />
+
+          <ArticleJsonLd
+            authorName={frontMatter.authorName}
+            type="Blog"
+            url={`https://ethancedwards.com/blog/${slug}`}
+            title={frontMatter.title}
+            images={[]}
+            datePublished={frontMatter.date}
+            dateModified={frontMatter.date}
+            description={frontMatter.description}
           />
 
           <Head>

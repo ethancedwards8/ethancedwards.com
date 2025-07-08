@@ -8,7 +8,7 @@ import styles from '../styles/blog.module.scss';
 
 export default function Podcast({ episodes }) {
 
-    const description = "Here you can find conversations on Appalachian history and culture.";
+    const description = "With a focus on people and stories from the Blue Ridge/Appalachian region, the podcast touches on a wide range of topics like politics, local government, law, education, local history, faith, community service, and cultural heritage.";
 
     return (
         <>

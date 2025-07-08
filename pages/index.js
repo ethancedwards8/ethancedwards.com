@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import Link from 'next/link';
 
-import { NextSeo } from 'next-seo';
+import { NextSeo, SocialProfileJsonLd } from 'next-seo';
 
 import styles from '../styles/index.module.scss';
 
@@ -20,6 +20,17 @@ export default function Home({ quotes, posts }) {
               title: "Ethan Carter Edwards",
               url: 'https://ethancedwards.com/',
             }}
+          />
+
+          <SocialProfileJsonLd
+            type="Person"
+            name="Ethan Carter Edwards"
+            url="https://ethancedwards.com"
+            sameAs={[
+              'https://www.linkedin.com/in/ethancedwards8/',
+              'https://github.com/ethancedwards8',
+              'https://gitlab.com/ethancedwards/',
+            ]}
           />
 
           <div className={styles.wrapper}>
