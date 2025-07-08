@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import Link from 'next/link';
 
-import { NextSeo, SocialProfileJsonLd } from 'next-seo';
+import { NextSeo, SocialProfileJsonLd, LogoJsonLd } from 'next-seo';
 
 import styles from '../styles/index.module.scss';
 
@@ -31,6 +31,12 @@ export default function Home({ quotes, posts }) {
               'https://github.com/ethancedwards8',
               'https://gitlab.com/ethancedwards/',
             ]}
+          />
+
+          <LogoJsonLd
+            url="https://ethancedwards.com"
+            logo="https://ethancedwards.com/favicon.png"
+            alt="Ethan Carter Edwards"
           />
 
           <div className={styles.wrapper}>
