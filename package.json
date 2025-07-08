@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "dayjs": "^1.11.13",
-    "express": "^4.21.2",
     "gray-matter": "^4.0.3",
     "next": "^15.3.4",
     "next-mdx-remote": "^5.0.0",
@@ -17,7 +16,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "node ./scripts/gen-rss.js && next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "next start"
   },
   "eslintConfig": {
     "extends": [
