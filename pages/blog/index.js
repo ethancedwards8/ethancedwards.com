@@ -21,7 +21,7 @@ export default function Blog({ posts }) {
           <h1 className={styles.header}>List of posts:</h1>
           <div className={styles.blog}>
             {posts.map((post, index) => (
-                <div className={styles.post}>
+                <div key={index} className={styles.post}>
                   <hr/>
                   <Link href={'/blog/' + post.slug} passHref>
                     <h1>{post.frontMatter.title}</h1>

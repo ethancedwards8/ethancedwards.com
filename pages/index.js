@@ -53,7 +53,7 @@ export default function Home({ quotes, posts }) {
                 <h2 className={styles.recent}>Recent Blog Posts:</h2>
                 <posts>
                   {posts.map((post, index) => (
-                      <div className={styles.post}>
+                      <div key={index} className={styles.post}>
                         <hr/>
                         <Link href={'/blog/' + post.slug} passHref>
                           <h3>{post.frontMatter.title}</h3>

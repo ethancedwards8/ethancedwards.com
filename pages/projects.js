@@ -6,7 +6,7 @@ import { NextSeo } from 'next-seo';
 
 import styles from '../styles/blog.module.scss';
 
-export default function Podcast({ projects }) {
+export default function Projects({ projects }) {
 
     const description = "Here are various projects that I have worked on throughout the years. I currently maintain many of them.";
 
@@ -27,7 +27,7 @@ export default function Podcast({ projects }) {
             <h1 className={styles.header}>Projects:</h1>
             <div className={styles.blog}>
                 {projects.map((project, index) => (
-                    <div className={styles.post}>
+                    <div key={index} className={styles.post}>
                         <hr/>
                         <Link href={project.link} passHref>
                             <h1>{project.title}</h1>

@@ -27,7 +27,7 @@ export default function Podcast({ episodes }) {
             <h1 className={styles.header}>List of episodes:</h1>
             <div className={styles.blog}>
                 {episodes.map((episode, index) => (
-                    <div className={styles.post}>
+                    <div key={index} className={styles.post}>
                         <hr/>
                         <Link href={episode.link} passHref>
                             <h1 className={styles.info}>{episode.title}</h1>
