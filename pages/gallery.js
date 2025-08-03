@@ -19,7 +19,10 @@ export default function PhotoGallery({ photos }) {
               }}
             />
 
-            <h1 className={styles.header}>Photo Gallery</h1>
+            <div className={styles.header}>
+                <h1>Photo Gallery</h1>
+                <p>Here are some memories from the past few years. Feel free to click through them!</p>
+            </div>
 
             <div className={styles.wrapper}>
             <Gallery withCaption>
