@@ -1,0 +1,38 @@
+.header {
+  margin: 20px;
+}
+
+.desc {
+  padding: 0 30px;
+  font-size: 120%;
+}
+
+.gallery_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1vw;
+  
+  img {
+    object-fit:cover;
+    height: 40vh;
+    display: flex;  
+    max-height: 99%;
+    max-width: 99%;  
+    margin: auto;  
+    padding: 2px;
+  }
+
+  img:hover {
+    filter: brightness(80%);
+  }
+}
+
+.wrapper {
+  padding: 10px;
+}
+
+@media (width <= 800px) {
+  .gallery_grid {
+    grid-template-columns: 1fr;
+  }
+}

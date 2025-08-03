@@ -1,0 +1,146 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import dayjs from 'dayjs';
+import { Gallery, Item } from 'react-photoswipe-gallery'
+import 'photoswipe/dist/photoswipe.css'
+
+import { NextSeo } from 'next-seo';
+
+import styles from '../styles/gallery.module.scss';
+
+export default function PhotoGallery({ photos }) {
+    return (
+        <>
+            <NextSeo
+              title="Gallery"
+              description="Photo Gallery of Memories"
+              openGraph={{
+                url: 'https://ethancedwards.com/gallery',
+              }}
+            />
+
+            <h1 className={styles.header}>Photo Gallery</h1>
+
+            <div className={styles.wrapper}>
+            <Gallery withCaption>
+                <div className={styles.gallery_grid}>
+                {photos.map((photo, index) => (
+                    <Item
+                        key={index}
+                        original={photo.original}
+                        alt={photo.caption}
+                        width={photo.width}
+                        height={photo.height}
+                    >
+                    {({ ref, open }) => (
+                        <img style={{ cursor: 'pointer' }} ref={ref} onClick={open} src={photo.original} />
+                    )}
+                    </Item>
+                ))}
+                </div>
+            </Gallery>
+        </div>
+        </>
+    );
+}
+
+export async function getStaticProps() {
+    const photos = [
+        {
+            "caption": "At Harvard",
+            "original": "/gallery/EthanHarvard.JPG",
+            "width": 1536,
+            "height": 2048
+        },
+        {
+            "caption": "At Courthouse by Gunshot",
+            "original": "/gallery/EthanSuitSteps.jpg",
+            "width": 560,
+            "height": 840
+        },
+        {
+            "caption": "At CCHS Graduation",
+            "original": "/gallery/ethandiploma.jpg",
+            "width": 1536,
+            "height": 2048
+        },
+        {
+            "caption": "At FBLA Nationals",
+            "original": "/gallery/ethannationals.jpeg",
+            "width": 3936,
+            "height": 2624
+        },
+        {
+            "caption": "Running at Grayson Highlands",
+            "original": "/gallery/ethansummithighlands.jpg",
+            "width": 1100,
+            "height": 733
+        },
+        {
+            "caption": "XC Varsity Boys at Knight's Crossing",
+            "original": "/gallery/ethanxcteam.jpeg",
+            "width": 5472,
+            "height": 3648
+        },
+        {
+            "caption": "Ethan Interviewing Education Panelists",
+            "original": "/gallery/oneofuscare.jpeg",
+            "width": 1024,
+            "height": 768
+        },
+        {
+            "caption": "The Ridge Podcast Logo",
+            "original": "/gallery/TheRidgePodcastECE3000x3000.jpg",
+            "width": 3000,
+            "height": 3000
+        },
+        {
+            "caption": "Ethan at Rubiks Cube Competition",
+            "original": "/gallery/youngcubingethan.jpeg",
+            "width": 600,
+            "height": 800
+        },
+        {
+            "caption": "Favicon/My Logo",
+            "original": "/gallery/favicon.png",
+            "width": 512,
+            "height": 512
+        },
+        {
+            "caption": "Backstroke Start at Conference",
+            "original": "/gallery/ethanconferencemeetbackstart.jpeg",
+            "width": 2048,
+            "height": 1365
+        },
+        {
+            "caption": "Knight's Crossing XC Meet Photo",
+            "original": "/gallery/knightscrossing.jpeg",
+            "width": 4032,
+            "height": 3024
+        },
+        {
+            "caption": "Running at Froggy Mounta",
+            "original": "/gallery/samethandavisfroggy.JPG",
+            "width": 2208,
+            "height": 1244
+        },
+        {
+            "caption": "Swim Team at State",
+            "original": "/gallery/swimteamatstate.jpeg",
+            "width": 1008,
+            "height": 756
+        },
+        {
+            "caption": "Ethan and Artemis on a Rock",
+            "original": "/gallery/ethan_artemis_rock.JPG",
+            "width": 3204,
+            "height": 2746
+        },
+    ];
+
+    return {
+        props: {
+            photos
+        }
+    }
+}
