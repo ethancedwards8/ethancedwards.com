@@ -65,16 +65,22 @@ export async function getStaticProps() {
             "height": 2048
         },
         {
+            "caption": "At WCC Graduation with Family",
+            "original": "/gallery/wccgraduation.JPG",
+            "width": 1536,
+            "height": 2048
+        },
+        {
             "caption": "At FBLA Nationals",
             "original": "/gallery/ethannationals.jpeg",
             "width": 3936,
             "height": 2624
         },
         {
-            "caption": "Running at Grayson Highlands",
-            "original": "/gallery/ethansummithighlands.jpg",
-            "width": 1100,
-            "height": 733
+            "caption": "Ethan at Golden Cavs",
+            "original": "/gallery/goldencavs.jpeg",
+            "width": 4180,
+            "height": 3018
         },
         {
             "caption": "XC Varsity Boys at Knight's Crossing",
@@ -89,10 +95,40 @@ export async function getStaticProps() {
             "height": 768
         },
         {
+            "caption": "As Panelist at RU Cybersecurity Ed. Summit",
+            "original": "/gallery/radfordcybersecuritysummit.JPG",
+            "width": 1440,
+            "height": 1080
+        },
+        {
+            "caption": "Trash Pickup on US-58",
+            "original": "/gallery/trashpickup58.JPG",
+            "width": 960,
+            "height": 720
+        },
+        {
             "caption": "The Ridge Podcast Logo",
             "original": "/gallery/TheRidgePodcastECE3000x3000.jpg",
             "width": 3000,
             "height": 3000
+        },
+        {
+            "caption": "Family at Fenway Park",
+            "original": "/gallery/fenwaypark.JPG",
+            "width": 1180,
+            "height": 1475
+        },
+        {
+            "caption": "Ethan photobombing",
+            "original": "/gallery/ethanandnickjumping.JPG",
+            "width": 2016,
+            "height": 2688
+        },
+        {
+            "caption": "Boys State Moot Court Team",
+            "original": "/gallery/boysstate.jpeg",
+            "width": 4032,
+            "height": 3024
         },
         {
             "caption": "Ethan at Rubiks Cube Competition",
@@ -107,8 +143,8 @@ export async function getStaticProps() {
             "height": 512
         },
         {
-            "caption": "Backstroke Start at Conference",
-            "original": "/gallery/ethanconferencemeetbackstart.jpeg",
+            "caption": "Swimming Freestyle at State",
+            "original": "/gallery/ethanswim.JPG",
             "width": 2048,
             "height": 1365
         },
@@ -119,10 +155,16 @@ export async function getStaticProps() {
             "height": 3024
         },
         {
-            "caption": "Running at Froggy Mounta",
-            "original": "/gallery/samethandavisfroggy.JPG",
-            "width": 2208,
-            "height": 1244
+            "caption": "Team at Sugar Hollow",
+            "original": "/gallery/sugarhollowxc.JPG",
+            "width": 1440,
+            "height": 1080
+        },
+        {
+            "caption": "Running at Grayson Highlands",
+            "original": "/gallery/ethansummithighlands.jpg",
+            "width": 1100,
+            "height": 733
         },
         {
             "caption": "Swim Team at State",
