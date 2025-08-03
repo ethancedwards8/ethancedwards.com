@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import dayjs from 'dayjs';
-import Head from 'next/head';
 
 import { NextSeo } from 'next-seo';
 
