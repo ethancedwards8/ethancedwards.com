@@ -36,7 +36,7 @@ export default function PhotoGallery({ photos }) {
                         height={photo.height}
                     >
                     {({ ref, open }) => (
-                        <img style={{ cursor: 'pointer' }} ref={ref} onClick={open} src={photo.original} />
+                        <Image alt={photo.alt} width={photo.width} height={photo.height} style={{ cursor: 'pointer' }} ref={ref} onClick={open} src={photo.original} />
                     )}
                     </Item>
                 ))}
