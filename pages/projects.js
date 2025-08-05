@@ -66,6 +66,13 @@ export async function getStaticProps() {
             "photo": "/projects/jobslandingpage.png",
             "photoalt": "Screenshot of job listing landing page.",
         },
+        {
+            "title": "Website Photo Gallery",
+            "description": "This photo gallery contais various memories from throughout the years. It was built using PhotoSwipe v5.",
+            "link": "/gallery",
+            "photo": "/projects/photogallery.jpg",
+            "photoalt": "Screenshot of the photo gallery page",
+        },
     ];
 
     return {
