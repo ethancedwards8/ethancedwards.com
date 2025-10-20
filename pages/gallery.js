@@ -50,6 +50,60 @@ export default function PhotoGallery({ photos }) {
 export async function getStaticProps() {
     const photos = [
         {
+            "caption": "Canaday D-41",
+            "original": "/gallery/canadayd41.JPG",
+            "width": 1600,
+            "height": 1200
+        },
+        {
+            "caption": "Canaday D Men",
+            "original": "/gallery/canadaydmen.JPG",
+            "width": 1536,
+            "height": 2048
+        },
+        {
+            "caption": "Canaday D Entryway",
+            "original": "/gallery/canadayd.JPG",
+            "width": 2048,
+            "height": 1536
+        },
+        {
+            "caption": "FOP group at convocation",
+            "original": "/gallery/fopconvocation.jpeg",
+            "width": 5712,
+            "height": 4284
+        },
+        {
+            "caption": "End of FOP",
+            "original": "/gallery/fopend.jpeg",
+            "width": 4032,
+            "height": 3024
+        },
+        {
+            "caption": "FOP Mountain Summit",
+            "original": "/gallery/foptopofmountain.jpeg",
+            "width": 4032,
+            "height": 3024
+        },
+        {
+            "caption": "Day 1 of FOP",
+            "original": "/gallery/fopday1.jpeg",
+            "width": 3024,
+            "height": 4032
+        },
+        {
+            "caption": "Traveling to NH for FOP!",
+            "original": "/gallery/startfop.jpeg",
+            "width": 4032,
+            "height": 3024
+        },
+        {
+            "caption": "Back To School Bash With CCLTF",
+            "original": "/gallery/ccltfbacktoschoolbash.jpg",
+            "width": 2048,
+            "height": 1365
+        },
+        {
             "caption": "At Harvard",
             "original": "/gallery/EthanHarvard.JPG",
             "width": 1536,
