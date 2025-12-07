@@ -43,7 +43,7 @@ export default function About() {
                 <h1 className={styles.four + styles.makecenter}>The Ridge Podcast</h1>
                 <p className={styles.info_text}>
                   I host <a className={styles.link} href="https://theridgepodcast.com">The Ridge Podcast</a> where I interview local Appalachians. At the time of writing this,
-                  there are more than 95 published interviews with teachers, historians, politicians, musicians, writers, and more. Check it out!
+                  there are more than 100 published interviews with teachers, historians, politicians, musicians, writers, and more. Check it out!
                 </p>
             </div>
             <h1 className={styles.six}>Contact Me</h1>
@@ -54,6 +54,7 @@ export default function About() {
                 <a href="https://gitlab.com/ethancedwards"><img src="/gitlab2.png" alt="GitLab"/></a>
                 <a href="mailto:ethan@ethancedwards.com"><img src="/email.png" alt="Email"/></a>
                 <p>GPG: 2E51 F618 39D1 FA94 7A73 00C2 34C0 4305 D581 DBFE</p>
+                <a href="/EthanEdwardsHarvardResume.pdf"><p>Resume</p></a>
               </div>
               <div className={styles.certifications}>
                 <h1>Certifications</h1>
