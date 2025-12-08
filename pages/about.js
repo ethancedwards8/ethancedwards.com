@@ -24,26 +24,41 @@ export default function About() {
             </div>
             <div className={styles.three}>
               <p className={styles.info_text}>
-                Hi, I'm Ethan. I'm a recent high school and community college graduate in rural Appalachia 
-                and an incoming student at Harvard University.
-                I work for my school's IT department and do some freelancing on the side.
-                I recently started work at the Summer of Nix 2025 program.
-                My latest interest is Amateur Radio. I enjoy CW, POTA, and DX.
-                Additionally, I am an avid Linux user and have been since early 2020. My experiences
-                with Linux and other FLOSS software has influenced my belief in <a className={styles.link} href="https://www.gnu.org/philosophy/free-sw.html">Free/Libre Software. </a>
-                I encourage you to checkout my <a className={styles.link} href="https://github.com/ethancedwards8">GitHub page</a> for an overview of the projects I work on.
+                Hi, I'm Ethan. I'm a student from rural Appalachia studying CS
+                + Math at Harvard University. In 2025, I was a Summer of Nix Fellow
+                at the <a href="https://nixos.org/">NixOS Foundation</a>. I also did
+                some IT work on the side. My latest hobby is Amateur Radio where I'm
+                active in CW, POTA, and DX. Additionally, I am an avid Linux user and
+                have been since early 2020. My experiences with Linux and other FLOSS
+                software has influenced my belief in <a className={styles.link}
+                href="https://www.gnu.org/philosophy/free-sw.html">Free/Libre Software.
+                </a> I encourage you to checkout my <a className={styles.link}
+                href="https://github.com/ethancedwards8">GitHub page</a> for an
+                overview of some of the projects I work on.
               </p>
               <p className={styles.info_text}>
-                Outside of the tech space,  I hope to use my experience and skills as a communicator to bridge
-                the gap between science and society. I have a keen interest in political philosophy, economics,
-                history, literature, language, and religion. I believe books help us ask the important questions
-                and teach us to critically analyze the world around us. Being fluent in both English and Spanish
-                helps me connect with those from other cultures and understand them better.
+                Outside of the tech space,  I hope to use my experience and
+                skills as a communicator to bridge the gap between science and society.
+                I have a keen interest in political philosophy, economics, history,
+                literature, language, and religion. I believe books help us ask the
+                important questions and teach us to critically analyze the world around
+                us. Being fluent in both English and Spanish helps me connect with
+                those from other cultures and understand them better.
+              </p>
+              <p className={styles.info_text}>
+                At Harvard, I am on the Technology Board at <a
+                href="https://www.thecrimson.com/">The Harvard Crimson</a>.
+                I'm also active in the IOP as a Staff Writer for the <a
+                href="https://theharvardpoliticalreview.com/">Harvard Political
+                Review</a> and a debater in the Harvard Political Union.
               </p>
                 <h1 className={styles.four + styles.makecenter}>The Ridge Podcast</h1>
                 <p className={styles.info_text}>
-                  I host <a className={styles.link} href="https://theridgepodcast.com">The Ridge Podcast</a> where I interview local Appalachians. At the time of writing this,
-                  there are more than 100 published interviews with teachers, historians, politicians, musicians, writers, and more. Check it out!
+                    I host <a className={styles.link}
+                    href="https://theridgepodcast.com">The Ridge Podcast</a> where I
+                    interview local Appalachians. At the time of writing this, there are
+                    more than 100 published interviews with teachers, historians,
+                    politicians, musicians, writers, and more. Check it out!
                 </p>
             </div>
             <h1 className={styles.six}>Contact Me</h1>
@@ -53,8 +68,8 @@ export default function About() {
                 <a href="https://github.com/ethancedwards8"><img src="/github.png" alt="GitHub"/></a>
                 <a href="https://gitlab.com/ethancedwards"><img src="/gitlab2.png" alt="GitLab"/></a>
                 <a href="mailto:ethan@ethancedwards.com"><img src="/email.png" alt="Email"/></a>
-                <p>GPG: 2E51 F618 39D1 FA94 7A73 00C2 34C0 4305 D581 DBFE</p>
                 <a href="/EthanEdwardsHarvardResume.pdf"><p>Resume</p></a>
+                <p>GPG: 2E51 F618 39D1 FA94 7A73 00C2 34C0 4305 D581 DBFE</p>
               </div>
               <div className={styles.certifications}>
                 <h1>Certifications</h1>
