@@ -15,36 +15,36 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
       next:
-        specifier: ^15.5.7
-        version: 15.5.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.94.2)
+        specifier: ^15.5.9
+        version: 15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.96.0)
       next-mdx-remote:
         specifier: ^5.0.0
-        version: 5.0.0(@types/react@19.0.10)(react@19.2.1)
+        version: 5.0.0(@types/react@19.0.10)(react@19.2.3)
       next-seo:
         specifier: ^6.8.0
-        version: 6.8.0(next@15.5.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.94.2))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+        version: 6.8.0(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.96.0))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
       react:
-        specifier: ^19.2.1
-        version: 19.2.1
+        specifier: ^19.2.3
+        version: 19.2.3
       react-dom:
-        specifier: ^19.2.1
-        version: 19.2.1(react@19.2.1)
+        specifier: ^19.2.3
+        version: 19.2.3(react@19.2.3)
       react-photoswipe-gallery:
         specifier: ^3.1.1
-        version: 3.1.1(photoswipe@5.4.4)(prop-types@15.8.1)(react@19.2.1)
+        version: 3.1.1(photoswipe@5.4.4)(prop-types@15.8.1)(react@19.2.3)
       react-syntax-highlighter:
         specifier: ^15.6.6
-        version: 15.6.6(react@19.2.1)
+        version: 15.6.6(react@19.2.3)
       rss:
         specifier: ^1.2.2
         version: 1.2.2
     devDependencies:
       sass:
-        specifier: ^1.94.2
-        version: 1.94.2
+        specifier: ^1.96.0
+        version: 1.96.0
 
 packages:
 
@@ -209,8 +209,8 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@next/env@15.5.7':
-    resolution: {integrity: sha512-4h6Y2NyEkIEN7Z8YxkA27pq6zTkS09bUSYC0xjd0NpwFxjnIKeZEeH591o5WECSmjpUhLn3H2QLJcDye3Uzcvg==}
+  '@next/env@15.5.9':
+    resolution: {integrity: sha512-4GlTZ+EJM7WaW2HEZcyU317tIQDjkQIyENDLxYJfSWlfqguN+dHkZgyQTV/7ykvobU7yEH5gKvreNrH4B6QgIg==}
 
   '@next/swc-darwin-arm64@15.5.7':
     resolution: {integrity: sha512-IZwtxCEpI91HVU/rAUOOobWSZv4P2DeTtNaCdHqLcTJU4wdNXgAySvKa/qJCgR5m6KI8UsKDXtO2B31jcaw1Yw==}
@@ -405,8 +405,8 @@ packages:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
 
-  caniuse-lite@1.0.30001759:
-    resolution: {integrity: sha512-Pzfx9fOKoKvevQf8oCXoyNRQ5QyxJj+3O0Rqx2V5oxT61KGx8+n6hV/IUyJeifUci2clnmmKVpvtiqRzgiWjSw==}
+  caniuse-lite@1.0.30001760:
+    resolution: {integrity: sha512-7AAMPcueWELt1p3mi13HR/LHH0TJLT11cnwDJEs3xA4+CK/PLKeO9Kl1oru24htkyUKtkGCvAx4ohB0Ttry8Dw==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -776,8 +776,8 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
-  next@15.5.7:
-    resolution: {integrity: sha512-+t2/0jIJ48kUpGKkdlhgkv+zPTEOoXyr60qXe68eB/pl3CMJaLeIGjzp5D6Oqt25hCBiBTt8wEeeAzfJvUKnPQ==}
+  next@15.5.9:
+    resolution: {integrity: sha512-agNLK89seZEtC5zUHwtut0+tNrc0Xw4FT/Dg+B/VLEo9pAcS9rtTKpek3V6kVcVwsB2YlqMaHdfZL4eLEVYuCg==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -842,10 +842,10 @@ packages:
   property-information@7.1.0:
     resolution: {integrity: sha512-TwEZ+X+yCJmYfL7TPUOcvBZ4QfoT5YenQiJuX//0th53DE6w0xxLEtfK3iyryQFddXuvkIk51EEgrJQ0WJkOmQ==}
 
-  react-dom@19.2.1:
-    resolution: {integrity: sha512-ibrK8llX2a4eOskq1mXKu/TGZj9qzomO+sNfO98M6d9zIPOEhlBkMkBUBLd1vgS0gQsLDBzA+8jJBVXDnfHmJg==}
+  react-dom@19.2.3:
+    resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
     peerDependencies:
-      react: ^19.2.1
+      react: ^19.2.3
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -862,8 +862,8 @@ packages:
     peerDependencies:
       react: '>= 0.14.0'
 
-  react@19.2.1:
-    resolution: {integrity: sha512-DGrYcCWK7tvYMnWh79yrPHt+vdx9tY+1gPZa7nJQtO/p8bLTDaHp4dzwEhQB7pZ4Xe3ok4XKuEPrVuc+wlpkmw==}
+  react@19.2.3:
+    resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
     engines: {node: '>=0.10.0'}
 
   readdirp@4.1.2:
@@ -902,8 +902,8 @@ packages:
   rss@1.2.2:
     resolution: {integrity: sha512-xUhRTgslHeCBeHAqaWSbOYTydN2f0tAzNXvzh3stjz7QDhQMzdgHf3pfgNIngeytQflrFPfy6axHilTETr6gDg==}
 
-  sass@1.94.2:
-    resolution: {integrity: sha512-N+7WK20/wOr7CzA2snJcUSSNTCzeCGUTFY3OgeQP3mZ1aj9NMQ0mSTXwlrnd89j33zzQJGqIN52GIOmYrfq46A==}
+  sass@1.96.0:
+    resolution: {integrity: sha512-8u4xqqUeugGNCYwr9ARNtQKTOj4KmYiJAVKXf2CTIivTCR51j96htbMKWDru8H5SaQWpyVgTfOF8Ylyf5pun1Q==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -1177,13 +1177,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mdx-js/react@3.1.1(@types/react@19.0.10)(react@19.2.1)':
+  '@mdx-js/react@3.1.1(@types/react@19.0.10)(react@19.2.3)':
     dependencies:
       '@types/mdx': 2.0.13
       '@types/react': 19.0.10
-      react: 19.2.1
+      react: 19.2.3
 
-  '@next/env@15.5.7': {}
+  '@next/env@15.5.9': {}
 
   '@next/swc-darwin-arm64@15.5.7':
     optional: true
@@ -1329,7 +1329,7 @@ snapshots:
       fill-range: 7.1.1
     optional: true
 
-  caniuse-lite@1.0.30001759: {}
+  caniuse-lite@1.0.30001760: {}
 
   ccount@2.0.1: {}
 
@@ -1899,12 +1899,12 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  next-mdx-remote@5.0.0(@types/react@19.0.10)(react@19.2.1):
+  next-mdx-remote@5.0.0(@types/react@19.0.10)(react@19.2.3):
     dependencies:
       '@babel/code-frame': 7.27.1
       '@mdx-js/mdx': 3.1.1
-      '@mdx-js/react': 3.1.1(@types/react@19.0.10)(react@19.2.1)
-      react: 19.2.1
+      '@mdx-js/react': 3.1.1(@types/react@19.0.10)(react@19.2.3)
+      react: 19.2.3
       unist-util-remove: 3.1.1
       vfile: 6.0.3
       vfile-matter: 5.0.1
@@ -1912,21 +1912,21 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  next-seo@6.8.0(next@15.5.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.94.2))(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
+  next-seo@6.8.0(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.96.0))(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
-      next: 15.5.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.94.2)
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
+      next: 15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.96.0)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
-  next@15.5.7(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.94.2):
+  next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.96.0):
     dependencies:
-      '@next/env': 15.5.7
+      '@next/env': 15.5.9
       '@swc/helpers': 0.5.15
-      caniuse-lite: 1.0.30001759
+      caniuse-lite: 1.0.30001760
       postcss: 8.4.31
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
-      styled-jsx: 5.1.6(react@19.2.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      styled-jsx: 5.1.6(react@19.2.3)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.5.7
       '@next/swc-darwin-x64': 15.5.7
@@ -1936,7 +1936,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.5.7
       '@next/swc-win32-arm64-msvc': 15.5.7
       '@next/swc-win32-x64-msvc': 15.5.7
-      sass: 1.94.2
+      sass: 1.96.0
       sharp: 0.34.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -1995,30 +1995,30 @@ snapshots:
 
   property-information@7.1.0: {}
 
-  react-dom@19.2.1(react@19.2.1):
+  react-dom@19.2.3(react@19.2.3):
     dependencies:
-      react: 19.2.1
+      react: 19.2.3
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
 
-  react-photoswipe-gallery@3.1.1(photoswipe@5.4.4)(prop-types@15.8.1)(react@19.2.1):
+  react-photoswipe-gallery@3.1.1(photoswipe@5.4.4)(prop-types@15.8.1)(react@19.2.3):
     dependencies:
       photoswipe: 5.4.4
       prop-types: 15.8.1
-      react: 19.2.1
+      react: 19.2.3
 
-  react-syntax-highlighter@15.6.6(react@19.2.1):
+  react-syntax-highlighter@15.6.6(react@19.2.3):
     dependencies:
       '@babel/runtime': 7.28.4
       highlight.js: 10.7.3
       highlightjs-vue: 1.0.0
       lowlight: 1.20.0
       prismjs: 1.30.0
-      react: 19.2.1
+      react: 19.2.3
       refractor: 3.6.0
 
-  react@19.2.1: {}
+  react@19.2.3: {}
 
   readdirp@4.1.2: {}
 
@@ -2094,7 +2094,7 @@ snapshots:
       mime-types: 2.1.13
       xml: 1.0.1
 
-  sass@1.94.2:
+  sass@1.96.0:
     dependencies:
       chokidar: 4.0.3
       immutable: 5.1.4
@@ -2169,10 +2169,10 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.7
 
-  styled-jsx@5.1.6(react@19.2.1):
+  styled-jsx@5.1.6(react@19.2.3):
     dependencies:
       client-only: 0.0.1
-      react: 19.2.1
+      react: 19.2.3
 
   to-regex-range@5.0.1:
     dependencies:
