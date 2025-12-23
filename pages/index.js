@@ -74,23 +74,25 @@ export default function Home({ quotes, posts }) {
 }
 
 export async function getServerSideProps() {
-    // local development
-    // const res = { quote: "Quote", author: "Author" };
-    // const quotes = res;
-    
     let quotes;
     let final;
 
     const posts = getAllPosts();
 
-    await fetch(`https://api.ethancedwards.com/quotes/v1`).then((res) => {
-    // await fetch(`http://localhost/quotes/v1`).then((res) => {
+    // helpful in dev mode (like when on a plane without wifi!)
+    try {
+        await fetch(`https://api.ethancedwards.com/quotes/v1`).then((res) => {
+        // await fetch(`http://localhost/quotes/v1`).then((res) => {
             if (!res.ok) {
                 final = { quote: "Value your freedom or you will lose it, teaches history", author: "Richard Stallman" };
             } else {
                 final = res.json();
             }
         });
+    } catch {
+        final = { quote: "Value your freedom or you will lose it, teaches history", author: "Richard Stallman" };
+    };
+
     quotes = await final;
 
     return { props: { quotes, posts } };
