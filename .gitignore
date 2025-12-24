@@ -6,6 +6,7 @@ public/feed.xml
 /.pnp
 .pnp.js
 /.next
+/.direnv
 
 # testing
 /coverage
