@@ -18,12 +18,13 @@
         mkShell {
           name = "dev shell";
           buildInputs = [
-              nixfmt-rfc-style
               git
-              pnpm
-              mdcat
-              texliveFull
               latexrun
+              mdcat
+              nixfmt-rfc-style
+              nodejs
+              pnpm
+              texliveFull
           ];
         }
       );
