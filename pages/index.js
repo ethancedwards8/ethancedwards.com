@@ -75,7 +75,7 @@ export default function Home({ quotes, posts }) {
 
 export async function getServerSideProps() {
     let quotes;
-    let final;
+    let final = { quote: "Value your freedom or you will lose it, teaches history", author: "Richard Stallman" };
 
     const posts = getAllPosts();
 
@@ -83,15 +83,11 @@ export async function getServerSideProps() {
     try {
         await fetch(`https://api.ethancedwards.com/quotes/v1`).then((res) => {
         // await fetch(`http://localhost/quotes/v1`).then((res) => {
-            if (!res.ok) {
-                final = { quote: "Value your freedom or you will lose it, teaches history", author: "Richard Stallman" };
-            } else {
+            if (res.ok) {
                 final = res.json();
             }
         });
-    } catch {
-        final = { quote: "Value your freedom or you will lose it, teaches history", author: "Richard Stallman" };
-    };
+    } catch { };
 
     quotes = await final;
 
