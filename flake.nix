@@ -22,6 +22,8 @@
               git
               pnpm
               mdcat
+              texliveFull
+              latexrun
           ];
         }
       );
