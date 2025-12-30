@@ -5,10 +5,12 @@ export default function Document() {
         <Html lang="en">
 
           <Head>
-            <link rel="icon" href="/favicon.png" type="image/png" sizes="260x260" />
-
-            <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-            <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+            <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+            <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+            <link rel="shortcut icon" href="/favicon.ico" />
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+            <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+            <link rel="manifest" href="/site.webmanifest" />
           </Head>
 
           <body>
