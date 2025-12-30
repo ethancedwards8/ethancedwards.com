@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import styles from '../styles/blog.module.scss';
 
-export default function AudioFeed() {
+export default function AudioFeed({ episodes }) {
     let [link, setLink] = useState("");
 
     async function handleSubmit(event) {
@@ -31,6 +31,22 @@ export default function AudioFeed() {
                 <input type="text" name="link" value={link} onChange={(e) => setLink(e.target.value)} required/>
                 <input type="submit" value="Add Link" className={styles.submit} />
             </form>
+
+            <div className={styles.blog}>
+                {episodes.toReversed().map((episode, index) => (
+                    <div key={index} className={styles.post}>
+                        <hr/>
+                        <h2 className={styles.info}>{episode}</h2>
+                    </div>
+                ))}
+            </div>
         </>
     );
+}
+
+export async function getServerSideProps() {
+    const res = await fetch(`https://api.ethancedwards.com/audiofeed/v1/dump`);
+    const episodes = await res.json();
+
+    return { props: { episodes } };
 }
