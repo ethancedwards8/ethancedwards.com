@@ -6,7 +6,7 @@ import styles from '../styles/blog.module.scss';
 
 export default function Projects({ projects }) {
 
-    const description = "Here is a non-exhaustive list of a few projects that I have worked on throughout the years. I currently maintain many of them. See my Resume on the About page for a few more.";
+    const description = "Here is a non-exhaustive list of a few projects that I have worked on throughout the years. I currently maintain many of them. See my Resume/CV on the About page for a few more.";
 
     return (
         <>
@@ -29,6 +29,7 @@ export default function Projects({ projects }) {
                         <hr/>
                         <Link href={project.link} passHref>
                             <h1>{project.title}</h1>
+                            { project.github ? <img alt="GitHub Repo stars" src={`https://img.shields.io/github/stars/${project.github}`} /> : <></> }
                         </Link>
 
                         <div className={styles.projectgrid}>
@@ -51,6 +52,7 @@ export async function getStaticProps() {
             "link": "https://github.com/dracula/tmux",
             "photo": "/projects/draculatmux.png",
             "photoalt": "Screenshot of the Dracula Tmux theme",
+            "github": "dracula/tmux",
         },
         {
             "title": "Congress",
