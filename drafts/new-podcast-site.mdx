@@ -1,0 +1,139 @@
+---
+title: Building a podcast site with Cloudflare R2, NextJS, and MDX
+author: Ethan Carter Edwards
+date: '2026-01-01'
+description: Using Cloudflare R2 to host theridgepodcast.com! 
+image: '/logo.jpg'
+tags: ['r2', 's3', 'cloudflare', 'theridgepodcast', '', '']
+---
+
+NOTE: The beginning of this post is a bit of a narrative/celebration of The
+Ridge Podcast. The technical part/tutorial starts with the second heading.
+
+## The Ridge Podcast Turns 3
+
+In a few months, [The Ridge Podcast](https://theridgepodcast.com) will turn 3
+years old. In case you're not familiar, it is a show focused on interviews from
+the Blue Ridge/Appalachian area. Some guests include local officials, educators,
+business owners, historians, and people willing to share their stories. Episodes
+touch on local politics, community service, culture, history, education, faith,
+and more. Some notable guests include [John Reid](https://theridgepodcast.com/podcast/99-john-reid-republic-candidate-for-lieutenant-governor-politics-campaigning-platform-family/),
+[Beth Macy](https://theridgepodcast.com/podcast/49-beth-macy-dopesick-roanoke-times-factory-man-writing-journalism-research/),
+[Morgan Griffith](https://theridgepodcast.com/podcast/27-us-congressman-morgan-griffith-law-school-politics-family-coal-energy-insurance-advice/),
+[Sam Bush](https://theridgepodcast.com/podcast/45-sam-bush-musician-bluegrass-grammys-mandolin-fiddle-singing-new-grass-revival/),
+[Walter Rugaber](https://theridgepodcast.com/podcast/34-walter-rugaber-journalism-new-york-times-roanoke-times-richard-nixon-northwestern-georgia-watergate-civil-rights-humanities/),
+[John Bennardo](https://theridgepodcast.com/podcast/15-john-bennardo-wheel-of-fortune-hollywood-afv-author-film-director-2-bill-just-a-typo-film-school/),
+and so many [more](https://theridgepodcast.com/podcast/).
+
+For the first 72 episodes, I was joined by Jeffrey "Luke" Watson during the
+interviews as a co-host. After moving to college, however, Luke left the
+podcast as a full-time co-host, joining in episodes as time permitted. More
+recently, however, I have been the sole host. I am incredibly thankful for
+Luke's involvement and contributions during the early stages of the podcast.
+
+When the podcast was created, it was a weekly production. Every week for 72
+weeks, we recorded and published and episode. After a few week break, I
+switched to a bi-weekly schedule for around a year. Finally, when I started my
+freshman year at Harvard, I switched to a monthly production.
+
+This labor of love has been an incredibly important part of mine and Luke's
+life. It has connected us to countless amazing people and allowed us to share
+their stories with others. Additionally, the podcast serves as an archive for
+future generations. The podcast's role as an archive became more obvious to us
+after a guest unexpectedly passed away. Afterwards, we made it a point to
+interview family members and those close to us.
+
+Throughout the podcast's life, I have also served as the webhost, editor,
+producer, funder, and social media manager. Being a small production means that
+I quickly had to learn to wear many hats. The show's size also means that, when
+starting, I did not have the skills or knowledge to create the website of my
+dreams. We just needed something up and working. Fortunately, Wordpress and its
+plugin ecosystem has served the show well for almost 3 years now. That being
+said, Wordpress is a bit inflexible and rigid—it also has some pretty
+detrimental performance issues that undoubtedly impact our listener's
+experience, as well as Search Engine Optimization and indexing.
+
+Given the show's maturity and my increased abilities as a developer and
+designer, I figure it is about time The Ridge Podcast gets a new website. Now
+that winter break is here and I have some free time, it is time to get to work.
+
+## Why Cloudflare R2, NextJS, and MDX?
+
+In the old Wordpress setup, all files were served directly from my server's
+filesystem and sent to listeners—regardless of where and when they were
+listening. While my Wordpress setup had simple redis caching, it lacked a CDN.
+Given that my server is located in the basement of my childhood home on a
+less-than-amazing satellite connection and then served over a Wireguard tunnel
+to a VPS in NYC, streaming speeds left a bit to be desired. Additionally, I
+found Wordpress's UI hard to navigate and overly bloated. Also, the stateful
+nature of Wordpress made me nervous. What if a bad plugin or Wordpress update
+ruins my database? Sure, I have backups and can revert, but its annoying and
+time-consuming.
+
+After a few days of ruminating (and boredom while being home for break) on
+these issues, I've come up with the following solution: use Cloudflare R2 to
+cache the podcast episodes and serve them over a CDN while using MDX files to
+store metadata. To explain, whenever I want to publish a new episode, I will
+add a .mdx file to my podcast episodes directory and write its title,
+description, etc. From there, NextJS will build the mdx files and serve them as
+static html. This way, I can reduce the amount of state/media on my own
+servers. All of the written content will be declaratively written to be stored
+in a git repository. While uploading the file to Cloudflare R2 could be done
+manually, I will most likely write a script to automate it as well as the post
+creation process.
+
+I chose Cloudflare R2 because it is relatively cheap (compared to Amazon S3!)
+and I am most familiar with it. In my position as a Technology Board member at [The Harvard Crimson](https://www.thecrimson.com/),
+I recently helped migrate our site from Amazon S3 to Cloudflare R2. Given this
+experience, I was impressed by R2's pricing and quality. While there are
+probably easier, simpler, or cheaper ways to achieve my setup, I would like to
+learn S3-compatible storage and I don't mind paying a few dollars a month
+(on top of everything else) to learn and have fun.
+
+## Migrating to Cloudflare and R2
+
+### Cloudflare DNS
+
+In order for the caching to properly work in the future, I also need to give
+Cloudflare control over theridgepodcast.com's DNS. Like always, Cloudflare's
+documentation made this super simple (noticing a pattern? Go Cloudflare!).
+They have a [tool that imports](https://developers.cloudflare.com/fundamentals/manage-domains/add-site/)
+all of the A, CNAME, MX, etc records into their system. After they were
+imported, I went to my domain registrar (hover.com) to change my NS records to
+Cloudflare's servers. Because I manage my own SSL/TLS certificates with Nginx
+Proxy Manager, I had to also set Cloudflare's encryption mode to `Full (Strict)`.
+Oddly enough, I also had to go to Nginx Proxy Manager and request a new
+certificate. I'm still not exactly sure why. I would've thought my old
+certificate would have worked? Anyways, after doing those two things I had
+successfully switched over.
+
+### R2
+
+My first step was to migrate all of the podcast media to Cloudflare R2.
+Thankfully, this was pretty straighforward. There is some really amazing
+tooling around S3-compatible storage backends and the documentation for it is
+superb. After creating my Cloudflare account and enrolling in R2, I created
+a Standard Bucket called `theridgepodcast-media` and account API tokens to
+start tinkering with R2 and its features. Cloudflare has a really nice guide
+on [using the official AWS S3 JavaScript SDK with Cloudflare R2](https://developers.cloudflare.com/r2/examples/aws/aws-sdk-js-v3/).
+After verifying its functionality, I started copying podcast episodes to the
+bucket with rclone. Again, Cloudflare has a great guide [to configure](https://developers.cloudflare.com/r2/examples/rclone/)
+and [to use](https://developers.cloudflare.com/r2/objects/upload-objects/)
+rclone. After running `rclone config`, and navigating through the menus to
+select Cloudflare R2 support, I ran `rclone copy -vvvvv ./audio/ r2:theridgepodcast-media`
+to copy all of my podcast audio files (in the `audio` directory) to the bucket.
+A half an hour later, all of my episodes are in the bucket. Easy as pie!
+
+I also had to add a subdomain for my bucket `theridgepodcast-media`. While it
+is technically possible to use the public development url, it is discouraged and
+prevents proper caching. Cloudflare's [guide explains the steps](https://developers.cloudflare.com/rules/origin-rules/tutorials/point-to-r2-bucket-with-custom-domain/).
+After, `media.theridgepodcast.com` pointed to the bucket
+`theridgepodcast-media` where episodes are stored.
+
+## Figuring Out Feeds and Exporting Content
+
+Obviously, there is other data that I am interested in exporting and preserving.
+For example, the post descriptions, episode titles, publish dates, and more are
+reusable and valuable content. After writing a simple Python script with the
+[feedparser library](https://github.com/kurtmckee/feedparser), I had all of that
+content exported into a folder of .mdx files.
