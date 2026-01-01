@@ -7,11 +7,11 @@ export default function Header() {
           <nav className={styles.nav}>
             <div className={`${styles.logo} ${styles.navlink}`}><Link href="/" passHref>Ethan Carter Edwards</Link></div>
             <ul>
-              <div className={styles.navlink}><li><Link href="/" passHref>Home</Link></li></div>
-              <div className={styles.navlink}><li><Link href="/blog" passHref>Blog</Link></li></div>
-              <div className={styles.navlink}><li><Link href="/podcast" passHref>Podcast</Link></li></div>
-              <div className={styles.navlink}><li><Link href="/projects" passHref>Projects</Link></li></div>
-              <div className={styles.navlink}><li><Link href="/about" passHref>About</Link></li></div>
+              <li className={styles.navlink}><Link href="/" passHref>Home</Link></li>
+              <li className={styles.navlink}><Link href="/blog" passHref>Blog</Link></li>
+              <li className={styles.navlink}><Link href="/podcast" passHref>Podcast</Link></li>
+              <li className={styles.navlink}><Link href="/projects" passHref>Projects</Link></li>
+              <li className={styles.navlink}><Link href="/about" passHref>About</Link></li>
             </ul>
           </nav>
         </div>
