@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { NextSeo } from 'next-seo';
 
-import { getAllPosts } from '../../lib/posts';
+import { getAllPostsNoContent } from '../../lib/posts';
 import styles from '../../styles/blog.module.scss';
 
 export default function Blog({ posts }) {
@@ -37,7 +37,7 @@ export default function Blog({ posts }) {
 }
 
 export async function getStaticProps() {
-    const posts = getAllPosts();
+    const posts = getAllPostsNoContent();
 
     return {
         props: {
