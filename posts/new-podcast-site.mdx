@@ -1,0 +1,327 @@
+---
+title: Building a podcast site with Cloudflare R2, NextJS, and MDX
+author: Ethan Carter Edwards
+date: '2026-01-01'
+description: Using Cloudflare R2 to host theridgepodcast.com!
+image: '/logo.jpg'
+tags: ['r2', 's3', 'cloudflare', 'theridgepodcast', 'datascience', 'scripting', 'mdx', 'nextjs', 'javascript']
+---
+
+NOTE: The beginning of this post is a bit of a narrative/celebration of The
+Ridge Podcast. The technical part/tutorial starts with the second heading.
+
+## The Ridge Podcast Turns 3
+
+In a few months, [The Ridge Podcast](https://theridgepodcast.com) will turn 3
+years old. In case you're not familiar, it is a show focused on interviews from
+the Blue Ridge/Appalachian area. Some guests include local officials, educators,
+business owners, historians, and people willing to share their stories. Episodes
+touch on local politics, community service, culture, history, education, faith,
+and more. Some notable guests include [John Reid](https://theridgepodcast.com/podcast/99-john-reid-republic-candidate-for-lieutenant-governor-politics-campaigning-platform-family/),
+[Beth Macy](https://theridgepodcast.com/podcast/49-beth-macy-dopesick-roanoke-times-factory-man-writing-journalism-research/),
+[Morgan Griffith](https://theridgepodcast.com/podcast/27-us-congressman-morgan-griffith-law-school-politics-family-coal-energy-insurance-advice/),
+[Sam Bush](https://theridgepodcast.com/podcast/45-sam-bush-musician-bluegrass-grammys-mandolin-fiddle-singing-new-grass-revival/),
+[Walter Rugaber](https://theridgepodcast.com/podcast/34-walter-rugaber-journalism-new-york-times-roanoke-times-richard-nixon-northwestern-georgia-watergate-civil-rights-humanities/),
+[John Bennardo](https://theridgepodcast.com/podcast/15-john-bennardo-wheel-of-fortune-hollywood-afv-author-film-director-2-bill-just-a-typo-film-school/),
+and so many [more](https://theridgepodcast.com/podcast/).
+
+This labor of love has been an incredibly important part of mine and my co-host's
+life. It has connected us to countless amazing people and allowed us to share
+their stories with others. Additionally, the podcast serves as an archive for
+future generations. The podcast's role as an archive became more obvious to us
+after a guest unexpectedly passed away. Afterwards, we made it a point to
+interview family members and those close to us.
+
+Throughout the podcast's life, I have also served as the webhost, editor,
+producer, funder, and social media manager. Being a small production means that
+I quickly had to learn to wear many hats. The show's size also means that, when
+starting, I did not have the skills or knowledge to create the website of my
+dreams. We just needed something up and working. Fortunately, Wordpress and its
+plugin ecosystem has served the show well for almost 3 years now. That being
+said, Wordpress is a bit inflexible and rigid—it also has some pretty
+detrimental performance issues that undoubtedly impact our listener's
+experience, as well as Search Engine Optimization and indexing. Finally, the
+podcasting plugin I use does not support some of the new [podcasting 2.0](https://podcasting2.org/)
+tags that I would like to take advantage of.
+
+Given the show's maturity and my increased abilities as a developer and
+designer, I figure it is about time The Ridge Podcast gets a new website. Now
+that winter break is here and I have some free time, it is time to get to work.
+
+## Why Cloudflare R2, NextJS, and MDX?
+
+In the old Wordpress setup, all files were served directly from my server's
+filesystem and sent to listeners—regardless of where and when they were
+listening. While my Wordpress setup had simple redis caching, it lacked a CDN.
+Given that my server is located in the basement of my childhood home on a
+less-than-amazing satellite connection and then served over a Wireguard tunnel
+to a VPS in NYC, streaming speeds left a bit to be desired. Additionally, I
+found Wordpress's UI hard to navigate and overly bloated. Also, the stateful
+nature of Wordpress made me nervous. What if a bad plugin or Wordpress update
+ruins my database? Sure, I have backups and can revert, but its annoying and
+time-consuming.
+
+After a few days of ruminating (and boredom while being home for break) on
+these issues, I've come up with the following solution: use Cloudflare R2 to
+cache the podcast episodes and serve them over a CDN while using MDX files to
+store metadata. To explain, whenever I want to publish a new episode, I will
+add a .mdx file to my podcast episodes directory and write its title,
+description, etc. From there, NextJS will build the mdx files and serve them as
+static html. This way, I can reduce the amount of state/media on my own
+servers. All of the written content will be declaratively written to be stored
+in a git repository. While uploading the file to Cloudflare R2 could be done
+manually, I will most likely write a script to automate it as well as the post
+creation process. This stateless model is pretty common for blogs and there are
+numerous examples online of using mdx + nextjs to create a blog. I'm just taking
+it a step further!
+
+I chose Cloudflare R2 because it is relatively cheap (compared to Amazon S3!)
+and I am most familiar with it. In my position as a Technology Board member at [The Harvard Crimson](https://www.thecrimson.com/),
+I recently helped migrate our site from Amazon S3 to Cloudflare R2. Given this
+experience, I was impressed by R2's pricing and quality. While there are
+probably easier, simpler, or cheaper ways to achieve my setup, I would like to
+learn S3-compatible storage and I don't mind paying a few dollars a month
+(on top of everything else) to learn and have fun.
+
+## Migrating to Cloudflare and R2
+
+### Cloudflare DNS
+
+In order for the caching to properly work in the future, I also need to give
+Cloudflare control over theridgepodcast.com's DNS. Like always, Cloudflare's
+documentation made this super simple (noticing a pattern? Go Cloudflare!).
+They have a [tool that imports](https://developers.cloudflare.com/fundamentals/manage-domains/add-site/)
+all of the A, CNAME, MX, etc records into their system. After they were
+imported, I went to my domain registrar (hover.com) to change my NS records to
+Cloudflare's servers. Because I manage my own SSL/TLS certificates with Nginx
+Proxy Manager, I had to also set Cloudflare's encryption mode to `Full (Strict)`.
+Oddly enough, I also had to go to Nginx Proxy Manager and request a new
+certificate. I'm still not exactly sure why. I would've thought my old
+certificate would have worked? Anyways, after doing those two things I had
+successfully switched over.
+
+### R2
+
+My first step was to migrate all of the podcast media to Cloudflare R2.
+Thankfully, this was pretty straighforward. There is some really amazing
+tooling around S3-compatible storage backends and the documentation for it is
+superb. After creating my Cloudflare account and enrolling in R2, I created
+a Standard Bucket called `theridgepodcast-media` and account API tokens to
+start tinkering with R2 and its features. Cloudflare has a really nice guide
+on [using the official AWS S3 JavaScript SDK with Cloudflare R2](https://developers.cloudflare.com/r2/examples/aws/aws-sdk-js-v3/).
+After verifying its functionality, I started copying podcast episodes to the
+bucket with rclone. Again, Cloudflare has a great guide [to configure](https://developers.cloudflare.com/r2/examples/rclone/)
+and [to use](https://developers.cloudflare.com/r2/objects/upload-objects/)
+rclone. After running `rclone config`, and navigating through the menus to
+select Cloudflare R2 support, I ran `rclone copy -vvvvv ./audio/ r2:theridgepodcast-media`
+to copy all of my podcast audio files (in the `audio` directory) to the bucket.
+A half an hour later, all of my episodes are in the bucket. Easy as pie!
+
+I also had to add a subdomain for my bucket `theridgepodcast-media`. While it
+is technically possible to use the public development url, it is discouraged and
+prevents proper caching. Cloudflare's [guide explains the steps](https://developers.cloudflare.com/rules/origin-rules/tutorials/point-to-r2-bucket-with-custom-domain/).
+After, `media.theridgepodcast.com` pointed to the bucket
+`theridgepodcast-media` where episodes are stored.
+
+## Figuring Out Feeds and Exporting Content
+
+Obviously, there is other data that I am interested in exporting and preserving.
+For example, the post descriptions, episode titles, publish dates, and more are
+reusable and valuable content. After writing a simple Python script with the
+[feedparser library](https://github.com/kurtmckee/feedparser), I had all of that
+content exported into a folder of .mdx files roughly following this format:
+
+<SyntaxHighlighter language="yaml">
+{`
+---
+title: "#XX - My Really Interesting Podcast Title"
+date: '2024-08-17T10:00:00+00:00'
+categories:
+- books
+- history
+- reading
+- podcasting
+speakers:
+- ethan-carter-edwards
+- my-interesting-guest
+guid: 3n4s52q3-1op1-0sn6-nrnr-571r185o630o
+---
+
+Blah blah blah this is my content!
+`}
+</SyntaxHighlighter>
+
+My script did make a few mistakes (mostly regarding encoding special characters
+like ò or '"') that I had to clean up manually, but other than that it was a
+quick process.
+
+One important datapoint I lost in the export with feedparser was my curated
+speaker/guest list. My podcasting Wordpress plugin allowed me to add a speaker
+to every single episode. I was on all of them, Luke was on many, and each guest
+was on their respective episode(s). For guests that have been on the show
+several times, sorting by speaker allowed site visitors to find episodes easier.
+I was not willing to give up this information, so I dumped the mariadb database
+and wrote a script that automatically added speakers to the correct episodes.
+After a bit of manual cleanup, the data had been migrated.
+
+One unexpected source of frustration was the episode GUID. For those
+unfamiliar, each episode has a globally unique GUID that allows podcast sites
+like Spotify, Apple Podcasts, or whoever else, to keep track of podcast
+episodes even if their titles, files, or descriptions change. This means that
+users don't lose their progress or have to redownload an entire file if a typo
+is fixed in the description.
+
+Unfortunately, the Wordpress plugin I was using created the GUID's in a bit of
+an awkward format: a link (that doesn't resolve, mind you) to the website that
+the feed is hosted on. When researching what the GUID does and why changing it
+is not recommended, I became quite frustrated. Recently, however, the developer
+of the plugin decided recently that he was going to start using [uuidv5](https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions_3_and_5_(namespace_name-based)).
+This is a completely reasonable decision (and what I will use for my uuid's
+going forward), but it is frustrating that there are two different schemas in
+the same feed. Because there is not a way to consistently calculate the episode
+GUID, I have to hardcode it into each .mdx file. While this works, it is ugly.
+
+## Generating HTML from MDX
+
+Once all the episode content was exported from my old feed and imported into
+my new mdx format, I needed a way to turn the mdx file into html to be rendered
+and to go in the podcast RSS feed. In the past, I have used [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)
+on my personal website (this one!) and decided to stick with what I know.
+
+For rendering the HTML on a page, this works great! Simply pass the serialized
+content into the `<MDXRemote />` component and it renders. Some rough pseudocode below:
+
+<SyntaxHighlighter language="javascript">
+{`
+    const components = { PodcastTrailer };
+
+    const frontMatter = post.frontMatter;
+    const source = await serialize(post.content);
+
+    return (
+        <div>
+            <MDXRemote {...source} components={components} />
+        </div>
+    );
+`}
+</SyntaxHighlighter>
+
+I'm even able to pass in a component, PodcastTrailer, to the renderer. This is
+a component that allows me to reduce duplicate text across all of the episode
+descriptions. For example, at the end of every episode description I want to
+include links to the podcast website, Facebook page, YouTube, etc—the trailer.
+Over time, this trailer has changed. For example, I used to not have a podcast
+Bluesky account. It would have been a huge pain to go through every podcast
+description and add the link, so I never did. Now, I can just edit the component
+and the next time I deploy the site, all of the episodes will have the new trailer.
+
+Generating the HTML for the podcast feed, however, was a bit more complex. For
+whatever reason, the next-mdx-remote library does not expose an API that generates
+the HTML that the MDXRemote function generates. For that reason, I had to do a little
+hack:
+
+<SyntaxHighlighter language="javascript">
+{`
+async function mdxToHtml(mdxContent) {
+    const source = await serialize(mdxContent);
+    return renderToStaticMarkup(
+        React.createElement(MDXRemote, { ...source, components })
+    );
+}
+`}
+</SyntaxHighlighter>
+
+But it works, so is it really a hack? ;) Figuring this out was actually really
+satisfying as a few years ago I tried to create a podcast feed for this website
+but ran into the same issue. Now that I have this in my back pocket, I will be
+sure to revisit the idea and start offering a real RSS feed for the content in
+this blog!
+
+## RSS/Podcast Feed Generation
+
+Generating the podcast RSS feed was probably the hardest part about this entire
+project. Figuring out what tags I needed to transfer over and manually create
+in order to not break existing subscriber's feeds was an ordeal. Also, the
+Wordpress plugin I used did not support many of the new podcasting 2.0 features
+like the `podcast:person` tag, which can be used to define interactive cards for
+hosts and guests on some podcast apps. I learned they existed as a part of this
+project.
+
+Podcast RSS feeds are generated with XML. Instead of manually creating the feed
+myself, I decided to use an npm library called [podcast](https://www.npmjs.com/package/podcast).
+While it handled a lot of the boilerplate, I found that it lacked some of the
+features (like fht `podcast:person` tag, for example) that I needed. Another
+crucial feature it lacked was the ability to lock a podcast by adding the
+locked tag, which prevents unauthorized imports. Or another one is the setting
+the feed GUID, which functions similarly to episode GUIDs. It also creates some
+deprecated tags that are no longer used by podcast readers.
+
+To actually add podcast episodes to the feed, I just loop through the podcast
+episodes directory (where the mdx files are) and use the frontMatter/content to
+populate its fields. There's also some data fetching which I'll touch more on
+later.
+
+While I paint a negative picture of the library here, it does its job well. It
+just lacks a few features I think modern podcast feeds need. Thankfully, it
+supports the `customElements` field which allowed me to add the tags that the
+library lacked by default. In the future, I would like to fork the library and
+add the features I need. Surely, I'm not the only person in the world who needs
+them?
+
+## Future Improvements
+
+I did not mention this earlier in the article, but when I was telling my
+friends about this project they all encouraged me to avoid NextJS and to use
+SvelteKit or Astro. While researching for the project, I came to the conclusion
+that they probably would have been better for this project, but I really enjoy
+(and am already familiar with) working with Next, so I decided to stick with
+it. That being said, I made a few suboptimal design choices.
+
+The first (and probably most egregious) one is that I am using the old, mostly
+deprecated, pages router instead of the new app router. My personal website
+uses it, so I was familiar with it. Also, I'm really not a fan of directory
+based routing with a page.ts or whatever. Having 20 page.ts files open is
+really annoying. I much prefer having an about.ts, index.ts, contact.ts, etc
+files. But whatever. In the future, I plan to make the migration.
+
+Additionally, I did not use NextJS's official MDX library: [@next/mdx](https://nextjs.org/docs/pages/guides/mdx). From some brief reading,
+it seems like it would've solved my problem with producing HTML output for the
+RSS feed. Also, it seems next-mdx-remote development has mostly stalled.
+Migrating would probably be smart, so its on the TODO list!
+
+Similarly, I took advantage of a library for some SEO stuff: [next-seo](https://github.com/garmeeh/next-seo).
+From my understanding, it was originally designed for the pages router.
+However, now that the app router is recommended, it has less support. Also, it
+seems like the app router handles a lot of SEO stuff automatically nowadays, so
+this library may not even be necessary once I migrate. TODO!
+
+Also, currently the process to create a new episode is painfully manual: create
+an mdx file, add the title, upload the mp3 to cloudflare using rclone or the
+Web UI, and then deploy the newly generated docker image onto my server. Soon,
+I will write a simple little javascript or python script that has a nice,
+interactive interface that will upload the mp3 for me and automatically create
+the .mdx file with the fields I input. This will take like 15 minutes.
+
+Alternatively, I may just create an authenticated page where hosts/owners can
+login and upload a file and write a title, description, etc. This would be
+helpful when I decide to commercialize this product (which may be soon). I will
+probably end up doing this.
+
+In any case, the script that generates the podcast feed is quite slow. Instead
+of storing episode duration and size information in the .mdx file, I have the
+script fetch that information from the file during each build. This operation
+isn't cached. Obviously, for 100+ episodes, this takes a solid 45 seconds and
+is annoying. I'm debating if I should just store the information in the .mdx
+files because the audio files rarely change (it does happen, though) or if I
+should just parallelize this operation. I would learn more if I parallelized
+it, so maybe that'll be it.
+
+Finally, because this site is completely static and has very little client side
+JS or server side JS, I do not collect any listener statistics. To solve that,
+I am thinking about writing a middleware layer that passes through the podcast
+audio files. Maybe something along the lines of an endpoint
+`/podcast-download/[slug].mp3` that then connects to a database somewhere and
+increments a counter. Or maybe just a text file. Who knows. I don't need or
+want anything fancy, just an idea of how many listens each episode gets that I
+can track over time. That's a problem for later me!
+
