@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-import { useRouter } from 'next/router';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head';
@@ -12,7 +11,6 @@ import { NextSeo, ArticleJsonLd } from 'next-seo';
 import { getAllPosts } from '../../lib/posts';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import CodeBlock from '../../components/codeblock.js';
 
 const components = { SyntaxHighlighter };
 
@@ -31,7 +29,7 @@ export default function slug({ frontMatter, source, slug }) {
           />
 
           <ArticleJsonLd
-            authorName={frontMatter.authorName}
+            authorName={frontMatter.author}
             type="Blog"
             url={`https://ethancedwards.com/blog/${slug}`}
             title={frontMatter.title}
