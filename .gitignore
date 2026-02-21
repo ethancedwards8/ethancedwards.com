@@ -2,6 +2,7 @@
 
 public/feed.xml
 public/latex/aux
+public/latex/presentations/nixos/aux
 # dependencies
 /node_modules
 /.pnp
