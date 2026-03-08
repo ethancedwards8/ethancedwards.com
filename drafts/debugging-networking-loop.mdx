@@ -1,1 +1,16 @@
 talk about debugging a network loop created by my access points
+
+baitandswitch#show interfaces status err-disabled
+
+Port      Name               Status       Reason               Err-disabled Vlans
+Gi1/0/3                      err-disabled loopback
+baitandswitch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+baitandswitch(config)#interface Gi1/0/3
+baitandswitch(config-if)#shutdown
+baitandswitch(config-if)#no shutdown
+baitandswitch(config-if)#exit
+baitandswitch(config)#exit
+baitandswitch#show interfaces status err-disabled
+
+baitandswitch#
