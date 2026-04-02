@@ -55,6 +55,20 @@ export async function getStaticProps() {
             "github": "dracula/tmux",
         },
         {
+            "title": "AI Reading List",
+            "description": "My reading list for the most important question humanity has faced: how do we adapt to a new world with AI? Curated by me and automatically updated every hour via an API that I've built out.",
+            "link": "/ai",
+            "photo": "/projects/people-walking.jpg",
+            "photoalt": "Human silhouettes walking around"
+        },
+        {
+            "title": "HotBillsNearYou.com",
+            "description": "YHack 2026 UI/UX winner. We were inspired by dating apps like Tinder and wanted to apply that engaging, gamified interface to a less exciting but equally important topic: legislation. We realized that most people don't engage with bills because they're intimidating and boring, so we asked: what if we made voting on legislation feel fun and intuitive? Our goal was to expand access to civil engagement for all without the biases of bill proposers or political parties getting in the way.",
+            "link": "https://devpost.com/software/hotbillsnearyou",
+            "photo": "/projects/hotbillsnearyoucom.jpg",
+            "photoalt": "Screenshot of webpage",
+        },
+        {
             "title": "Congress",
             "description": "Webapp for finding Congressmen/Senators by address and seeing their recent legislative activity, their party, their district, and their state after clicking on them. It uses the Geocodio API to turn addresses into Congressional districts and the Congress API retrieves member information from district numbers.",
             "link": "/congress",
