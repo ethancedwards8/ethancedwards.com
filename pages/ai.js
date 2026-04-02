@@ -48,7 +48,7 @@ export default function AI({ readings }) {
                         
                         <div>
                             {reading.author.map((author, index) => (
-                                <h4 className={styles.info}>
+                                <h4 key={index} className={styles.info}>
                                     {author.firstName} {author.lastName}
                                 </h4>
                             ))}
