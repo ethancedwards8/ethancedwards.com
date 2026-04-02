@@ -25,6 +25,25 @@ export default function AI({ readings }) {
     everything listed below. I will read anything and everything, and this is
     just a list. Please send me more things to read! :)`;
 
+    function createNameList(names) {
+        let name = "";
+
+        if (names.length == 1) {
+            return `${names[0].firstName} ${names[0].lastName}`
+        }
+
+        for (let i = 0; i < names.length; i++) {
+            if (i == names.length - 1) {
+                name += `and ${names[i].firstName} ${names[i].lastName}`
+
+                return name;
+            }
+            name += `${names[i].firstName} ${names[i].lastName}, `
+        }
+
+        return name;
+    }
+
     return (
         <>
           <NextSeo
@@ -49,13 +68,7 @@ export default function AI({ readings }) {
                             <h2>{reading.title}</h2>
                         </Link>
                         
-                        <div>
-                            {reading.author.map((author, index) => (
-                                <h4 key={index} className={styles.info}>
-                                    {author.firstName} {author.lastName}
-                                </h4>
-                            ))}
-                        </div>
+                        <p className={styles.info}> {createNameList(reading.author)}</p>
                         <h4 className={styles.info}>{reading.date}</h4>
                     </div>
                 ))}
