@@ -12,15 +12,18 @@ export default function AI({ readings }) {
     const description = `I'm becoming increasingly convinced that the
     advancement and development of AI is the most important technological
     innovation in human history, for better or for worse. I'm also convinced
-    that how we grow, change, and adapt to it is the most important question.
-    If nothing else, it is the only thing I care about right now.
+    that how we grow, change, and adapt to it is the most important question
+    we face as a society. This list is meant to be the starting point for how
+    I think about the kinds of issues humanity will face in the prescence of
+    real Artificial Intelligence and how we can learn from history to protect
+    ourselves.
 
     I have read everything on this list. I may write start writing some about
     what I read, too.
 
     Disclaimer: I don't agree with everything listed below or disagree with
     everything listed below. I will read anything and everything, and this is
-    just a list. Please send me things to read! :)`;
+    just a list. Please send me more things to read! :)`;
 
     return (
         <>
