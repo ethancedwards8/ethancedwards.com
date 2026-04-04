@@ -50,6 +50,48 @@ export default function PhotoGallery({ photos }) {
 export async function getStaticProps() {
     const photos = [
         {
+            "caption": "Winning the YHack 2026 UI/UX Award",
+            "original": "/gallery/yhack2026win.jpeg",
+            "width": 4284,
+            "height": 5712
+        },
+        {
+            "caption": "Blocking Group with Eliot Elephant on Housing Day 2026",
+            "original": "/gallery/housingday2026eliotelephant.jpeg",
+            "width": 4284,
+            "height": 5712
+        },
+        {
+            "caption": "Blocking Group at Adams during River Run",
+            "original": "/gallery/housingday2026adamsphoto.jpeg",
+            "width": 4032,
+            "height": 3024
+        },
+        {
+            "caption": "Ethan and August during River Run",
+            "original": "/gallery/ethanandaugusthousingday2026.jpeg",
+            "width": 1280,
+            "height": 960
+        },
+        {
+            "caption": "Ethan in front of the Golden Gate Bridge",
+            "original": "/gallery/ethangoldengatesf.jpeg",
+            "width": 4284,
+            "height": 5712
+        },
+        {
+            "caption": "Ethan and Abel at Harvard-Yale 2025",
+            "original": "/gallery/ethanandabelatharvardyale2025.jpeg",
+            "width": 5712,
+            "height": 4284
+        },
+        {
+            "caption": "Ethan and friends at Harvard-Yale 2025",
+            "original": "/gallery/ethanetalharvardyale2025.jpeg",
+            "width": 5712,
+            "height": 4284
+        },
+        {
             "caption": "Canaday D-41",
             "original": "/gallery/canadayd41.JPG",
             "width": 1600,
