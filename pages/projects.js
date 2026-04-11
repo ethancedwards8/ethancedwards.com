@@ -57,7 +57,7 @@ export async function getStaticProps() {
         {
             "title": "AI Reading List",
             "description": "My reading list for the most important question humanity has faced: how do we adapt to a new world with AI? Curated by me and automatically updated every hour via an API that I've built out.",
-            "link": "/ai",
+            "link": "/library/ai",
             "photo": "/projects/people-walking.jpg",
             "photoalt": "Human silhouettes walking around"
         },

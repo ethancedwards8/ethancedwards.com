@@ -5,9 +5,9 @@ import React from 'react';
 
 import { NextSeo } from 'next-seo';
 
-import Reading from '../components/reading.js';
+import Reading from '../../components/reading.js';
 
-import styles from '../styles/blog.module.scss';
+import styles from '../../styles/blog.module.scss';
 
 
 export default function AI({ readings }) {
