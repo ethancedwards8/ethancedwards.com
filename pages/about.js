@@ -87,6 +87,12 @@ export default function About() {
                   <a className={styles.link} href="https://www.credly.com/badges/523dcce4-4cf1-4b8e-ad96-84a31f1ccb14">GitLab Certified Git Associate</a>
                 </p>
               </div>
+              <div className={styles.eight + styles.makecenter}>
+                <h1>Philanthropy</h1>
+                <p className={styles.info_text}>I am a member of <a href="https://www.givingwhatwecan.org/">Giving What We Can</a> and 
+                    have pledged to donate at least 1% of my income to charity as a student until I graduate from Harvard and
+                    at least 10% after I enter the workforce.</p>
+              </div>
             </div>
           </div>
         </>

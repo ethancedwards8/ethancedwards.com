@@ -81,6 +81,11 @@ body {
     grid-row: 2;
 }
 
+.eight {
+  grid-column: 3;
+  grid-row: 3;
+}
+
 .certgrid {
     display: grid;
     grid-auto-rows: repeat(3, 1fr);
@@ -142,6 +147,11 @@ body {
   .seven {
     grid-column: 1;
     grid-row: 5;
+  }
+
+  .eight {
+    grid-column: 1;
+    grid-row: 6;
   }
 
   .certifications {
