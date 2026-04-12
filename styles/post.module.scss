@@ -2,9 +2,22 @@
     margin: 0 50px;
     padding: 10px;
 
+  p, strong {
+    font-size: 1.4em;
+  }
+
   code {
     overflow-x: auto;
     background: rgb(240, 240, 240);
     color: rgb(68, 68, 68);
+  }
+}
+
+@media (width <= 800px) {
+  .content {
+    img {
+      max-width: 100%;
+      width: 100%;
+    }
   }
 }
