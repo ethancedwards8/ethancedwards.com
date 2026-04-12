@@ -91,7 +91,8 @@ export default function About() {
                 <h1>Philanthropy</h1>
                 <p className={styles.info_text}>I am a member of <a href="https://www.givingwhatwecan.org/">Giving What We Can</a> and 
                     have pledged to donate at least 1% of my income to charity as a student until I graduate from Harvard and
-                    at least 10% after I enter the workforce.</p>
+                    at least 10% after I enter the workforce. I also encourage others make the pledge. Let's do some
+                    good <i>Pro Humanitate</i>.</p>
               </div>
             </div>
           </div>
