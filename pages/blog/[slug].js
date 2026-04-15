@@ -76,7 +76,6 @@ export async function getStaticProps({ params: { slug } }) {
     };
 }
 
-// honestly not really sure why I need this. I guess Next needs it
 export async function getStaticPaths() {
     const files = fs.readdirSync(path.join('posts'));
 
