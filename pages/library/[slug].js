@@ -11,8 +11,6 @@ import styles from '../../styles/blog.module.scss';
 
 
 export default function AI({ library }) {
-
-    console.log(library);
     const readings = library.list;
 
     let sortedreadings = readings.sort((reading1, reading2) => (dayjs(reading1.dateAdded).isAfter(reading2.dateAdded) ? -1 : 1))
@@ -48,8 +46,6 @@ export async function getStaticPaths() {
     const libraries = await res.json();
 
     const mapping = Object.values(libraries);
-
-    console.log(mapping);
 
     const paths = mapping.map(library => ({
         params: {
