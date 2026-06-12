@@ -12,6 +12,11 @@ Dockerfile
 # Development environment
 .devcontainer
 .vscode
+.direnv
+
+node_modules
+.pnpm-store
+.next
 
 # Python cache
 __pycache__/

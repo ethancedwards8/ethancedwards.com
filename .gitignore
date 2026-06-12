@@ -5,6 +5,7 @@ public/latex/aux
 public/latex/presentations/nixos/aux
 # dependencies
 /node_modules
+/.pnpm-store
 /.pnp
 .pnp.js
 /.next
