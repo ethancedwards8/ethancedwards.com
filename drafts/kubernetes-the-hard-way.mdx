@@ -1,0 +1,49 @@
+---
+title: Kubernetes The Hard Way
+author: Ethan Carter Edwards
+date: '2026-06-04'
+description: Learning Kubernetes The Hard Way on MacOS
+image: '/logo.jpg'
+tags: ['kubernetes', 'macos', 'github', 'programming', 'infra', 'deployment', 'devops']
+---
+
+## Why Kubernetes
+
+## Lima Template:
+
+https://gist.github.com/subfuzion/1ed0721f2e7236b16316cbc86a75d183
+
+## Local VM Setup
+
+```sh
+brew install lima
+
+for name in jumpbox server node-0 node-1; do
+  # create the VM
+  limactl start \
+    --name "$name" \
+    --arch=aarch64 \
+    --cpus=2 \
+    --memory=2 \
+    --disk=20 \
+    template:debian-12
+
+    # set the VMs hostname
+    limactl shell "$name" -- sudo hostnamectl set-hostname "$name"
+done
+```
+
+```
+for name in jumpbox server node-0 node-1; do
+  echo "$name:"
+  limactl shell "$name" -- hostname
+done
+```
+
+```
+limactl network create kubehard --gateway 192.168.42.1/24
+
+for name in jumpbox server node-0 node-1; do limactl stop $name; done
+
+for name in jumpbox server node-0 node-1; do limactl edit $name --network lima:kubehard; done
+```
