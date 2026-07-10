@@ -1,0 +1,149 @@
+---
+title: Efficient Software and Nix
+author: Ethan Carter Edwards
+date: '2026-07-08'
+description: Writing efficient software isn't just good for users, it's good for the world
+image: '/logo.jpg'
+tags: ['software', 'security', 'ethics', 'philosophy', 'nix']
+---
+
+## Linux
+
+One of the reasons I started using Linux when I was in middle school was my
+fascination with how resource efficient Linux was compared to Windows.
+
+Some of this fascination was fueled by the desire to see my RAM usage when
+running `neofetch` drop lower and lower on fully-equipped Linux installation.
+The lowest I reached was ~80MB on a minimal Gentoo system. While this was fun
+and taught me a ton, it certainly wasn't very practical.
+
+The other, more practical, reason was that I had crappy hardware. While I had
+built a pretty nice (for the year and the budget) custom gaming PC a few years
+prior to starting to use Linux, it took me some time to build up the courage to
+install Linux on it. That meant most of my Linux experimentation took place on
+older HP laptop with 16GB of RAM, a slow CPU, and an even slower hard drive.
+
+Compounding on all of this was my terrible internet connection. Given that I
+lived in the middle of nowhere, the only ISP in our region provided ADSL with
+20mb download and 2mb upload. One was lucky to finish a video download in an hour,
+let alone anything large like Windows Updates.
+
+I faithfully and joyously used that old HP laptop for a few years, and I still
+have it back home. The device saw Ubuntu, Arch, Gentoo, back to Arch, and then
+finally NixOS where it rests peacefully today. I really loved that laptop.
+
+Eventually, StarLink was released and I put Linux on my gaming PC, but the
+early days of my Linux journey were very formative in how I view computing and
+software as a whole. I cherish that time and everything it taught me.
+
+Among the lessons that I learned was that selecting what software a person runs
+is really important, for both philosophical and practical reasons. Due to the
+limitations of my hardware, I often elected to install and use very minimal for
+pragmatic reasons like not wanting to wait for a web browser to load GMail. My
+workflows naturally converged to using terminal tools like `neomutt`, `neovim`,
+`tmux`, and the [suckless](https://suckless.org) software suite.
+
+## Nix
+
+When I discovered NixOS after around a year of using Linux full time on all of
+my personal computing devices, I was amazed, like many others, by the ability
+to declaratively manage my system and development environments. I immediately
+reached "nixvana".
+
+That being said, one of the unfortunate tradeoffs that Nix makes is that Nix
+systems often aren't very minimal or efficient. For example, due to some quirks
+with how Nix guarantees reproducibility and determinism, small changes in how a
+package recipe (a derivation) is written may invalidate the package's cached
+build even if the resulting binary is identical to before.
+
+Another example is the inclusion of superfluous dependencies into a packages's
+closure. For a contrived example, let's say that some C++ statistics library a
+requires the `cudaPackages.cuda_cudart` library. If within the Nixpkgs
+derivation for the statistics library any extra cuda libraries are included,
+Nix will automatically realize/download/add the additional dependencies to the
+package's closure even if they are not strictly needed. Unfortunately, this is
+somewhat common (especially with cuda) in Nixpkgs and it is often hard to
+detect.
+
+Another efficiency quirk is Nix's idea of evaluation vs builds. To keep it
+short, evaluation creates a `.drv` file that contains the instructions for a
+build to happen.
+
+Builds are easily cacheable. There even exists a binary cache for Nixpkgs not
+unlike other Linux distributions that distribute binaries to users. But caching
+evaluation is much harder, for various reasons that I will not describe here.
+
+## Efficiency
+
+In each of the previous cases, there is some computational waste that occurs.
+The way I think about computational waste is mainly in the form of electricity,
+but also opportunity cost for users.
+
+If a user has to download extra gigabytes of packages not required to run their
+program, they may have to wait a long time before starting their next task,
+which has economic and social impacts. But there's also the electrical cost: in
+order for a file to be served over the internet from a server in the
+Netherlands to a user in the United States, a packet has to be transmitted from
+the device through a series of interconnected routers, switches, access points,
+servers, and more (this idea is what made me fall in love with networking).
+
+Each time a packet crosses the atlantic, it requires electricity through each
+step/hop/route. Of course, millions of engineering hours have went into
+compressing the margin of electricity used close to zero, but there is still a
+cost. The cost of one packet may be immeasurably small, but what about
+trillions every day? I don't know the math, but I'm sure it's greater than $0.
+
+This isn't to say that we shouldn't download software because there is waste
+involved. Of course there is. We can thank the second law of thermodynamics for
+that. But I am saying that we should think about ways we can reduce waste.
+
+Of course, this thought experiment is by no means limited to the idea of
+networking electrical costs. Compiling software is often wasteful, and so is
+doing machine learning training runs, serving inference, processing photos,
+sending messages, etc. This doesn't make doing any of these things wrong,
+but I think it's important to keep in mind.
+
+Everyday users are often insulated from most of the costs in the networking
+example, as they typically only pay for what they use on their property.
+However, users pay in another way: the environment. Especially as much of this
+electricity is being generated from non-renewable and dirty resources, our
+planet feels the damage more each year.
+
+## Nix Efforts and Software Excellency
+
+Amazingly, there's been a concerted effort to make Nix more efficient in a
+myriad of ways. I am both proud and thankful to have been a part of these
+efforts in varying degrees of capacity. These efforts vary from rewriting
+complex parts of the internal standard library to removing lockfiles (which
+increase the tarball download size) from the Nixpkgs repository and replacing
+them with Fixed-Output Derivations.
+
+For one, Nixpkgs contributor [Eman "Llakala" Resu](https://github.com/llakala)
+has been working on various evaluation performance increases for Nixpkgs.
+Faster evaluation means less CPU time spent on evaluating the package set,
+which means less electricity is used. This is important because Nixpkgs is
+evaluated hundreds of trillions of times a day by users across the world. This
+adds up over time.
+
+I'm also proud to mention some of my (albeit at this time limited) work as a
+member of the Nixpkgs CUDA team to remove unused CUDA dependencies from
+packages that do not require them. Some of my changes have resulted in as much
+as 3 Gbs being removed from a package's closure. It's not much, but it's honest
+work.
+
+There are also various Nix knobs that help reduce the amount of computational
+waste. Unfortunately, many of these like `outputs` or `strictDeps` are disabled
+or unset by default in Nixpkgs, but we're getting there one step at a time.
+
+I'm currently writing a script for package maintainers to use that gives them
+recommendations on how to improve their packages to enable these options. A
+nice side effect of this effort is that packages in Nixpkgs that may not have
+been edited in many years are being modernized.
+
+Another way I think we can avoid waste is by writing excellent, minimal
+programs. Software Engineering is a technical skill, but it is also an art
+and a craft that can be learned and taught. 
+
+High quality software that aspires to be accessible to and usable by everyone
+regardless of where they live or what kind of hardware they have is incredibly
+important.
