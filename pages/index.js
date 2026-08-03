@@ -82,7 +82,6 @@ export async function getServerSideProps() {
     // helpful in dev mode (like when on a plane without wifi!)
     try {
         await fetch(`https://api.ethancedwards.com/quotes/v1`).then((res) => {
-        // await fetch(`http://localhost/quotes/v1`).then((res) => {
             if (res.ok) {
                 final = res.json();
             }
