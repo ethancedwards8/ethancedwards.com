@@ -18,12 +18,16 @@
         mkShell {
           name = "dev shell";
           buildInputs = [
-              git
+              gitMinimal
               latexrun
               mdcat
-              nixfmt-rfc-style
+              nixfmt
               nodejs
               pnpm
+              (typst.withPackages (ps: with ps; [
+                parcio-slides
+                mmdr
+              ]))
               texliveFull
           ];
         }
