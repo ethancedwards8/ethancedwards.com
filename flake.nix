@@ -13,19 +13,36 @@
       devShell = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; };
+          # https://nixos.wiki/wiki/Fonts#Install_fonts_in_nix-shells
+          fonts = with pkgs; [
+            inconsolata
+            libertinus
+          ];
+          fontsConf = pkgs.makeFontsConf {
+            fontDirectories = fonts;
+          };
         in
         with pkgs;
         mkShell {
           name = "dev shell";
           buildInputs = [
-              git
-              latexrun
-              mdcat
-              nixfmt-rfc-style
-              nodejs
-              pnpm
-              texliveFull
+            gitMinimal
+            latexrun
+            mdcat
+            nixfmt
+            nodejs
+            pnpm
+            (typst.withPackages (ps: with ps; [
+              parcio-slides
+              mmdr
+            ]))
+            texliveFull
           ];
+
+          shellHook = ''
+            export FONTCONFIG_FILE="${fontsConf}"
+            export TYPST_FONT_PATHS="${pkgs.lib.makeSearchPath "share/fonts" fonts}"
+          '';
         }
       );
     };
