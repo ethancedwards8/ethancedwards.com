@@ -12,7 +12,19 @@ import { getAllPosts } from '../../lib/posts';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
-const components = { SyntaxHighlighter };
+import quotestyles from '../../styles/index.module.scss';
+
+const components = { 
+    SyntaxHighlighter,
+    Note: (props) => (
+        <aside style={{
+            borderLeft: "solid",
+            borderColor: "#1244ec",
+            padding: "10px",
+            margin: "0"
+        }} {...props} />
+    ),
+};
 
 import styles from '../../styles/post.module.scss';
 
