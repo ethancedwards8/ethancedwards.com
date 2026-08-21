@@ -14,27 +14,62 @@ I recommend giving it a read before this post, as I will re-use many of the same
 ## Purely functional package management
 
 One of the most difficult things to understand when starting to learn Nix is
-what it really means for Nix to be a functional programming language. Many
-Computer Science graduates and Software Engineers are aware of the idea of
+what it really means for Nix to be a [purely functional package manager](https://nixos.org/guides/how-nix-works/). 
+Many Computer Science graduates and Software Engineers are aware of the idea of
 functional programming, but understanding this idea as applied to package
-management and operating systems is non-obvious at best.
+management and operating systems is non-obvious and poorly explained at best.
 
-Nix aspires to be a [purely functional package manager](https://nixos.org/guides/how-nix-works/).
 This means that derivations, the functional unit of Nix, should be reproducible
 in so far as the same inputs to a function should always give the same outputs.
 
 Nixpkgs, the package set built with Nix and used by NixOS and friends, is by
 definition just a [program](https://blog.obsidian.systems/compiler-bootstrapping-in-nixpkgs/).
 Given an input, usually a package that we want to build, Nix evaluates a set of
-pure functions that will always return the same output. While some of these
-functions are just helpful abstractions like we would create in any other
-language, other functions create derivations that we can then build.
+pure functions within Nixpkgs that will always return the same output. While
+some of these functions are just helpful abstractions like we would create in
+any other language, other functions create derivations that we can then build.
 
 <Note>
-While this isn't necessarily relevant for the article, it's interesting
+I really recommend reading through both the Nixpkgs and the Nix source code
+every once in a while. It is quite useful for understanding how Nix actually
+works internally!
+
+While this isn't necessarily relevant for the article, it's interesting to discuss
+how derivations are actually created in Nix.
+
+In Nixpkgs, we often call the function `stdenv.mkDerivation`. It's a useful
+abstraction defined in Nixpkgs that has some niceties that make packaging
+software with Nix a little easier.
+
+If we dig a bit deeper, though, `mkDerivation` actually just [calls](https://github.com/NixOS/nixpkgs/blob/c546655fb0fcc8673fe94287daee677fe484ded7/pkgs/stdenv/generic/make-derivation.nix#L1071)
+`derivation` - a function defined within the `nix` [source code itself](https://github.com/NixOS/nix/blob/adcea40393436cd052064e67d8fe8dc36021888a/src/libexpr/primops/derivation.nix).
+
+But wait, there's more: `derivation` is also a function defined in Nix code! It just
+wraps a [C++ function](https://github.com/NixOS/nix/blob/f15d42f6095faff5992d15bd0e9334442e94244d/src/libexpr/primops.cc#L1425), aka a `primop`, called `derivationStrict`.
+
+The difference between the two and why we do this is left as an exercise to the reader :)
+
+If you're confused by what a derivation actually is, I recommend reading
+Farid's blog post from above as well as [this one](https://fzakaria.com/2025/03/23/nix-derivations-by-hand).
+He spends more time defining the term and explaining!
 </Note>
 
-In Nix, all derivations are 
+In Nix, unless `--impure` or friends is used, all functions are pure. This
+means that when we *evaluate* a set of Nix expressions, we will *always* have
+repeatable results. Consequentially, when we evaluate a derivation and create
+a `.drv` in the nix store, it will always be the same `.drv` regardless of how
+many times we evaluate it.
+
+What's not always pure or repeatable is the build process itself. Taking the
+derivation build instructions and building a final result is often filled with
+non-determinism and irreproducible footguns. Just see Farid's post!
+
+<Note>
+One of the most common sources of non-determinism is compilers or build scripts
+embedding the compilation time into the finary binary; if I run the same build
+from the exact same `.drv` two times in a row, we will get different final binaries!
+Go is especially bad for this!
+</Note>
 
 
 
@@ -50,3 +85,25 @@ https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/lic
 https://codeberg.org/anaseto/harmonist/src/branch/master/tiles
 
 https://codeberg.org/forgejo/forgejo/pulls/3615
+
+
+x86_64-linux
+nix-repl> ripgrep.src
+«derivation /nix/store/k0bnndzhnkhkamwbcxvn0vlw9dxv944h-source.drv»
+
+nix-repl> :b ripgrep.src
+
+This derivation produced the following outputs:
+  out -> /nix/store/6f03ydv6vci49nszivlrwhsd55qpp8lx-source
+
+
+aarch64-darwin
+nix-repl> ripgrep.src
+«derivation /nix/store/knk3gjnrypqn1m9hym62nbsi9a5camgs-source.drv»
+
+nix-repl> :b ripgrep.src
+
+This derivation produced the following outputs:
+  out -> /nix/store/6f03ydv6vci49nszivlrwhsd55qpp8lx-source
+[1 copied (3.0 MiB), 565.1 KiB DL]
+nix-repl>
