@@ -1,0 +1,52 @@
+---
+title: The filesystem is a hidden Nix input
+author: Ethan Carter Edwards
+date: '2026-08-18'
+description: The filesystem is a hidden input for Nix
+image: '/logo.jpg'
+tags: ['macos', 'github', 'programming', 'infra', 'nixos', 'nix']
+---
+
+NB: this post is inspired by Farid Zakaria's recent post
+["The Nix sandbox is a hidden input"](https://fzakaria.com/2026/07/30/the-nix-sandbox-is-a-hidden-input).
+I recommend giving it a read before this post, as I will re-use many of the same concepts.
+
+## Purely functional package management
+
+One of the most difficult things to understand when starting to learn Nix is
+what it really means for Nix to be a functional programming language. Many
+Computer Science graduates and Software Engineers are aware of the idea of
+functional programming, but understanding this idea as applied to package
+management and operating systems is non-obvious at best.
+
+Nix aspires to be a [purely functional package manager](https://nixos.org/guides/how-nix-works/).
+This means that derivations, the functional unit of Nix, should be reproducible
+in so far as the same inputs to a function should always give the same outputs.
+
+Nixpkgs, the package set built with Nix and used by NixOS and friends, is by
+definition just a [program](https://blog.obsidian.systems/compiler-bootstrapping-in-nixpkgs/).
+Given an input, usually a package that we want to build, Nix evaluates a set of
+pure functions that will always return the same output. While some of these
+functions are just helpful abstractions like we would create in any other
+language, other functions create derivations that we can then build.
+
+<Note>
+While this isn't necessarily relevant for the article, it's interesting
+</Note>
+
+In Nix, all derivations are 
+
+
+
+
+Like Farid mentioned in the above blog post
+
+Links:
+
+https://github.com/NixOS/nixpkgs/pull/552868
+
+https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/le/lektor/package.nix#L29
+https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/licomp-oslc-handbook/default.nix#L28
+https://codeberg.org/anaseto/harmonist/src/branch/master/tiles
+
+https://codeberg.org/forgejo/forgejo/pulls/3615
