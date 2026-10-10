@@ -25,41 +25,37 @@ export default function About() {
             <div className={styles.three}>
               <p className={styles.info_text}>
                 Hi, I'm Ethan. I'm a student from rural Appalachia studying CS
-                + Math at Harvard University. In 2025, I was a Summer of Nix Fellow
-                at the <a href="https://nixos.org/">NixOS Foundation</a>. I also did
-                some IT work on the side. My latest hobby is Amateur Radio where I'm
-                active in CW, POTA, and DX. Additionally, I am an avid Linux user and
-                have been since early 2020. My experiences with Linux and other FLOSS
-                software has influenced my belief in <a className={styles.link}
-                href="https://www.gnu.org/philosophy/free-sw.html">Free/Libre Software.
-                </a> I encourage you to checkout my <a className={styles.link}
-                href="https://github.com/ethancedwards8">GitHub page</a> for an
-                overview of some of the projects I work on.
+                and Philosophy at Harvard University. I am particularly
+                interested in computer systems, infrastructure,
+                and moral philosophy. I am always looking for opportunities at the intersection of these
+                interests.
               </p>
               <p className={styles.info_text}>
-                Outside of the tech space,  I hope to use my experience and
-                skills as a communicator to bridge the gap between science and society.
-                I have a keen interest in political philosophy, economics, history,
-                literature, language, and religion. I believe books help us ask the
-                important questions and teach us to critically analyze the world around
-                us. Being fluent in both English and Spanish helps me connect with
-                those from other cultures and understand them better.
-              </p>
-              <p className={styles.info_text}>
-                At Harvard, I am on the Technology Board at <a
-                href="https://www.thecrimson.com/">The Harvard Crimson</a>.
-                I'm also active in the IOP as a Staff Writer for the <a
-                href="https://theharvardpoliticalreview.com/">Harvard Political
-                Review</a> and a debater in the Harvard Political Union.
+                Outside of the classroom, I am interested in a broad range of subjects varying from local
+                history, to Amateur Radio, to open source software development.
+                I spend much of my free time contributing to <a href="https://github.com/nixos/nixpkgs">NixOS/Nixpkgs</a>,
+                where I maintain 400+ packages and work on the CUDA, macOS/Darwin, NGI,
+                and modernization efforts. I'm driven to contribute by my belief
+                in <a href="https://www.gnu.org/philosophy/free-sw.html">FLOSS software</a>.
+                On campus, I help run the <a href="https://hsrg.dev/">Harvard Systems Reading Group</a>.
+                Lately, I've also become increasingly interested in the topic of AI safety.
               </p>
                 <h1 className={styles.four + styles.makecenter}>The Ridge Podcast</h1>
                 <p className={styles.info_text}>
-                    I host <a className={styles.link}
+                    I hosted <a className={styles.link}
                     href="https://theridgepodcast.com">The Ridge Podcast</a> where I
-                    interview local Appalachians. At the time of writing this, there are
-                    more than 100 published interviews with teachers, historians,
+                    interviewed local Appalachians from where I grew up. I interviewed
+                    more than 100 teachers, historians, journalists,
                     politicians, musicians, writers, and more. Check it out!
                 </p>
+              <div className={styles.eight + styles.makecenter}>
+                <h1>Philanthropy</h1>
+                <p className={styles.info_text}>I have <a href="https://www.givingwhatwecan.org/">pledged </a>
+                    to donate at least 1% of my income to charity as a student and
+                    at least 10% after I enter the workforce to causes that I have identified as doing cost-effective good.
+                    I encourage others to consider doing the same.
+                    Let's do some good <i>Pro Humanitate</i>.</p>
+              </div>
             </div>
             <h1 className={styles.six}>Contact Me</h1>
             <div className={`${styles.seven} ${styles.certgrid}`}>
@@ -71,28 +67,6 @@ export default function About() {
                 <a href="/latex/resume.pdf"><p>Resume</p></a>
                 <a href="/latex/cv.pdf"><p>CV</p></a>
                 <p>GPG: 2E51 F618 39D1 FA94 7A73 00C2 34C0 4305 D581 DBFE</p>
-              </div>
-              <div className={styles.certifications}>
-                <h1>Certifications</h1>
-                <p>
-                  <a className={styles.link} href="https://www.credly.com/badges/ba212fd6-4840-4395-a672-7df371342fe6">CompTIA Security+</a>
-                </p>
-                <p>
-                  <a className={styles.link} href="https://www.credly.com/badges/d9c44e5d-ef50-48aa-8a2b-46f793609745">CompTIA A+</a>
-                </p>
-                <p>
-                  <a className={styles.link} href="https://www.credly.com/badges/98fa5101-a798-47da-9d26-477f38dbcb9d">(ISC)2 Certified in Cybersecurity (CC)</a>
-                </p>
-                <p>
-                  <a className={styles.link} href="https://www.credly.com/badges/523dcce4-4cf1-4b8e-ad96-84a31f1ccb14">GitLab Certified Git Associate</a>
-                </p>
-              </div>
-              <div className={styles.eight + styles.makecenter}>
-                <h1>Philanthropy</h1>
-                <p className={styles.info_text}>I am a member of <a href="https://www.givingwhatwecan.org/">Giving What We Can</a> and 
-                    have pledged to donate at least 1% of my income to charity as a student until I graduate from Harvard and
-                    at least 10% after I enter the workforce. I also encourage others make the pledge. Let's do some
-                    good <i>Pro Humanitate</i>.</p>
               </div>
             </div>
           </div>
