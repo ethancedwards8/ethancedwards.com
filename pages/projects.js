@@ -32,6 +32,7 @@ export default function Projects({ projects }) {
                             { project.github ? <img alt="GitHub Repo stars" src={`https://img.shields.io/github/stars/${project.github}`} /> : <></> }
                         </Link>
 
+                        <p>{project.date}</p>
                         <div className={styles.projectgrid}>
                             <p className={styles.griditem}>{project.description}</p>
 
@@ -47,7 +48,17 @@ export default function Projects({ projects }) {
 export async function getStaticProps() {
     const projects = [
         {
+            "title": "NixOS/Nixpkgs",
+            "date": "2020 - current",
+            "description": "I maintain 400+ packages in Nixpkgs, the largest software repository in the world. I am active in the CUDA, MacOS/Darwin, NGI, and modernization efforts.",
+            "link": "https://github.com/nixos/nixpkgs",
+            "photo": "/projects/nixos-logo.png",
+            "photoalt": "NixOS logo",
+            "github": "nixos/nixpkgs",
+        },
+        {
             "title": "Dracula Tmux",
+            "date": "2020 - current",
             "description": "I maintain Dracula Tmux, a highly configurable and extensible theme for Tmux. It includes features and statuses for weather, ssh, kubernetes, Git, GPU, CPU, RAM usage, uptime, blood glucose, network, IP, and more. It is programmed in Bash.",
             "link": "https://github.com/dracula/tmux",
             "photo": "/projects/draculatmux.png",
@@ -56,6 +67,7 @@ export async function getStaticProps() {
         },
         {
             "title": "Virtual Library",
+            "date": "2026",
             "description": "Here is my virtual library. It contains a list of things I am currently reading. Each library (powered by Zotero) is curated by me and automatically updated every hour via an API that I've built out.",
             "link": "/library/",
             "photo": "/projects/people-walking.jpg",
@@ -63,6 +75,7 @@ export async function getStaticProps() {
         },
         {
             "title": "HotBillsNearYou.com",
+            "date": "2026",
             "description": "YHack 2026 UI/UX winner. We were inspired by dating apps like Tinder and wanted to apply that engaging, gamified interface to a less exciting but equally important topic: legislation. We realized that most people don't engage with bills because they're intimidating and boring, so we asked: what if we made voting on legislation feel fun and intuitive? Our goal was to expand access to civil engagement for all without the biases of bill proposers or political parties getting in the way.",
             "link": "https://devpost.com/software/hotbillsnearyou",
             "photo": "/projects/hotbillsnearyoucom.jpg",
@@ -70,6 +83,7 @@ export async function getStaticProps() {
         },
         {
             "title": "Congress",
+            "date": "2024",
             "description": "Webapp for finding Congressmen/Senators by address and seeing their recent legislative activity, their party, their district, and their state after clicking on them. It uses the Geocodio API to turn addresses into Congressional districts and the Congress API retrieves member information from district numbers.",
             "link": "/congress",
             "photo": "/projects/congressproject.jpg",
@@ -77,6 +91,7 @@ export async function getStaticProps() {
         },
         {
             "title": "FBLA Jobs Project",
+            "date": "2025",
             "description": "This was my senior project for the FBLA event Website Coding & Development. This is the job listing landing page. There are also pages for counselors to approve or deny jobs and employers to submit jobs. It uses python-jobspy to scrape job information off of LinkedIn, Glassdoor, and Indeed.",
             "link": "/jobs",
             "photo": "/projects/jobslandingpage.png",
@@ -84,6 +99,7 @@ export async function getStaticProps() {
         },
         {
             "title": "Website Photo Gallery",
+            "date": "2025",
             "description": "This photo gallery contais various memories from throughout the years. It was built using PhotoSwipe v5.",
             "link": "/gallery",
             "photo": "/projects/photogallery.jpg",
