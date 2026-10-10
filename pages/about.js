@@ -44,7 +44,7 @@ export default function About() {
                 <p className={styles.info_text}>
                     I hosted <a className={styles.link}
                     href="https://theridgepodcast.com">The Ridge Podcast</a> where I
-                    interviewed local Appalachians from where I grew up. I interviewed
+                    interviewed local Appalachians from where I grew up. My guests included
                     more than 100 teachers, historians, journalists,
                     politicians, musicians, writers, and more. Check it out!
                 </p>
